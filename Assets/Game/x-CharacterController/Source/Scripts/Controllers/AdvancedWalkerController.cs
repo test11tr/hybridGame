@@ -14,6 +14,13 @@ namespace CMF
 		protected Mover mover;
 		protected CharacterInput characterInput;
 		protected CeilingDetector ceilingDetector;
+		private Rigidbody rb;
+
+        // Joystick reference
+		public bool isJoystick;
+        [SerializeField] private T11Joystick _joystick;
+		private float _joystickHorizontal;
+		private float _joystickVertical;
 
         //Jump key variables;
         bool jumpInputIsLocked = false;
@@ -27,6 +34,9 @@ namespace CMF
 		//How fast the controller can change direction while in the air;
 		//Higher values result in more air control;
 		public float airControlRate = 2f;
+
+		//JumpBool
+		public bool isJumpEnabled;
 
 		//Jump speed;
 		public float jumpSpeed = 10f;
@@ -77,7 +87,8 @@ namespace CMF
 		
 		//Get references to all necessary components;
 		void Awake () {
-			mover = GetComponent<Mover>();
+            rb = GetComponent<Rigidbody>();
+            mover = GetComponent<Mover>();
 			tr = transform;
 			characterInput = GetComponent<CharacterInput>();
 			ceilingDetector = GetComponent<CeilingDetector>();
@@ -95,7 +106,15 @@ namespace CMF
 
 		void Update()
 		{
-			HandleJumpKeyInput();
+			if (isJumpEnabled)
+			{
+                HandleJumpKeyInput();
+            }	
+			if (isJoystick)
+            {
+                _joystickHorizontal = _joystick.Horizontal;
+                _joystickVertical = _joystick.Vertical;
+            }
 		}
 
         //Handle jump booleans for later use in FixedUpdate;
@@ -117,8 +136,33 @@ namespace CMF
 
         void FixedUpdate()
 		{
-			ControllerUpdate();
+			if (isJoystick)
+            {
+				SetMovement();
+            }
+			else
+			{
+                ControllerUpdate();
+            }
+			
 		}
+
+		private void SetMovement()
+		{
+            Vector3 _velocity = Vector3.zero;
+            if (currentControllerState == ControllerState.Grounded)
+                _velocity = CalculateMovementVelocity();
+
+            //If local momentum is used, transform momentum into world space first;
+            Vector3 _worldMomentum = momentum;
+            if (useLocalMomentum)
+                _worldMomentum = tr.localToWorldMatrix * momentum;
+
+            //Add current momentum to velocity;
+            _velocity += _worldMomentum;
+
+            rb.velocity = new Vector3(_joystickHorizontal * movementSpeed, _velocity.y, _joystickVertical) * movementSpeed * Time.fixedDeltaTime;
+        }
 
 		//Update controller;
 		//This function must be called every fixed update, in order for the controller to work correctly;
