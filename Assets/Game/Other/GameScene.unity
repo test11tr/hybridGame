@@ -284,7 +284,7 @@ MonoBehaviour:
   inputCanvas: {fileID: 220433783}
   isJoytick: 1
   movementSpeed: 5
-  rotationSpeed: 10
+  rotationSpeed: 3
 --- !u!1 &220433780
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,8 @@ public class CharacterControlManager : MonoBehaviour
 
     private void Start()
     {
-        EnableJoystick();
+        if(isJoytick)
+            EnableJoystick();
     }
 
     public void EnableJoystick()
@@ -30,7 +31,7 @@ public class CharacterControlManager : MonoBehaviour
     {
         if (isJoytick)
         {
-            var movementDirection = new Vector3(joystick.Direction.x, 0, joystick.Direction.y);
+            var movementDirection = new Vector3(joystick.Direction.x, 0, joystick.Direction.y).normalized;
             controller.SimpleMove(movementDirection * movementSpeed);
 
             if(movementDirection.sqrMagnitude <= 0)
