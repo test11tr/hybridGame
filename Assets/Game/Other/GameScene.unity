@@ -215,7 +215,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 111384707}
-  - component: {fileID: 111384709}
   - component: {fileID: 111384708}
   m_Layer: 0
   m_Name: CharacterController
@@ -266,25 +265,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &111384709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111384706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a09c1da71c174040a7e9a0277bc1128, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joystick: {fileID: 1469960906}
-  controller: {fileID: 111384708}
-  playerAnimator: {fileID: 3677414770340332221}
-  inputCanvas: {fileID: 220433783}
-  isJoytick: 1
-  movementSpeed: 5
-  rotationSpeed: 3
 --- !u!1 &220433780
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,17 +837,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8135886326569738822, guid: 0aae32787194b2a488e3da9528063b3e, type: 3}
   m_PrefabInstance: {fileID: 1082315854}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1469960906 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6547144772143348270, guid: 0aae32787194b2a488e3da9528063b3e, type: 3}
-  m_PrefabInstance: {fileID: 1082315854}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aacfec8908f179d4f9101b7cf3315e63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1650484709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,11 +1167,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2455917555736896921, guid: 4abf0e1b141a0704abad38cc3b275289, type: 3}
   m_PrefabInstance: {fileID: 3677414770340332219}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &3677414770340332221 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1334873214130139067, guid: 4abf0e1b141a0704abad38cc3b275289, type: 3}
-  m_PrefabInstance: {fileID: 3677414770340332219}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5748985276586507804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450226910310302683}
+  - component: {fileID: 6635764143771610732}
   m_Layer: 0
   m_Name: CharacterModule
   m_TagString: Untagged
@@ -1273,6 +1238,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6635764143771610732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635764143771610731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a09c1da71c174040a7e9a0277bc1128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
+  controller: {fileID: 0}
+  playerAnimator: {fileID: 0}
+  inputCanvas: {fileID: 0}
+  isJoytick: 1
+  movementSpeed: 5
+  rotationSpeed: 3
 --- !u!20 &7223916383602350250
 Camera:
   m_ObjectHideFlags: 0

@@ -6,14 +6,21 @@ using UnityEngine;
 
 public class CharacterControlManager : MonoBehaviour
 {
-    public T11Joystick joystick;
-    public CharacterController controller;
-    public Animator playerAnimator;
-    public Canvas inputCanvas;
-    public bool isJoytick;
+    [HideInInspector] public T11Joystick joystick;
+    [HideInInspector] public CharacterController controller;
+    [HideInInspector] public Animator playerAnimator;
+    [HideInInspector] public Canvas inputCanvas;
 
+    public bool isJoytick;
     public float movementSpeed;
     public float rotationSpeed;
+
+    private void Awake(){
+        joystick = GetComponentInChildren<T11Joystick>();
+        controller = GetComponentInChildren<CharacterController>();
+        playerAnimator = GetComponentInChildren<Animator>();
+        inputCanvas = GetComponentInChildren<Canvas>();
+    }
 
     private void Start()
     {
