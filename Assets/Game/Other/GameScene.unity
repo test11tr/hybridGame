@@ -864,30 +864,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 879399308458449916, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: field of view
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197735915057747125, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.0436325
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197735915057747125, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -31.95033
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197735915057747125, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9990483
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197735915057747125, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.043619405
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197735915057747125, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -5
-      objectReference: {fileID: 0}
     - target: {fileID: 1746294521067132924, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
       propertyPath: m_Name
       value: CharacterModule
@@ -939,42 +915,6 @@ PrefabInstance:
     - target: {fileID: 3164921962177195901, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3281763831297576574, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4580766327607550972, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_FollowOffset.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4580766327607550972, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_FollowOffset.z
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.0436325
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -31.95033
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99904823
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.04361942
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -13.825
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1143,8 +1083,8 @@ SceneRoots:
   - {fileID: 1721409745}
   - {fileID: 1814374504}
   - {fileID: 532864510}
-  - {fileID: 615265215767488968}
   - {fileID: 1537570199}
+  - {fileID: 615265215767488968}
   - {fileID: 239601473534586984}
   - {fileID: 1673909244}
   - {fileID: 1650484710}
