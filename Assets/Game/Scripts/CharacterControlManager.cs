@@ -10,12 +10,15 @@ public class CharacterControlManager : MonoBehaviour
 
     [HideInInspector] public T11Joystick joystick;
     [HideInInspector] public CharacterController controller;
+    [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Animator playerAnimator;
     [HideInInspector] public Canvas inputCanvas;
 
     public bool isJoytick;
     public float movementSpeed;
     public float rotationSpeed;
+
+    private Vector3 _moveVector;
 
     private void Awake(){
         if (Instance == null)
@@ -26,6 +29,7 @@ public class CharacterControlManager : MonoBehaviour
 
         joystick = GetComponentInChildren<T11Joystick>();
         controller = GetComponentInChildren<CharacterController>();
+        rb = GetComponentInChildren<Rigidbody>();
         playerAnimator = GetComponentInChildren<Animator>();
         inputCanvas = GetComponentInChildren<Canvas>();
     }
@@ -42,22 +46,25 @@ public class CharacterControlManager : MonoBehaviour
         inputCanvas.gameObject.SetActive(true);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (isJoytick)
-        {
-            var movementDirection = new Vector3(joystick.Direction.x, 0, joystick.Direction.y).normalized;
-            controller.SimpleMove(movementDirection * movementSpeed);
+        _moveVector = Vector3.zero;
+        _moveVector.x = joystick.Horizontal * movementSpeed * Time.deltaTime;
+        _moveVector.z = joystick.Vertical * movementSpeed * Time.deltaTime;
 
-            if(movementDirection.sqrMagnitude <= 0)
-            {
-                playerAnimator.SetBool("isWalking", false);
-                return;
-            }
+        if(joystick.Horizontal != 0 || joystick.Vertical != 0)
+        {
+            Vector3 direction = Vector3.RotateTowards(rb.transform.forward, _moveVector, rotationSpeed * Time.deltaTime, 0.0f).normalized;
+            rb.transform.rotation = Quaternion.LookRotation(direction);
 
             playerAnimator.SetBool("isWalking", true);
-            var targetDirection = Vector3.RotateTowards(controller.transform.forward, movementDirection, rotationSpeed * Time.deltaTime, 0.0f);
-            controller.transform.rotation = Quaternion.LookRotation(targetDirection);
         }
+
+        else if(joystick.Horizontal == 0 && joystick.Vertical == 0)
+        {
+            playerAnimator.SetBool("isWalking", false);
+        }
+
+        rb.MovePosition(rb.position + _moveVector);
     }
 }

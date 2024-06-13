@@ -243,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
   controller: {fileID: 0}
+  rb: {fileID: 0}
   playerAnimator: {fileID: 0}
   inputCanvas: {fileID: 0}
   isJoytick: 1
@@ -299,7 +300,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242525671834763066}
-  - component: {fileID: 7062428598432346550}
   - component: {fileID: 7068369312478700017}
   m_Layer: 0
   m_Name: CharacterController
@@ -325,32 +325,6 @@ Transform:
   - {fileID: 5664869212625603776}
   m_Father: {fileID: 2253711700769904400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &7062428598432346550
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4036236037798049741}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &7068369312478700017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -375,9 +349,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &4544890352665112983
 GameObject:
   m_ObjectHideFlags: 0
