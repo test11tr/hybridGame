@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CharacterControlManager : MonoBehaviour
 {
+    public static CharacterControlManager Instance;
+
     [HideInInspector] public T11Joystick joystick;
     [HideInInspector] public CharacterController controller;
     [HideInInspector] public Animator playerAnimator;
