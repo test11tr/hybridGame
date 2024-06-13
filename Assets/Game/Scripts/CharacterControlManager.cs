@@ -18,6 +18,12 @@ public class CharacterControlManager : MonoBehaviour
     public float rotationSpeed;
 
     private void Awake(){
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(Instance); 
+        }
+
         joystick = GetComponentInChildren<T11Joystick>();
         controller = GetComponentInChildren<CharacterController>();
         playerAnimator = GetComponentInChildren<Animator>();

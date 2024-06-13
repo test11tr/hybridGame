@@ -5,6 +5,15 @@ using DG.Tweening;
 
 public class Collectable : MonoBehaviour
 {
+    public enum CollectableType
+    {
+        Gold,
+        Gem
+    }
+
+    public CollectableType collectableType;
+
+    public floatingText floatingTextPrefab;
     public float randomSpreadDistance;
     public float collectDuration;
     public TrailRenderer trail;
@@ -20,6 +29,7 @@ public class Collectable : MonoBehaviour
         {
             isCollectable = true;
             trail.emitting = false;
+            
         });
     }
 
@@ -30,6 +40,13 @@ public class Collectable : MonoBehaviour
             transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 isMoving = false;
+
+                if(collectableType == CollectableType.Gold)
+                    WalletModule.Instance.AddGold(1);
+                else if(collectableType == CollectableType.Gem)
+                    WalletModule.Instance.AddGem(1);
+
+                ShowText();
                 Destroy(gameObject);
             });
         });
@@ -47,6 +64,15 @@ public class Collectable : MonoBehaviour
                 MoveToPlayer();
                 //gameObject.SetActive(false);
             }        
+        }
+    }
+
+    private void ShowText()
+    {
+        if(floatingTextPrefab)
+        {
+            floatingText _floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
+            _floatingText.SetText("+1", Color.white, 8f);
         }
     }
 }

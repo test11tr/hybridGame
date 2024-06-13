@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1230633186586925110, guid: 2d9eb3126c7506a4693171db91020615, type: 3}
+      propertyPath: floatingTextPrefab
+      value: 
+      objectReference: {fileID: 4309162217667454326, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}
     - target: {fileID: 2578375244217290941, guid: 2d9eb3126c7506a4693171db91020615, type: 3}
       propertyPath: m_IsActive
       value: 1
