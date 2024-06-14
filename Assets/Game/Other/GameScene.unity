@@ -1233,10 +1233,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollectableSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 2453809800083958297, guid: 4646adbdac53d5647b1a191ca2a12ce4, type: 3}
-      propertyPath: m_TagString
-      value: Spawner
-      objectReference: {fileID: 0}
     - target: {fileID: 4623450421036094976, guid: 4646adbdac53d5647b1a191ca2a12ce4, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1403,10 +1399,6 @@ PrefabInstance:
     - target: {fileID: 6860013849183810998, guid: ec1f76591dcea0043bd9f21fd25a7377, type: 3}
       propertyPath: m_Name
       value: CollectableSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 6860013849183810998, guid: ec1f76591dcea0043bd9f21fd25a7377, type: 3}
-      propertyPath: m_TagString
-      value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 8845475695913297457, guid: ec1f76591dcea0043bd9f21fd25a7377, type: 3}
       propertyPath: m_LocalPosition.x

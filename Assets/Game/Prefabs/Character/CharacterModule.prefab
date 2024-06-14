@@ -1168,6 +1168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5664869212625603776}
   - component: {fileID: 7780453078499437854}
+  - component: {fileID: 5929675087640776924}
   m_Layer: 0
   m_Name: CurrencyCollectorModule
   m_TagString: Collector
@@ -1215,6 +1216,18 @@ CapsuleCollider:
   m_Height: 4.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.82}
+--- !u!114 &5929675087640776924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5472893435495375477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2568d49a1b31964b8385877c6570500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6926380421491717229
 GameObject:
   m_ObjectHideFlags: 0
