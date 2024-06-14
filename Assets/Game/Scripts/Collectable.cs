@@ -12,7 +12,6 @@ public class Collectable : MonoBehaviour
     }
 
     public CollectableType collectableType;
-
     public floatingText floatingTextPrefab;
     public float randomSpreadDistance;
     public float collectDuration;
@@ -31,6 +30,8 @@ public class Collectable : MonoBehaviour
             trail.emitting = false;
             
         });
+
+        transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
     }
 
     private void MoveToPlayer()

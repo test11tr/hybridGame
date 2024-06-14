@@ -300,8 +300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f41adc4ffe15b4c817629036e8b2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectableType: 0
+  floatingTextPrefab: {fileID: 0}
   randomSpreadDistance: 3
-  collectDuration: 0.35
+  collectDuration: 0.4
   trail: {fileID: 4053431571650412356}
 --- !u!1001 &2355834544451638960
 PrefabInstance:

@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &939815574161850282
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4053431571650412356, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053431571650412356, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053431571650412356, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053431571650412356, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559455516504880416, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294246374971304729, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_Name
+      value: HealthPowerUp (Minor)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093289013530175371, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_text
+      value: HEAL
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345208480417876227, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40e04e27b94b37d47851a5f818fec337, type: 3}
+    - target: {fileID: 8345208480417876227, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_Color.b
+      value: 0.47843134
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345208480417876227, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92259055
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6960252605871104449, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7294246374971304729, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4128602602939273185}
+  m_SourcePrefab: {fileID: 100100000, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+--- !u!96 &3839964923947417838 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 4053431571650412356, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+  m_PrefabInstance: {fileID: 939815574161850282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7507706357019284659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7294246374971304729, guid: 825e314f0075ff349b06af51a51014ff, type: 3}
+  m_PrefabInstance: {fileID: 939815574161850282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4128602602939273185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507706357019284659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de544d9c40c9c3647a3b2ce6f167b341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpName: HEAL MINOR
+  healthAmount: 20
+  floatingTextPrefab: {fileID: 4309162217667454326, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}
+  collectDuration: 0.4
+  trail: {fileID: 3839964923947417838}
+  collectEffect: {fileID: 0}

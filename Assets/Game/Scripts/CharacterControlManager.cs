@@ -21,22 +21,25 @@ public class CharacterControlManager : MonoBehaviour
     public float rotationSpeed;
 
     [Header("Health Module")]
+    [HideInInspector] public int currentHealth;
     public GameObject healthModuleCanvas;
     public Image healthBar;
     public Image healthBarEase;
     public int maxHealth;
     public float healthEaseSpeed;
 
-    [Header("CollectorModule")]
+    [Header("Collector Module")]
     public GameObject currencyCollector;
 
-    [Header("Floating Text")]
+    [Header("Floating Text Module")]
     public floatingText floatingTextPrefab;
+
+    [Header("Effects Module")]
+    public ParticleSystem onPowerUpEffect;
     
     private bool isDead;
     private Vector3 _moveVector;
-    private int currentHealth;
-
+    
     private void Awake(){
         if (Instance == null)
         {
@@ -191,5 +194,12 @@ public class CharacterControlManager : MonoBehaviour
         playerAnimator.SetBool("isDead", true);
         isDead = true;
     } 
+    #endregion
+
+    #region Effect Actions
+        public void PlayPowerUpEffect()
+        {
+            onPowerUpEffect.Play();
+        }
     #endregion
 }
