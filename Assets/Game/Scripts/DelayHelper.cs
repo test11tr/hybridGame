@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DelayHelper : MonoBehaviour
 {
-    private static DelayHelper _instance;
+    public static DelayHelper Instance;
 
     private void Awake()
     {
-        if (_instance == null)
+        if (Instance == null)
         {
-            _instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            Instance = this;
+            DontDestroyOnLoad(Instance);
         }
         else
         {
@@ -21,7 +21,7 @@ public class DelayHelper : MonoBehaviour
 
     public static void DelayAction(float delay, Action action)
     {
-        _instance.StartCoroutine(DelayCoroutine(delay, action));
+        Instance.StartCoroutine(DelayCoroutine(delay, action));
     }
 
     private static IEnumerator DelayCoroutine(float delay, Action action)

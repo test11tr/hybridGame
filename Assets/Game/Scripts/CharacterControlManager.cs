@@ -36,6 +36,7 @@ public class CharacterControlManager : MonoBehaviour
 
     [Header("Effects Module")]
     public ParticleSystem onPowerUpEffect;
+    public TrailRenderer speedUpTrail;
     
     private bool isDead;
     private Vector3 _moveVector;
@@ -200,6 +201,25 @@ public class CharacterControlManager : MonoBehaviour
         public void PlayPowerUpEffect()
         {
             onPowerUpEffect.Play();
+        }
+    #endregion
+
+    #region PowerUp Actions
+        public void AddHealth(int amount)
+        {
+            Heal(amount);
+        }
+
+        public void SpeedUp(float speedAmount, float duration)
+        {
+            movementSpeed = movementSpeed * speedAmount;
+            speedUpTrail.emitting = true;
+            DelayHelper.DelayAction(duration, () => 
+            {
+                movementSpeed /= speedAmount; 
+                speedUpTrail.emitting = false;
+            });
+            //StartCoroutine(SpeedUpCoroutine(duration));
         }
     #endregion
 }

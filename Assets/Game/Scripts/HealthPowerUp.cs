@@ -47,7 +47,7 @@ public class HealthPowerUp : MonoBehaviour
             Vector3 playerPos = CharacterControlManager.Instance.rb.transform.position;
             transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
             {
-                CharacterControlManager.Instance.Heal(healthAmount);
+                CharacterControlManager.Instance.AddHealth(healthAmount);
                 CharacterControlManager.Instance.PlayPowerUpEffect();
                 Destroy(gameObject);
                 //ShowText(); no need for HealthPowerUp 
