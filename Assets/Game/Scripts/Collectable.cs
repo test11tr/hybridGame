@@ -54,7 +54,7 @@ public class Collectable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Collector"))
+        if (other.gameObject.CompareTag("Player"))
         {
             if(!isMoving && isCollectable)
             {

@@ -1,5 +1,6 @@
+using System;
+using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 public class CollectableSpawner : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class CollectableSpawner : MonoBehaviour
             timer += Time.deltaTime;
             if(progressShape.AngRadiansEnd < 360)
             {
-                float totalIncrease = 2 * Mathf.PI; // Toplam artış miktarı (radyan cinsinden)
+                float totalIncrease = 2 * Mathf.PI;
                 float increasePerSecond = totalIncrease / waitTime;
                 progressShape.AngRadiansEnd += increasePerSecond * Time.deltaTime;
             }
@@ -38,7 +39,7 @@ public class CollectableSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Collector"))
+        if (other.CompareTag("Player"))
         {
             isPlayerInside = true;
             timer = 0f; 
@@ -49,7 +50,7 @@ public class CollectableSpawner : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Collector"))
+        if (other.CompareTag("Player"))
         {
             isPlayerInside = false;
             timer = 0f; 

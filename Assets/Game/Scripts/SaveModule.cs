@@ -85,5 +85,6 @@ public class SaveModule : MonoBehaviour
     {
         public int goldCount;
         public int gemCount;
+        public int characterCurrentHealth;
     }
 }
