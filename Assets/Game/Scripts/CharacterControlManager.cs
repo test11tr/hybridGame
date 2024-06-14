@@ -85,15 +85,19 @@ public class CharacterControlManager : MonoBehaviour
 
         if(joystick.Horizontal != 0 || joystick.Vertical != 0)
         {
-            Vector3 direction = Vector3.RotateTowards(rb.transform.forward, _moveVector, rotationSpeed * Time.deltaTime, 0.0f).normalized;
+            float inputMagnitude = new Vector2(joystick.Horizontal, joystick.Vertical).magnitude;
+            
+            Vector3 direction = Vector3.RotateTowards(rb.transform.forward, _moveVector, rotationSpeed * Time.deltaTime, 0.0f);
             rb.transform.rotation = Quaternion.LookRotation(direction);
 
             playerAnimator.SetBool("isWalking", true);
+            playerAnimator.SetFloat("movementSpeed", inputMagnitude);
         }
 
         else if(joystick.Horizontal == 0 && joystick.Vertical == 0)
         {
             playerAnimator.SetBool("isWalking", false);
+            playerAnimator.SetFloat("movementSpeed", 0);
         }
 
         rb.MovePosition(rb.position + _moveVector);
@@ -121,9 +125,6 @@ public class CharacterControlManager : MonoBehaviour
         if(currentHealth < maxHealth)
         {
             healthModuleCanvas.SetActive(true);
-        }else if(currentHealth <= 0)
-        {
-            currencyCollector.SetActive(false);
         }
         else
         {
@@ -138,27 +139,55 @@ public class CharacterControlManager : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
-        SaveModule.Instance.saveInfo.characterCurrentHealth = currentHealth;
-
-        healthBar.fillAmount = (float)currentHealth / maxHealth;
-
-        if(floatingTextPrefab)
+        if(!isDead)
         {
-            Vector3 spawnPosition = rb.transform.position;
-            spawnPosition.y += 1.5f;
-            floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
-            _floatingText.SetText("-" + amount.ToString(), Color.red, 6f);
+            currentHealth -= amount;
+            SaveModule.Instance.saveInfo.characterCurrentHealth = currentHealth;
+
+            healthBar.fillAmount = (float)currentHealth / maxHealth;
+
+            if(floatingTextPrefab)
+            {
+                Vector3 spawnPosition = rb.transform.position;
+                spawnPosition.y += 1.5f;
+                floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 3f);
+            }
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
+    }
 
-        if (currentHealth <= 0)
+    public void Heal(int amount)
+    {
+        if(!isDead)
         {
-            Die();
+            currentHealth += amount;
+            SaveModule.Instance.saveInfo.characterCurrentHealth = currentHealth;
+
+            healthBar.fillAmount = (float)currentHealth / maxHealth;
+
+            if(floatingTextPrefab)
+            {
+                Vector3 spawnPosition = rb.transform.position;
+                spawnPosition.y += 1.5f;
+                floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+                _floatingText.SetText("+" + amount.ToString() + "hp", Color.green, 3f);
+            }
+
+            if (currentHealth >= maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
         }
     }
 
     void Die()
     {
+        currencyCollector.SetActive(false);
         playerAnimator.SetBool("isDead", true);
         isDead = true;
     } 

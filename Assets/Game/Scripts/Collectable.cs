@@ -35,8 +35,9 @@ public class Collectable : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        transform.DOMove(playerPos * 2, collectDuration).SetEase(Ease.OutCirc).OnComplete(() =>
+        transform.DOMove(playerPos * 2, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
         {
+            Vector3 playerPos = CharacterControlManager.Instance.rb.transform.position;
             transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 isMoving = false;
@@ -71,8 +72,10 @@ public class Collectable : MonoBehaviour
     {
         if(floatingTextPrefab)
         {
-            floatingText _floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
-            _floatingText.SetText("+1", Color.white, 8f);
+            Vector3 spawnPosition = CharacterControlManager.Instance.rb.transform.position;
+            spawnPosition.y += 1.5f;
+            floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+            _floatingText.SetText("+1", Color.white, 4f);
         }
     }
 }

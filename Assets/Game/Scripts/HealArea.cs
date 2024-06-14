@@ -2,36 +2,36 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 
-public class DamageArea : MonoBehaviour
+public class HealArea : MonoBehaviour
 {
     public Shapes.Disc progressShape; 
-    public float damageWaitTime;
-    public float repetativeDamageCooldown;
-    public int damageAmount;
+    public float healWaitTime;
+    public float healCooldown;
+    public int healAmount;
 
     private bool isPlayerInside = false;
-    private float damageTimer = 0f;
-    private float repetativeDamagedamageTimer = 0f;
+    private float healTimer = 0f;
+    private float healCooldownTimer = 0f;
 
     private void Update()
     {
         if (isPlayerInside)
         {
-            damageTimer += Time.deltaTime;
+            healTimer += Time.deltaTime;
             if(progressShape.AngRadiansEnd < 360)
             {
                 float totalIncrease = 2 * Mathf.PI;
-                float increasePerSecond = totalIncrease / damageWaitTime;
+                float increasePerSecond = totalIncrease / healWaitTime;
                 progressShape.AngRadiansEnd += increasePerSecond * Time.deltaTime;
             }
                 
-            if (damageTimer >= damageWaitTime)
+            if (healTimer >= healWaitTime)
             {
-                repetativeDamagedamageTimer += Time.deltaTime;
-                if (repetativeDamagedamageTimer >= repetativeDamageCooldown)
+                healCooldownTimer += Time.deltaTime;
+                if (healCooldownTimer >= healCooldown)
                 {
-                    doDamage();
-                    repetativeDamagedamageTimer = 0f;
+                    doHealing();
+                    healCooldownTimer = 0f;
                 }
             }
         }
@@ -44,8 +44,8 @@ public class DamageArea : MonoBehaviour
         {
             print("Compared:   " + other.tag);
             isPlayerInside = true;
-            damageTimer = 0f; 
-            repetativeDamagedamageTimer = 0f; 
+            healTimer = 0f; 
+            healCooldownTimer = 0f; 
             progressShape.AngRadiansEnd = 0;
         }
     }
@@ -55,14 +55,14 @@ public class DamageArea : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInside = false;
-            damageTimer = 0f; 
-            repetativeDamagedamageTimer = 0f; 
+            healTimer = 0f; 
+            healCooldownTimer = 0f; 
             progressShape.AngRadiansEnd = 0;
         }
     }
 
-    private void doDamage()
+    private void doHealing()
     {
-        CharacterControlManager.Instance.TakeDamage(damageAmount);
+        CharacterControlManager.Instance.Heal(healAmount);
     }
 }
