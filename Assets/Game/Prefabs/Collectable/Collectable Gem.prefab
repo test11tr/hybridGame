@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectable Gem
       objectReference: {fileID: 0}
+    - target: {fileID: 7294246374971304729, guid: 2d9eb3126c7506a4693171db91020615, type: 3}
+      propertyPath: m_TagString
+      value: Collectable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

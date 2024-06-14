@@ -39,6 +39,7 @@ public class CollectableSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("OnTriggerEnter: "+other.tag);
         if (other.CompareTag("Player"))
         {
             isPlayerInside = true;

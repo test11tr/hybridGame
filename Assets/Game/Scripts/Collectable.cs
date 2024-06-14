@@ -34,6 +34,17 @@ public class Collectable : MonoBehaviour
         transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
     }
 
+    public void TriggerAction(GameObject other)
+    {
+        if(!isMoving && isCollectable)
+        {
+            trail.emitting = true;
+            playerPos = other.transform.position;
+            isMoving = true;
+            MoveToPlayer();
+        }        
+    }
+
     private void MoveToPlayer()
     {
         transform.DOMove(playerPos * 2, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
@@ -52,21 +63,6 @@ public class Collectable : MonoBehaviour
                 Destroy(gameObject);
             });
         });
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if(!isMoving && isCollectable)
-            {
-                trail.emitting = true;
-                playerPos = other.transform.position;
-                isMoving = true;
-                MoveToPlayer();
-                //gameObject.SetActive(false);
-            }        
-        }
     }
 
     private void ShowText()

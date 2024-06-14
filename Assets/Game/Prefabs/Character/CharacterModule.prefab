@@ -392,7 +392,7 @@ MonoBehaviour:
   angUnitInput: 1
   angRadiansStart: 0
   angRadiansEnd: 2.3561945
-  radius: 1
+  radius: 1.3
   radiusSpace: 0
   thickness: 0.05
   thicknessSpace: 0
@@ -1170,7 +1170,7 @@ GameObject:
   - component: {fileID: 7780453078499437854}
   m_Layer: 0
   m_Name: CurrencyCollectorModule
-  m_TagString: Player
+  m_TagString: Collector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1211,8 +1211,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.025
-  m_Height: 3
+  m_Radius: 1.325
+  m_Height: 4.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.82}
 --- !u!1 &6926380421491717229
@@ -1276,7 +1276,7 @@ MonoBehaviour:
   angUnitInput: 1
   angRadiansStart: 0
   angRadiansEnd: 2.3561945
-  radius: 1
+  radius: 1.3
   radiusSpace: 0
   thickness: 0.5
   thicknessSpace: 0
@@ -1529,8 +1529,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1066219995783657598, guid: 4abf0e1b141a0704abad38cc3b275289, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6566429516042229417}
   m_SourcePrefab: {fileID: 100100000, guid: 4abf0e1b141a0704abad38cc3b275289, type: 3}
+--- !u!1 &1436099688143848677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1066219995783657598, guid: 4abf0e1b141a0704abad38cc3b275289, type: 3}
+  m_PrefabInstance: {fileID: 2100353500176678043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &6566429516042229417
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436099688143848677}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &4553377130562492674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2455917555736896921, guid: 4abf0e1b141a0704abad38cc3b275289, type: 3}

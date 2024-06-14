@@ -1141,18 +1141,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.0436325
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -31.95033
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1244,6 +1232,10 @@ PrefabInstance:
     - target: {fileID: 2453809800083958297, guid: 4646adbdac53d5647b1a191ca2a12ce4, type: 3}
       propertyPath: m_Name
       value: CollectableSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453809800083958297, guid: 4646adbdac53d5647b1a191ca2a12ce4, type: 3}
+      propertyPath: m_TagString
+      value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 4623450421036094976, guid: 4646adbdac53d5647b1a191ca2a12ce4, type: 3}
       propertyPath: m_Mesh
@@ -1411,6 +1403,10 @@ PrefabInstance:
     - target: {fileID: 6860013849183810998, guid: ec1f76591dcea0043bd9f21fd25a7377, type: 3}
       propertyPath: m_Name
       value: CollectableSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860013849183810998, guid: ec1f76591dcea0043bd9f21fd25a7377, type: 3}
+      propertyPath: m_TagString
+      value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 8845475695913297457, guid: ec1f76591dcea0043bd9f21fd25a7377, type: 3}
       propertyPath: m_LocalPosition.x
