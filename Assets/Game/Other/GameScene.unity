@@ -1141,6 +1141,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0436325
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316153951081782334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -31.95033
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -20,13 +20,20 @@ public class CharacterControlManager : MonoBehaviour
     public float movementSpeed;
     public float rotationSpeed;
 
+    [Header("Dash Module")]
+    public float dashSpeed;
+    public float dashDuration;
+    public float dashCooldownTime;
+    bool dashCooldownComplete = true;
+    bool isDashing;
+
     [Header("Health Module")]
-    [HideInInspector] public int currentHealth;
     public GameObject healthModuleCanvas;
     public Image healthBar;
     public Image healthBarEase;
     public int maxHealth;
     public float healthEaseSpeed;
+    [HideInInspector] public int currentHealth;
 
     [Header("Collector Module")]
     public GameObject currencyCollector;
@@ -37,6 +44,8 @@ public class CharacterControlManager : MonoBehaviour
     [Header("Effects Module")]
     public ParticleSystem onPowerUpEffect;
     public TrailRenderer speedUpTrail;
+    public ParticleSystem dashEffect;
+    public ParticleSystem HealEffect;
     
     private bool isDead;
     private Vector3 _moveVector;
@@ -65,7 +74,7 @@ public class CharacterControlManager : MonoBehaviour
 
     void Update()
     {
-        CheckHealthForUI();
+        CheckHealthForUI();         
     }
 
     private void FixedUpdate()
@@ -90,7 +99,7 @@ public class CharacterControlManager : MonoBehaviour
         if(joystick.Horizontal != 0 || joystick.Vertical != 0)
         {
             float inputMagnitude = new Vector2(joystick.Horizontal, joystick.Vertical).magnitude;
-            
+
             Vector3 direction = Vector3.RotateTowards(rb.transform.forward, _moveVector, rotationSpeed * Time.deltaTime, 0.0f);
             rb.transform.rotation = Quaternion.LookRotation(direction);
 
@@ -106,6 +115,34 @@ public class CharacterControlManager : MonoBehaviour
 
         rb.MovePosition(rb.position + _moveVector);
     }
+    #endregion
+
+    #region Dash Module
+        public void Dash()
+        {
+            if(!isDead && !isDashing && dashCooldownComplete)
+            {
+                playerAnimator.SetBool("isDashing", true);
+                dashCooldownComplete = false;
+                isDashing = true;
+                dashEffect.Play();
+                Vector3 dashDirection = rb.transform.forward;
+                rb.velocity = dashDirection * dashSpeed;
+
+                DelayHelper.DelayAction(dashDuration, () => 
+                { 
+                    playerAnimator.SetBool("isDashing", false);
+                    dashEffect.Stop();
+                    rb.velocity = Vector3.zero; 
+                    isDashing = false; 
+                });
+
+                DelayHelper.DelayAction(dashCooldownTime + dashDuration, () => 
+                    { 
+                        dashCooldownComplete = true; 
+                    });
+            }
+        }
     #endregion
 
     #region Health Module
@@ -201,6 +238,10 @@ public class CharacterControlManager : MonoBehaviour
         public void PlayPowerUpEffect()
         {
             onPowerUpEffect.Play();
+        }
+        public void PlayHealEffect()
+        {
+            HealEffect.Play();
         }
     #endregion
 

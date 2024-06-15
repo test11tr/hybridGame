@@ -49,6 +49,7 @@ public class HealthPowerUp : MonoBehaviour
             {
                 CharacterControlManager.Instance.AddHealth(healthAmount);
                 CharacterControlManager.Instance.PlayPowerUpEffect();
+                CharacterControlManager.Instance.PlayHealEffect();
                 Destroy(gameObject);
                 //ShowText(); no need for HealthPowerUp 
             });
