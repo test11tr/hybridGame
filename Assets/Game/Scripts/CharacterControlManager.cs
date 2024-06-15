@@ -138,9 +138,9 @@ public class CharacterControlManager : MonoBehaviour
                 });
 
                 DelayHelper.DelayAction(dashCooldownTime + dashDuration, () => 
-                    { 
-                        dashCooldownComplete = true; 
-                    });
+                { 
+                    dashCooldownComplete = true; 
+                });
             }
         }
     #endregion
