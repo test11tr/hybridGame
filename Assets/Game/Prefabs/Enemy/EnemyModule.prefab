@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 7402901202819703019}
   - component: {fileID: 7296594279226177080}
   - component: {fileID: 454575515967595551}
+  - component: {fileID: 1246211748937780715}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -464,6 +465,27 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1246211748937780715
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898364436680995094}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5807069360753775627
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 507668838862472055}
+  - component: {fileID: 1759109792471291235}
   m_Layer: 0
   m_Name: EnemyModule
   m_TagString: Untagged
@@ -646,6 +669,32 @@ Transform:
   - {fileID: 5037945331349386791}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1759109792471291235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578979912379580932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29837e5ced104354d9b81921ea1e93a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 3
+  rotationSpeed: 10
+  healthModuleCanvas: {fileID: 597380981409130577}
+  healthBar: {fileID: 6258551220471979145}
+  healthBarEase: {fileID: 3530089313789869345}
+  maxHealth: 10
+  healthEaseSpeed: 1.5
+  currentHealth: 0
+  damage: 1
+  destroyTime: 2
+  rb: {fileID: 2139520801542654070}
+  enemyAnimator: {fileID: 1246211748937780715}
+  floatingTextPrefab: {fileID: 6925169901530921254, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}
+  target: {fileID: 0}
 --- !u!1 &8583488944784362059
 GameObject:
   m_ObjectHideFlags: 0
