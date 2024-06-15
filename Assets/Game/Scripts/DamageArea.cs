@@ -63,6 +63,6 @@ public class DamageArea : MonoBehaviour
 
     private void doDamage()
     {
-        CharacterControlManager.Instance.TakeDamage(damageAmount);
+        GameManager.Instance.player.TakeDamage(damageAmount);
     }
 }

@@ -35,7 +35,7 @@ public class PowerUpExample : MonoBehaviour
     {
         transform.DOMove(playerPos * 2, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
         {
-            Vector3 playerPos = CharacterControlManager.Instance.rb.transform.position;
+            Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
             transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 //DO POWER UP ACTION
@@ -49,7 +49,7 @@ public class PowerUpExample : MonoBehaviour
     {
         if(floatingTextPrefab)
         {
-            Vector3 spawnPosition = CharacterControlManager.Instance.rb.transform.position;
+            Vector3 spawnPosition = GameManager.Instance.player.rb.transform.position;
             spawnPosition.y += 1.5f;
             floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
             _floatingText.SetText(floatText, floatColor, floatFontSize);

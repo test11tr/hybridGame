@@ -28,7 +28,7 @@ public class HealthPowerUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(CharacterControlManager.Instance.currentHealth == CharacterControlManager.Instance.maxHealth)
+            if(GameManager.Instance.player.currentHealth == GameManager.Instance.player.maxHealth)
             {
                 ShowWarningText();
                 return;
@@ -44,12 +44,12 @@ public class HealthPowerUp : MonoBehaviour
     {
         transform.DOMove(playerPos * 1.5f, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
         {
-            Vector3 playerPos = CharacterControlManager.Instance.rb.transform.position;
+            Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
             transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
             {
-                CharacterControlManager.Instance.AddHealth(healthAmount);
-                CharacterControlManager.Instance.PlayPowerUpEffect();
-                CharacterControlManager.Instance.PlayHealEffect();
+                GameManager.Instance.player.AddHealth(healthAmount);
+                GameManager.Instance.player.PlayPowerUpEffect();
+                GameManager.Instance.player.PlayHealEffect();
                 Destroy(gameObject);
                 //ShowText(); no need for HealthPowerUp 
             });
@@ -60,7 +60,7 @@ public class HealthPowerUp : MonoBehaviour
     {
         if(floatingTextPrefab)
         {
-            Vector3 spawnPosition = CharacterControlManager.Instance.rb.transform.position;
+            Vector3 spawnPosition = GameManager.Instance.player.rb.transform.position;
             spawnPosition.y += 1.5f;
             floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
             _floatingText.SetText(floatText, floatColor, floatFontSize);
@@ -71,7 +71,7 @@ public class HealthPowerUp : MonoBehaviour
     {
         if(floatingTextPrefab)
         {
-            Vector3 spawnPosition = CharacterControlManager.Instance.rb.transform.position;
+            Vector3 spawnPosition = GameManager.Instance.player.rb.transform.position;
             spawnPosition.y += 1.5f;
             floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
             _floatingText.SetText("Your health is Full!", Color.white, 5);

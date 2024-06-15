@@ -36,11 +36,11 @@ public class MoveSpeedPowerUp : MonoBehaviour
     {
         transform.DOMove(playerPos * 2, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
         {
-            Vector3 playerPos = CharacterControlManager.Instance.rb.transform.position;
+            Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
             transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
             {
-                CharacterControlManager.Instance.SpeedUp(speedMultiplier, powerUpDuration);
-                CharacterControlManager.Instance.PlayPowerUpEffect();
+                GameManager.Instance.player.SpeedUp(speedMultiplier, powerUpDuration);
+                GameManager.Instance.player.PlayPowerUpEffect();
                 Destroy(gameObject);
                 ShowText();
             });
@@ -51,7 +51,7 @@ public class MoveSpeedPowerUp : MonoBehaviour
     {
         if(floatingTextPrefab)
         {
-            Vector3 spawnPosition = CharacterControlManager.Instance.rb.transform.position;
+            Vector3 spawnPosition = GameManager.Instance.player.rb.transform.position;
             spawnPosition.y += 1.5f;
             floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
             _floatingText.SetText(floatText, floatColor, floatFontSize);

@@ -63,6 +63,6 @@ public class HealArea : MonoBehaviour
 
     private void doHealing()
     {
-        CharacterControlManager.Instance.Heal(healAmount);
+        GameManager.Instance.player.Heal(healAmount);
     }
 }

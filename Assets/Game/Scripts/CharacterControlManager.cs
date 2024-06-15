@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CharacterControlManager : MonoBehaviour
 {
-    public static CharacterControlManager Instance;
+    //public static CharacterControlManager Instance;
 
     [HideInInspector] public T11Joystick joystick;
     [HideInInspector] public CharacterController controller;
@@ -51,11 +51,11 @@ public class CharacterControlManager : MonoBehaviour
     private Vector3 _moveVector;
     
     private void Awake(){
-        if (Instance == null)
+        /*if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(Instance); 
-        }
+        }*/
 
         joystick = GetComponentInChildren<T11Joystick>();
         controller = GetComponentInChildren<CharacterController>();
