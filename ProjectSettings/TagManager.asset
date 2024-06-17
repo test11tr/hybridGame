@@ -10,6 +10,9 @@ TagManager:
   - Collectable
   - Collector
   - Spawner
+  - Detector
+  - Attacker
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -23,9 +26,9 @@ TagManager:
   - Walkable
   - Player
   - Collector
-  - 
-  - 
-  - 
+  - EnemyDetector
+  - AttackCollider
+  - Enemy
   - 
   - 
   - 

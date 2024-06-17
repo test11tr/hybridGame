@@ -41,7 +41,6 @@ public class DamageArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            print("Compared:   " + other.tag);
             isPlayerInside = true;
             damageTimer = 0f; 
             repetativeDamagedamageTimer = 0f; 

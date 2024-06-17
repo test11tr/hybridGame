@@ -33,7 +33,6 @@ public class ETFXButtonScript : MonoBehaviour
 	void Update ()
 	{
 		MyButtonText.text = projectileParticleName;
-//		print(projectileParticleName);
 	}
 
 	public void getProjectileNames()			// Find and diplay the name of the currently selected projectile

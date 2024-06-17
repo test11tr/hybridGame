@@ -8,11 +8,9 @@ using UnityEngine.UI;
 
 public class CharacterControlManager : MonoBehaviour
 {
-    //public static CharacterControlManager Instance;
-
+    public Rigidbody rb;
     [HideInInspector] public T11Joystick joystick;
     [HideInInspector] public CharacterController controller;
-    [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Animator playerAnimator;
     [HideInInspector] public Canvas inputCanvas;
 
@@ -27,6 +25,12 @@ public class CharacterControlManager : MonoBehaviour
     public float dashCooldownTime;
     bool dashCooldownComplete = true;
     bool isDashing;
+
+    [Header("Combat Module")]
+    public Collider detectorCollider;
+    public Collider attackCollider;
+    private List<Enemy> detectedEnemies = new List<Enemy>();
+    private Enemy closestEnemy = null;
 
     [Header("Health Module")]
     public GameObject healthModuleCanvas;
@@ -49,19 +53,16 @@ public class CharacterControlManager : MonoBehaviour
     public ParticleSystem HealEffect;
     public TrailEffect[] dashTrailEffects;
     
+    [Header("Debug")]
+    public bool drawGizmos;
+
     private bool isDead;
     private Vector3 _moveVector;
     
+    #region PreperationAndLoop
     private void Awake(){
-        /*if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(Instance); 
-        }*/
-
         joystick = GetComponentInChildren<T11Joystick>();
         controller = GetComponentInChildren<CharacterController>();
-        rb = GetComponentInChildren<Rigidbody>();
         playerAnimator = GetComponentInChildren<Animator>();
         inputCanvas = GetComponentInChildren<Canvas>();
     }
@@ -76,7 +77,9 @@ public class CharacterControlManager : MonoBehaviour
 
     void Update()
     {
-        CheckHealthForUI();         
+        CheckHealthForUI();  
+        UpdateClosestEnemy();
+        AttackClosestEnemy();       
     }
 
     private void FixedUpdate()
@@ -84,7 +87,8 @@ public class CharacterControlManager : MonoBehaviour
         if(!isDead)
             MoveCharacter();
     }
-
+    #endregion
+    
     #region Movement Module
     public void EnableJoystick()
     {
@@ -154,6 +158,46 @@ public class CharacterControlManager : MonoBehaviour
                 });
             }
         }
+    #endregion
+
+    #region Combat Module
+    public void HandleTriggerEnter(Collider other)
+    {
+        Debug.Log("Triggered with: " + other.name);
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (!detectedEnemies.Contains(enemy))
+            {
+                detectedEnemies.Add(enemy);
+            }
+        }
+    }
+
+    void UpdateClosestEnemy()
+    {
+        float closestDistance = float.MaxValue;
+        closestEnemy = null;
+
+        foreach (Enemy enemy in detectedEnemies)
+        {
+            float distance = Vector3.Distance(rb.position, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+    }
+
+    void AttackClosestEnemy()
+    {
+        if (closestEnemy != null && Vector3.Distance(rb.position, closestEnemy.transform.position) <= attackCollider.bounds.extents.x)
+        {
+            // Perform attack logic here
+            Debug.Log("Attacking closest enemy: " + closestEnemy.name);
+        }
+    }
     #endregion
 
     #region Health Module
@@ -257,6 +301,7 @@ public class CharacterControlManager : MonoBehaviour
     #endregion
 
     #region PowerUp Actions
+
         public void AddHealth(int amount)
         {
             Heal(amount);
@@ -273,5 +318,18 @@ public class CharacterControlManager : MonoBehaviour
             });
             //StartCoroutine(SpeedUpCoroutine(duration));
         }
+    #endregion
+
+    #region Debug
+    void OnDrawGizmosSelected()
+    {
+        if (drawGizmos)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(rb.position, attackCollider.bounds.extents.x);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(rb.position, detectorCollider.bounds.extents.x);
+        }
+    }
     #endregion
 }

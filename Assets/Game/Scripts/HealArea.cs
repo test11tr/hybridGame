@@ -41,7 +41,6 @@ public class HealArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            print("Compared:   " + other.tag);
             isPlayerInside = true;
             healTimer = 0f; 
             healCooldownTimer = 0f; 

@@ -32,7 +32,6 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        print("OnTriggerEnter:   " + other.tag);
         if (other.CompareTag("Player"))
         {
             Instantiate(impactEffect, transform.position, Quaternion.identity);

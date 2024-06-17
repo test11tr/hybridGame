@@ -51,7 +51,13 @@ public class Enemy : MonoBehaviour
     [Header("Debug")]
     public bool drawGizmos;
 
+    [HideInInspector] public Vector3 spawnAreaCenter;
+    [HideInInspector] public float spawnAreaWidth;
+    [HideInInspector] public float spawnAreaHeight;
+    private bool isReturningToPatrolArea = false;
     private bool isDead;
+
+    public Action OnDeath { get; internal set; }
 
     void Start()
     {
@@ -66,23 +72,57 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CheckHealthForUI();     
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange)
+        if (!playerInSightRange && !isReturningToPatrolArea)
         {
-            Patrolling();
+            if (!IsWithinSpawnArea())
+            {
+                isReturningToPatrolArea = true;
+                SetDestinationToSpawnAreaCenter();
+            }
+            else
+            {
+                Patrolling();
+            }
         }
-        
-        if (playerInSightRange && !playerInAttackRange)
+        else if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
+            isReturningToPatrolArea = false;
         }
-
-        if (playerInAttackRange && playerInSightRange)
+        else if (playerInAttackRange && playerInSightRange)
         {
             AttackPlayer();
+            isReturningToPatrolArea = false;
         }
+        else if (isReturningToPatrolArea)
+        {
+            if (IsWithinSpawnArea() && !agent.pathPending)
+            {
+                isReturningToPatrolArea = false;
+                Patrolling();
+            }
+        }
+    }
+
+    public void getSpawnerInfo(Vector3 center, float width, float height)
+    {
+        spawnAreaCenter = center;
+        spawnAreaWidth = width;
+        spawnAreaHeight = height;
+    }
+
+    bool IsWithinSpawnArea()
+    {
+        return Vector3.Distance(transform.position, spawnAreaCenter) <= Mathf.Max(spawnAreaWidth, spawnAreaHeight) / 2;
+    }
+
+    void SetDestinationToSpawnAreaCenter()
+    {
+        agent.SetDestination(spawnAreaCenter);
     }
 
     private void Patrolling()
@@ -135,10 +175,11 @@ public class Enemy : MonoBehaviour
 
     private void SearchWalkPoint()
     {
-        float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
-        float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+        float randomZ = UnityEngine.Random.Range(-spawnAreaHeight / 2, spawnAreaHeight / 2);
+        float randomX = UnityEngine.Random.Range(-spawnAreaWidth / 2, spawnAreaWidth / 2);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        Vector3 randomPoint = spawnAreaCenter + new Vector3(randomX, 0, randomZ);
+        walkPoint = new Vector3(randomPoint.x, transform.position.y, randomPoint.z);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
@@ -172,10 +213,11 @@ public class Enemy : MonoBehaviour
             }
         }
 
-    void Die()
+    public void Die()
     {
         enemyAnimator.SetBool("isDead", true);
         isDead = true;
+        OnDeath?.Invoke();
         DelayHelper.DelayAction(enemyDestroyTimeOnDead, () =>
         {
             Destroy(gameObject);

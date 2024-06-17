@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5037945331349386791}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EnemyController
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,9 +374,9 @@ GameObject:
   - component: {fileID: 7296594279226177080}
   - component: {fileID: 454575515967595551}
   - component: {fileID: 1246211748937780715}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -652,9 +652,9 @@ GameObject:
   - component: {fileID: 1759109792471291235}
   - component: {fileID: 7799707335106303053}
   - component: {fileID: 3633537239632733543}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EnemyModule
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
   acceleration: 3
   damage: 1
   timeBetweenAttacks: 1
-  isRangedAttack: 0
+  isRangedAttack: 1
   projectile: {fileID: 5149638566504457480, guid: 6812b0ee5ff65f646b7c5b4f89cd5b18, type: 3}
   projectileSpawnPoint: {fileID: 1670267073243721467}
   enemyDestroyTimeOnDead: 0
@@ -715,6 +715,9 @@ MonoBehaviour:
   enemyAnimator: {fileID: 1246211748937780715}
   floatingTextPrefab: {fileID: 6925169901530921254, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}
   drawGizmos: 1
+  spawnAreaCenter: {x: 0, y: 0, z: 0}
+  spawnAreaWidth: 0
+  spawnAreaHeight: 0
 --- !u!195 &7799707335106303053
 NavMeshAgent:
   m_ObjectHideFlags: 0

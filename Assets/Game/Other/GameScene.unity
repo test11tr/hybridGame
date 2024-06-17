@@ -404,6 +404,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04830a7ded9b3264abe5a1c710d34ecc, type: 3}
+--- !u!1 &440308672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440308674}
+  - component: {fileID: 440308673}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &440308673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440308672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19aba3dce78a14249895ad37d6ba60e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnAreaWidth: 20
+  spawnAreaHeight: 10
+  enemyPrefab: {fileID: 7578979912379580932, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+  numberOfEnemies: 5
+  spawnCooldown: 10
+--- !u!4 &440308674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440308672}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 25.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &464924768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1203,13 +1252,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1759109792471291235, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
-      propertyPath: isRangedAttack
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7578979912379580932, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
       propertyPath: m_Name
       value: EnemyModule
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578979912379580932, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1531,3 +1580,4 @@ SceneRoots:
   - {fileID: 1427015210}
   - {fileID: 322555477}
   - {fileID: 997242091344013344}
+  - {fileID: 440308674}
