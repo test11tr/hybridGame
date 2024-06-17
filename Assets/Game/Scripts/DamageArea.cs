@@ -39,7 +39,6 @@ public class DamageArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("OnTriggerEnter:   " + other.tag);
         if (other.CompareTag("Player"))
         {
             print("Compared:   " + other.tag);

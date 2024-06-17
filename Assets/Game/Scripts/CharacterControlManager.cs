@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TrailsFX;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,6 +47,7 @@ public class CharacterControlManager : MonoBehaviour
     public TrailRenderer speedUpTrail;
     public ParticleSystem dashEffect;
     public ParticleSystem HealEffect;
+    public TrailEffect[] dashTrailEffects;
     
     private bool isDead;
     private Vector3 _moveVector;
@@ -129,12 +131,21 @@ public class CharacterControlManager : MonoBehaviour
                 Vector3 dashDirection = rb.transform.forward;
                 rb.velocity = dashDirection * dashSpeed;
 
+                for (int i = 0; i < dashTrailEffects.Length; i++)
+                {
+                    dashTrailEffects[i].active = true;
+                }
+
                 DelayHelper.DelayAction(dashDuration, () => 
                 { 
                     playerAnimator.SetBool("isDashing", false);
                     dashEffect.Stop();
                     rb.velocity = Vector3.zero; 
                     isDashing = false; 
+                    for (int i = 0; i < dashTrailEffects.Length; i++)
+                    {
+                        dashTrailEffects[i].active = false;
+                    }
                 });
 
                 DelayHelper.DelayAction(dashCooldownTime + dashDuration, () => 
@@ -148,14 +159,14 @@ public class CharacterControlManager : MonoBehaviour
     #region Health Module
     private void loadHealth()
     {
-        currentHealth = SaveModule.Instance.saveInfo.characterCurrentHealth;
+        currentHealth = GameManager.Instance.saveModule.saveInfo.characterCurrentHealth;
         healthBar.fillAmount = (float)currentHealth / maxHealth;
         healthBarEase.fillAmount = (float)currentHealth / maxHealth;
 
         if(currentHealth <= 0)
         {
             currentHealth = maxHealth;
-            SaveModule.Instance.saveInfo.characterCurrentHealth = currentHealth;
+            GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
             healthBar.fillAmount = maxHealth;
             healthBarEase.fillAmount = maxHealth;
         }
@@ -183,7 +194,7 @@ public class CharacterControlManager : MonoBehaviour
         if(!isDead)
         {
             currentHealth -= amount;
-            SaveModule.Instance.saveInfo.characterCurrentHealth = currentHealth;
+            GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
 
             healthBar.fillAmount = (float)currentHealth / maxHealth;
 
@@ -207,7 +218,7 @@ public class CharacterControlManager : MonoBehaviour
         if(!isDead)
         {
             currentHealth += amount;
-            SaveModule.Instance.saveInfo.characterCurrentHealth = currentHealth;
+            GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
 
             healthBar.fillAmount = (float)currentHealth / maxHealth;
 

@@ -7,16 +7,8 @@ using UnityEngine;
 
 public class SaveModule : MonoBehaviour
 {
-    public static SaveModule Instance;
-    
     void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(Instance);
-        }
-        
+    {        
         loadData();
     }
 

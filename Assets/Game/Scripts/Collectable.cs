@@ -55,9 +55,9 @@ public class Collectable : MonoBehaviour
                 isMoving = false;
 
                 if(collectableType == CollectableType.Gold)
-                    WalletModule.Instance.AddGold(1);
+                    GameManager.Instance.wallet.AddGold(1);
                 else if(collectableType == CollectableType.Gem)
-                    WalletModule.Instance.AddGem(1);
+                    GameManager.Instance.wallet.AddGem(1);
 
                 ShowText();
                 Destroy(gameObject);
