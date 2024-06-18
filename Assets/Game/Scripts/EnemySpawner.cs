@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour
     public TextMeshPro cooldownText;
     public Rectangle bg;
     public Rectangle outline;
-    public Rectangle loading;
 
     [Header("Debug")]
     [SerializeField]private float currentCooldownTime = 0f;
@@ -45,13 +44,11 @@ public class EnemySpawner : MonoBehaviour
             {
                 cooldownText.gameObject.SetActive(true);
                 cooldownText.text = "NEXT SPAWNS IN " + currentCooldownTime.ToString("F2") + "s";
-                loading.gameObject.SetActive(true);
                 currentCooldownTime -= Time.deltaTime;
             }
             else
             {
                 cooldownText.gameObject.SetActive(false);
-                loading.gameObject.SetActive(false);
                 SpawnEnemies();
                 currentCooldownTime = spawnCooldown;
             }

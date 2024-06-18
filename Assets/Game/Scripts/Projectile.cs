@@ -29,11 +29,8 @@ public class Projectile : MonoBehaviour
     {
         if(isPlayerProjectile)
         {
-            print("Hit: " + other.gameObject.tag);
             if (other.CompareTag("Enemy"))
             {
-                print("Hit Enemy");
-                print("Deal Damage");
                 Instantiate(impactEffect, transform.position, Quaternion.identity);
                 other.GetComponent<Enemy>().TakeDamage(_bulletDamage);
                 Destroy(gameObject);

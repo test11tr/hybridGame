@@ -6,12 +6,12 @@ public class SaveModuleEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector(); // Varsayılan Inspector öğelerini çiz
+        DrawDefaultInspector();
 
         SaveModule saveModule = (SaveModule)target;
-        if (GUILayout.Button("Reset Data")) // Bir buton oluştur ve butona basıldığında
+        if (GUILayout.Button("Reset Data")) 
         {
-            saveModule.resetData(); // resetData fonksiyonunu çağır
+            saveModule.resetData();
         }
     }
 }

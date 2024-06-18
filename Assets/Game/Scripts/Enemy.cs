@@ -49,6 +49,18 @@ public class Enemy : MonoBehaviour
     public float healthEaseSpeed;
     private int currentHealth;
 
+    [Header("Effects Module")]
+    public TrailRenderer trail;
+    public ParticleSystem deathEffect;
+
+    [Header("FlashModule")]
+    public SkinnedMeshRenderer[] skinnedMeshRenderers;
+    public MeshRenderer[] meshRenderers;
+    public Material flashMaterial;
+    public Material deadMaterial;
+    public Material[] originalMaterials;
+    public float materialChangeDuration = .2f;
+
     [Header("References")]
     public Rigidbody rb;
     public Animator enemyAnimator;
@@ -102,6 +114,21 @@ public class Enemy : MonoBehaviour
         
         CheckHealthForUI();     
     }
+
+    public void GetAllRenderers()
+    {
+        skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        originalMaterials = new Material[skinnedMeshRenderers.Length + meshRenderers.Length];
+        for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+        {
+            originalMaterials[i] = skinnedMeshRenderers[i].material;
+        }
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            originalMaterials[i] = meshRenderers[i].material;
+        }
+    }
     #endregion
 
     #region AIStates
@@ -114,6 +141,7 @@ public class Enemy : MonoBehaviour
         {
             agent.speed = movementSpeed;
             agent.acceleration = acceleration;
+            HandleTrailConditionally(false);
 
             if (!IsWithinSpawnArea())
             {
@@ -130,12 +158,14 @@ public class Enemy : MonoBehaviour
             EscapeFromPlayer();
             agent.speed = escapeSpeed;
             agent.acceleration = escapeAcceleration;
+            HandleTrailConditionally(true);
             isReturningToPatrolArea = false;
         }
         else if (isReturningToPatrolArea)
         {
             agent.speed = movementSpeed;
             agent.acceleration = acceleration;
+            HandleTrailConditionally(false);
             if (IsWithinSpawnArea() && !agent.pathPending)
             {
                 isReturningToPatrolArea = false;
@@ -399,7 +429,7 @@ public class Enemy : MonoBehaviour
                 currentHealth -= amount;
 
                 healthBar.fillAmount = (float)currentHealth / maxHealth;
-
+                PlayHitFlash();
                 if(floatingTextPrefab)
                 {
                     Vector3 spawnPosition = transform.position;
@@ -417,7 +447,9 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        PlayDeadFlash();
         enemyAnimator.SetBool("isDead", true);
+        deathEffect.Play();
         isDead = true;
         OnDeath?.Invoke();
         DelayHelper.DelayAction(enemyDestroyTimeOnDead, () =>
@@ -425,6 +457,56 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         });
     }
+    #endregion
+
+    #region Effects Module
+    void HandleTrailConditionally(bool shouldEmit)
+    {
+        if(trail.emitting != shouldEmit)
+        {
+            handleTrail();
+        }
+    }
+    public void handleTrail()
+    {
+        trail.emitting = !trail.emitting;
+    }
+    public void PlayHitFlash()
+    {
+        foreach (var renderer in skinnedMeshRenderers)
+        {
+            renderer.material = flashMaterial;
+        }
+        foreach (var renderer in meshRenderers)
+        {
+            renderer.material = flashMaterial;
+        }
+
+        DelayHelper.DelayAction(materialChangeDuration, () =>
+        {
+            for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+            {
+                skinnedMeshRenderers[i].material = originalMaterials[i];
+            }
+            for (int i = 0; i < meshRenderers.Length; i++)
+            {
+                meshRenderers[i].material = originalMaterials[i];
+            }
+        });
+    }
+
+    public void PlayDeadFlash()
+    {
+        foreach (var renderer in skinnedMeshRenderers)
+        {
+            renderer.material = deadMaterial;
+        }
+        foreach (var renderer in meshRenderers)
+        {
+            renderer.material = deadMaterial;
+        }
+    }
+    
     #endregion
 
     #region Debug

@@ -31,10 +31,11 @@ public class CharacterControlManager : MonoBehaviour
     bool isDashing;
 
     [Header("Combat Module")]
-    public int attackRange;
+    public bool isRangedAttack;
+    public int rangedAttackRange;
+    public int meleeAttackRange;
     public int detectorRange;
     public int damage;
-    public bool isRangedAttack;
     public float attackSpeed;
     public float timeBetweenAttacks;
     public Projectile projectile;
@@ -44,6 +45,7 @@ public class CharacterControlManager : MonoBehaviour
     private List<Enemy> detectedEnemies = new List<Enemy>();
     private Enemy closestEnemy = null;
     private bool alreadyAttacked;
+    private int attackCounter = 0;
 
     [Header("Health Module")]
     public GameObject healthModuleCanvas;
@@ -65,6 +67,16 @@ public class CharacterControlManager : MonoBehaviour
     public ParticleSystem dashEffect;
     public ParticleSystem HealEffect;
     public TrailEffect[] dashTrailEffects;
+    public ParticleSystem deathEffect;
+
+    [Header("FlashModule")]
+    public Renderer[] includedRenderers;
+    public SkinnedMeshRenderer[] allSkinnedMeshRenderers;
+    public MeshRenderer[] allMeshRenderers;
+    public Material flashMaterial;
+    public Material deadMaterial;
+    public Material[] originalMaterials;
+    public float materialChangeDuration = .2f;
 
     [Header("Aim Lock Module")]
     public GameObject aimLock;
@@ -103,6 +115,32 @@ public class CharacterControlManager : MonoBehaviour
     {
         if(!isDead)
             MoveCharacter();
+    }
+
+    public void GetAllRenderers()
+    {
+        List<Renderer> includedRenderers = new List<Renderer>();
+        SkinnedMeshRenderer[] allSkinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        MeshRenderer[] allMeshRenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (var renderer in allSkinnedMeshRenderers)
+        {
+            if (renderer.gameObject.tag != "ignoreRenderer")
+            {
+                includedRenderers.Add(renderer);
+            }
+        }
+        foreach (var renderer in allMeshRenderers)
+        {
+            if (renderer.gameObject.tag != "ignoreRenderer")
+            {
+                includedRenderers.Add(renderer);
+            }
+        }
+        originalMaterials = new Material[includedRenderers.Count];
+        for (int i = 0; i < includedRenderers.Count; i++)
+        {
+            originalMaterials[i] = includedRenderers[i].material;
+        }
     }
     #endregion
     
@@ -181,7 +219,10 @@ public class CharacterControlManager : MonoBehaviour
     private void setCombatColliders()
     {
         ((SphereCollider)detectorCollider).radius = detectorRange;
-        ((SphereCollider)attackCollider).radius = attackRange;
+        if(isRangedAttack)
+            ((SphereCollider)attackCollider).radius = rangedAttackRange;
+        else
+            ((SphereCollider)attackCollider).radius = meleeAttackRange;
     }
 
     public void HandleTriggerEnter(Collider other)
@@ -257,15 +298,31 @@ public class CharacterControlManager : MonoBehaviour
             if (!alreadyAttacked) //&& joystick.Horizontal == 0 && joystick.Vertical == 0)
             {
                 alreadyAttacked = true;
-                // Attack code here
+
                 if(isRangedAttack)
                 {
                     float yOffset = projectileSpawnPoint.position.y;
                     Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
                     _projectile.Fire(damage, closestEnemy.transform.position, yOffset);
                 }
-                
-                Debug.Log("Attacking closest enemy: " + closestEnemy.name);
+
+                if(!isRangedAttack)
+                {
+                    attackCounter++;
+                    switch (attackCounter)
+                    {
+                        case 1:
+                            playerAnimator.SetTrigger("Attack1");
+                            break;
+                        case 2:
+                            playerAnimator.SetTrigger("Attack2");
+                            break;
+                        default:   
+                            attackCounter = 0;
+                            break;
+                    }
+                    closestEnemy.TakeDamage(damage);
+                }
 
                 DelayHelper.DelayAction(timeBetweenAttacks, () =>
                 {
@@ -320,8 +377,9 @@ public class CharacterControlManager : MonoBehaviour
             
             currentHealth -= amount;
             GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
-            
             healthBar.fillAmount = (float)currentHealth / maxHealth;
+
+            PlayHitFlash();
 
             if(floatingTextPrefab)
             {
@@ -344,9 +402,9 @@ public class CharacterControlManager : MonoBehaviour
         {
             currentHealth += amount;
             GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
-
+            
             healthBar.fillAmount = (float)currentHealth / maxHealth;
-
+            
             if(floatingTextPrefab)
             {
                 Vector3 spawnPosition = rb.transform.position;
@@ -364,8 +422,10 @@ public class CharacterControlManager : MonoBehaviour
 
     void Die()
     {
+        PlayDeadFlash();
         currencyCollector.SetActive(false);
         playerAnimator.SetBool("isDead", true);
+        deathEffect.Play();
         isDead = true;
     } 
     #endregion
@@ -378,6 +438,41 @@ public class CharacterControlManager : MonoBehaviour
         public void PlayHealEffect()
         {
             HealEffect.Play();
+        }
+        public void PlayHitFlash()
+        {
+            foreach (var renderer in skinnedMeshRenderers)
+            {
+                renderer.material = flashMaterial;
+            }
+            foreach (var renderer in meshRenderers)
+            {
+                renderer.material = flashMaterial;
+            }
+
+            DelayHelper.DelayAction(materialChangeDuration, () =>
+            {
+                for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+                {
+                    skinnedMeshRenderers[i].material = originalMaterials[i];
+                }
+                for (int i = 0; i < meshRenderers.Length; i++)
+                {
+                    meshRenderers[i].material = originalMaterials[i];
+                }
+            });
+        }
+
+        public void PlayDeadFlash()
+        {
+            foreach (var renderer in skinnedMeshRenderers)
+            {
+                renderer.material = deadMaterial;
+            }
+            foreach (var renderer in meshRenderers)
+            {
+                renderer.material = deadMaterial;
+            }
         }
     #endregion
 

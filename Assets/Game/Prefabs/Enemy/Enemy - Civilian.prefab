@@ -88,6 +88,50 @@ PrefabInstance:
       propertyPath: isEscapeInWalkPointRange
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.12983571
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.18226573
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.key2.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.key2.g
+      value: 0.92573977
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430284793497970592, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_NumColorKeys
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7296594279226177080, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
