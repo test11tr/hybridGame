@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 7402901202819703019}
   - component: {fileID: 7296594279226177080}
   - component: {fileID: 1246211748937780715}
+  - component: {fileID: 6900982968816562712}
   m_Layer: 14
   m_Name: Capsule
   m_TagString: Enemy
@@ -467,6 +468,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &6900982968816562712
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898364436680995094}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1.05
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5807069360753775627
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +710,7 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   projectile: {fileID: 5149638566504457480, guid: 6812b0ee5ff65f646b7c5b4f89cd5b18, type: 3}
   projectileSpawnPoint: {fileID: 1670267073243721467}
-  enemyDestroyTimeOnDead: 0
+  enemyDestroyTimeOnDead: 5
   sightRange: 5
   attackRange: 2
   healthModuleCanvas: {fileID: 597380981409130577}
@@ -696,8 +720,7 @@ MonoBehaviour:
   healthEaseSpeed: 1.5
   trail: {fileID: 3430284793497970592}
   deathEffect: {fileID: 8100725849515834997}
-  skinnedMeshRenderers: []
-  meshRenderers: []
+  includedRenderers: []
   flashMaterial: {fileID: 2100000, guid: 82c55bd8083424d4e8d4c89ffc565f56, type: 2}
   deadMaterial: {fileID: 2100000, guid: 91cdbbe514f956a4ca3af59ed5b0c9b7, type: 2}
   originalMaterials: []
@@ -755,7 +778,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -863,7 +886,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -929,7 +952,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.25
+      scalar: 2
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -2127,7 +2150,7 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 0.85490197, g: 0.96763444, b: 1, a: 0}
         key1: {r: 0, g: 0.7984204, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.6784314}
+        key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -2142,8 +2165,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 19978
-        atime2: 46011
+        atime1: 11758
+        atime2: 54163
         atime3: 65535
         atime4: 0
         atime5: 0

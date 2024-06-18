@@ -54,8 +54,9 @@ public class Enemy : MonoBehaviour
     public ParticleSystem deathEffect;
 
     [Header("FlashModule")]
-    public SkinnedMeshRenderer[] skinnedMeshRenderers;
-    public MeshRenderer[] meshRenderers;
+    public Renderer[] includedRenderers;
+    private SkinnedMeshRenderer[] allSkinnedMeshRenderers;
+    private MeshRenderer[] allMeshRenderers;
     public Material flashMaterial;
     public Material deadMaterial;
     public Material[] originalMaterials;
@@ -88,6 +89,7 @@ public class Enemy : MonoBehaviour
         agent.angularSpeed = rotationSpeed;
         agent.acceleration = acceleration;
         currentHealth = maxHealth;
+        GetAllRenderers();
     }
 
     void Update()
@@ -117,16 +119,28 @@ public class Enemy : MonoBehaviour
 
     public void GetAllRenderers()
     {
-        skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        meshRenderers = GetComponentsInChildren<MeshRenderer>();
-        originalMaterials = new Material[skinnedMeshRenderers.Length + meshRenderers.Length];
-        for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+        List<Renderer> tempIncludedRenderers = new List<Renderer>();
+        SkinnedMeshRenderer[] allSkinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        MeshRenderer[] allMeshRenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (var renderer in allSkinnedMeshRenderers)
         {
-            originalMaterials[i] = skinnedMeshRenderers[i].material;
+            if (renderer.gameObject.tag != "ignoreRenderer")
+            {
+                tempIncludedRenderers.Add(renderer);
+            }
         }
-        for (int i = 0; i < meshRenderers.Length; i++)
+        foreach (var renderer in allMeshRenderers)
         {
-            originalMaterials[i] = meshRenderers[i].material;
+            if (renderer.gameObject.tag != "ignoreRenderer")
+            {
+                tempIncludedRenderers.Add(renderer);
+            }
+        }
+        includedRenderers = tempIncludedRenderers.ToArray();
+        originalMaterials = new Material[includedRenderers.Length];
+        for (int i = 0; i < includedRenderers.Length; i++)
+        {
+            originalMaterials[i] = includedRenderers[i].material;
         }
     }
     #endregion
@@ -440,6 +454,7 @@ public class Enemy : MonoBehaviour
 
                 if (currentHealth <= 0)
                 {
+                    deathEffect.Play();
                     Die();
                 }
             }
@@ -447,10 +462,22 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        PlayDeadFlash();
-        enemyAnimator.SetBool("isDead", true);
-        deathEffect.Play();
         isDead = true;
+        agent.enabled = false;
+        //enemyAnimator.SetBool("isDead", true);
+        PlayDeadFlash();
+
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        var attackerPos = player.position; 
+        attackerPos.y = 0;
+        var position = transform.position;
+        position.y = 0;
+
+        var direction = (position - attackerPos).normalized;
+        rb.AddForce(5 * (direction + Vector3.one), ForceMode.Impulse);
+        rb.AddTorque(UnityEngine.Random.insideUnitSphere  * 0.5f, ForceMode.Impulse);
+
         OnDeath?.Invoke();
         DelayHelper.DelayAction(enemyDestroyTimeOnDead, () =>
         {
@@ -473,40 +500,29 @@ public class Enemy : MonoBehaviour
     }
     public void PlayHitFlash()
     {
-        foreach (var renderer in skinnedMeshRenderers)
-        {
-            renderer.material = flashMaterial;
-        }
-        foreach (var renderer in meshRenderers)
+        foreach (var renderer in includedRenderers)
         {
             renderer.material = flashMaterial;
         }
 
         DelayHelper.DelayAction(materialChangeDuration, () =>
         {
-            for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+            if(isDead) return;
+            for (int i = 0; i < includedRenderers.Length; i++)
             {
-                skinnedMeshRenderers[i].material = originalMaterials[i];
-            }
-            for (int i = 0; i < meshRenderers.Length; i++)
-            {
-                meshRenderers[i].material = originalMaterials[i];
+                includedRenderers[i].material = originalMaterials[i];
             }
         });
     }
 
     public void PlayDeadFlash()
     {
-        foreach (var renderer in skinnedMeshRenderers)
+        foreach (var renderer in includedRenderers)
         {
             renderer.material = deadMaterial;
-        }
-        foreach (var renderer in meshRenderers)
-        {
-            renderer.material = deadMaterial;
+            print("dead");
         }
     }
-    
     #endregion
 
     #region Debug

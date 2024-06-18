@@ -71,8 +71,8 @@ public class CharacterControlManager : MonoBehaviour
 
     [Header("FlashModule")]
     public Renderer[] includedRenderers;
-    public SkinnedMeshRenderer[] allSkinnedMeshRenderers;
-    public MeshRenderer[] allMeshRenderers;
+    private SkinnedMeshRenderer[] allSkinnedMeshRenderers;
+    private MeshRenderer[] allMeshRenderers;
     public Material flashMaterial;
     public Material deadMaterial;
     public Material[] originalMaterials;
@@ -102,6 +102,7 @@ public class CharacterControlManager : MonoBehaviour
 
         loadHealth();
         setCombatColliders();
+        GetAllRenderers();
     }
 
     void Update()
@@ -119,25 +120,26 @@ public class CharacterControlManager : MonoBehaviour
 
     public void GetAllRenderers()
     {
-        List<Renderer> includedRenderers = new List<Renderer>();
+        List<Renderer> tempIncludedRenderers = new List<Renderer>();
         SkinnedMeshRenderer[] allSkinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         MeshRenderer[] allMeshRenderers = GetComponentsInChildren<MeshRenderer>();
         foreach (var renderer in allSkinnedMeshRenderers)
         {
             if (renderer.gameObject.tag != "ignoreRenderer")
             {
-                includedRenderers.Add(renderer);
+                tempIncludedRenderers.Add(renderer);
             }
         }
         foreach (var renderer in allMeshRenderers)
         {
             if (renderer.gameObject.tag != "ignoreRenderer")
             {
-                includedRenderers.Add(renderer);
+                tempIncludedRenderers.Add(renderer);
             }
         }
-        originalMaterials = new Material[includedRenderers.Count];
-        for (int i = 0; i < includedRenderers.Count; i++)
+        includedRenderers = tempIncludedRenderers.ToArray();
+        originalMaterials = new Material[includedRenderers.Length];
+        for (int i = 0; i < includedRenderers.Length; i++)
         {
             originalMaterials[i] = includedRenderers[i].material;
         }
@@ -441,35 +443,23 @@ public class CharacterControlManager : MonoBehaviour
         }
         public void PlayHitFlash()
         {
-            foreach (var renderer in skinnedMeshRenderers)
-            {
-                renderer.material = flashMaterial;
-            }
-            foreach (var renderer in meshRenderers)
+            foreach (var renderer in includedRenderers)
             {
                 renderer.material = flashMaterial;
             }
 
             DelayHelper.DelayAction(materialChangeDuration, () =>
             {
-                for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+                for (int i = 0; i < includedRenderers.Length; i++)
                 {
-                    skinnedMeshRenderers[i].material = originalMaterials[i];
-                }
-                for (int i = 0; i < meshRenderers.Length; i++)
-                {
-                    meshRenderers[i].material = originalMaterials[i];
+                    includedRenderers[i].material = originalMaterials[i];
                 }
             });
         }
 
         public void PlayDeadFlash()
         {
-            foreach (var renderer in skinnedMeshRenderers)
-            {
-                renderer.material = deadMaterial;
-            }
-            foreach (var renderer in meshRenderers)
+            foreach (var renderer in includedRenderers)
             {
                 renderer.material = deadMaterial;
             }

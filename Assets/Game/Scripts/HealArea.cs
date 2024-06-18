@@ -39,12 +39,16 @@ public class HealArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && other.GetComponent<CharacterControlManager>().currentHealth < 100) 
+        if (other.CompareTag("Player")) 
         {
-            isPlayerInside = true;
-            healTimer = 0f; 
-            healCooldownTimer = 0f; 
-            progressShape.AngRadiansEnd = 0;
+            if(GameManager.Instance.player.currentHealth < GameManager.Instance.player.maxHealth)
+            {
+                isPlayerInside = true;
+                healTimer = 0f; 
+                healCooldownTimer = 0f; 
+                progressShape.AngRadiansEnd = 0;
+            }
+            
         }
     }
 
