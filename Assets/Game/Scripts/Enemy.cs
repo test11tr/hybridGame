@@ -9,6 +9,12 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy Settings")]
+    public bool isCivilian;
+    public bool isMeleeAttack;
+    public bool isRangedAttack;
+    public bool isBoss;
+
     [Header("Enemy Movement")]
     public NavMeshAgent agent;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -18,11 +24,12 @@ public class Enemy : MonoBehaviour
     public float movementSpeed;
     public float rotationSpeed;
     public float acceleration;
+    public float escapeSpeed;
+    public float escapeAcceleration;
 
     [Header("Enemy Attack")]
     public int damage;
     public float timeBetweenAttacks;
-    public bool isRangedAttack;
     public Projectile projectile;
     public Transform projectileSpawnPoint;
     bool alreadyAttacked;
@@ -73,13 +80,145 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        AIStateBrain();
+        if(isDead) 
+        return;
+
+        if (isCivilian)
+        {
+            AIStateBrainCivilian();
+        }
+        else if(isMeleeAttack)
+        {
+            AIStateBrainMelee();
+        }
+        else if(isRangedAttack)
+        {
+            AIStateBrainRanged();
+        }
+        else if(isBoss)
+        {
+            AIStateBrainBoss();
+        }
+        
         CheckHealthForUI();     
     }
     #endregion
 
     #region AIStates
-    void AIStateBrain()
+    void AIStateBrainCivilian()
+    {
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !isReturningToPatrolArea)
+        {
+            agent.speed = movementSpeed;
+            agent.acceleration = acceleration;
+
+            if (!IsWithinSpawnArea())
+            {
+                isReturningToPatrolArea = true;
+                SetDestinationToSpawnAreaCenter();
+            }
+            else
+            {
+                Patrolling();
+            }
+        }
+        else if (playerInSightRange && !playerInAttackRange)
+        {
+            EscapeFromPlayer();
+            agent.speed = escapeSpeed;
+            agent.acceleration = escapeAcceleration;
+            isReturningToPatrolArea = false;
+        }
+        else if (isReturningToPatrolArea)
+        {
+            agent.speed = movementSpeed;
+            agent.acceleration = acceleration;
+            if (IsWithinSpawnArea() && !agent.pathPending)
+            {
+                isReturningToPatrolArea = false;
+                Patrolling();
+            }
+        }
+    }
+
+    void AIStateBrainMelee()
+    {
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !isReturningToPatrolArea)
+        {
+            if (!IsWithinSpawnArea())
+            {
+                isReturningToPatrolArea = true;
+                SetDestinationToSpawnAreaCenter();
+            }
+            else
+            {
+                Patrolling();
+            }
+        }
+        else if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+            isReturningToPatrolArea = false;
+        }
+        else if (playerInAttackRange && playerInSightRange)
+        {
+            AttackPlayer();
+            isReturningToPatrolArea = false;
+        }
+        else if (isReturningToPatrolArea)
+        {
+            if (IsWithinSpawnArea() && !agent.pathPending)
+            {
+                isReturningToPatrolArea = false;
+                Patrolling();
+            }
+        }
+    }
+
+    void AIStateBrainRanged()
+    {
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !isReturningToPatrolArea)
+        {
+            if (!IsWithinSpawnArea())
+            {
+                isReturningToPatrolArea = true;
+                SetDestinationToSpawnAreaCenter();
+            }
+            else
+            {
+                Patrolling();
+            }
+        }
+        else if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+            isReturningToPatrolArea = false;
+        }
+        else if (playerInAttackRange && playerInSightRange)
+        {
+            AttackPlayer();
+            isReturningToPatrolArea = false;
+        }
+        else if (isReturningToPatrolArea)
+        {
+            if (IsWithinSpawnArea() && !agent.pathPending)
+            {
+                isReturningToPatrolArea = false;
+                Patrolling();
+            }
+        }
+    }
+
+    void AIStateBrainBoss()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -178,6 +317,39 @@ public class Enemy : MonoBehaviour
             {
                 alreadyAttacked = false;
             });
+        }
+    }
+
+    private void EscapeFromPlayer()
+    {
+        if (!walkPointSet)
+        {
+            SearhEscapeWalkPoint();
+        }
+        else
+        {
+            agent.SetDestination(walkPoint);
+        }
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        if (distanceToWalkPoint.magnitude < 1f)
+        {
+            walkPointSet = false;
+        }
+    }
+
+    private void SearhEscapeWalkPoint()
+    {
+        float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+        float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        agent.SetDestination(walkPoint);
+
+        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
+            walkPointSet = true;
         }
     }
 
