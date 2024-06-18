@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float spawnAreaWidth;
     [HideInInspector] public float spawnAreaHeight;
     private bool isReturningToPatrolArea = false;
-    private bool isDead;
+    [HideInInspector] public bool isDead;
 
     public Action OnDeath { get; internal set; }
 

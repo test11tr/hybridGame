@@ -259,6 +259,21 @@ public class CharacterControlManager : MonoBehaviour
             return;
         }
 
+        if(closestEnemy != null)
+        {
+            aimLock.SetActive(true);
+            aimLock.transform.position = closestEnemy.transform.position;
+        }else
+        {
+            aimLock.SetActive(false);
+        }
+
+        if(isRangedAttack)
+        {
+            if(closestEnemy != null && !closestEnemy.isDead && Vector3.Distance(rb.position, closestEnemy.transform.position) <= detectorCollider.bounds.extents.x)
+            return;
+        }
+
         float closestDistance = float.MaxValue;
         closestEnemy = null;
 
@@ -277,14 +292,7 @@ public class CharacterControlManager : MonoBehaviour
             }
         }
 
-        if(closestEnemy != null)
-        {
-            aimLock.SetActive(true);
-            aimLock.transform.position = closestEnemy.transform.position;
-        }else
-        {
-            aimLock.SetActive(false);
-        }
+        
 
         if (detectedEnemies == null)
         {
@@ -323,7 +331,6 @@ public class CharacterControlManager : MonoBehaviour
                             attackCounter = 0;
                             break;
                     }
-                    closestEnemy.TakeDamage(damage);
                 }
 
                 DelayHelper.DelayAction(timeBetweenAttacks, () =>
@@ -334,6 +341,15 @@ public class CharacterControlManager : MonoBehaviour
         }else
         {
             lookAnimator.ObjectToFollow = null;
+        }
+    }
+
+    // This method will be called by the animation event
+    public void DealMeleeDamage()
+    {
+        if (closestEnemy != null)
+        {
+            closestEnemy.TakeDamage(damage);
         }
     }
     #endregion

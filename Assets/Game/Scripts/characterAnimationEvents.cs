@@ -10,4 +10,9 @@ public class characterAnimationEvents : MonoBehaviour
     {
         player = GetComponentInParent<CharacterControlManager>();
     }
+
+    void dealDamage()
+    {
+        player.DealMeleeDamage();
+    }
 }
