@@ -2,18 +2,21 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Spawner Settings")]
     public float spawnAreaWidth = 10f;
     public float spawnAreaHeight = 10f;
     public GameObject enemyPrefab;
     public int numberOfEnemies = 5;
     public float spawnCooldown = 10f;
 
-    private float currentCooldownTime = 0f;
-    private int activeEnemies = 0;
+    [Header("Debug")]
+    [SerializeField]private float currentCooldownTime = 0f;
+    [SerializeField] private int activeEnemies = 0;
 
     private void Start()
     {
         SpawnEnemies();
+        currentCooldownTime = spawnCooldown;
     }
 
     private void Update()

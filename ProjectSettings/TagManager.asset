@@ -13,6 +13,7 @@ TagManager:
   - Detector
   - Attacker
   - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - EnemyDetector
   - AttackCollider
   - Enemy
-  - 
+  - Projectile
   - 
   - 
   - 

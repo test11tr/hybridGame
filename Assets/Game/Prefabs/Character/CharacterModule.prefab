@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 8004955676200691850}
   - component: {fileID: 925757178619946367}
   - component: {fileID: 1595999317452353448}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: EnemyDetector
   m_TagString: Detector
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5
+  m_Radius: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1595999317452353448
 MonoBehaviour:
@@ -656,6 +656,14 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldownTime: 1
+  attackRange: 4
+  detectorRange: 7
+  damage: 1
+  isRangedAttack: 1
+  attackSpeed: 1
+  timeBetweenAttacks: 1
+  projectile: {fileID: 5149638566504457480, guid: 53f936b3139146f498070a93b6f2c3d6, type: 3}
+  projectileSpawnPoint: {fileID: 7216461378338583589}
   detectorCollider: {fileID: 925757178619946367}
   attackCollider: {fileID: 7166737991144207223}
   healthModuleCanvas: {fileID: 3692115764678476545}
@@ -804,7 +812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5730867211981254922}
   - component: {fileID: 7166737991144207223}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Attacker
   m_Icon: {fileID: 0}
@@ -845,7 +853,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3468347462461814935
 GameObject:
@@ -1167,6 +1175,7 @@ Transform:
   - {fileID: 1311179837425128144}
   - {fileID: 8004955676200691850}
   - {fileID: 5730867211981254922}
+  - {fileID: 7216461378338583589}
   m_Father: {fileID: 2253711700769904400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7068369312478700017
@@ -1299,6 +1308,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &5162979721698976606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7216461378338583589}
+  m_Layer: 10
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7216461378338583589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162979721698976606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.075, z: 0.502}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 242525671834763066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5472893435495375477
 GameObject:
   m_ObjectHideFlags: 0

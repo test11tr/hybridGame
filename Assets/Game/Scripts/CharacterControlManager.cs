@@ -27,10 +27,19 @@ public class CharacterControlManager : MonoBehaviour
     bool isDashing;
 
     [Header("Combat Module")]
+    public int attackRange;
+    public int detectorRange;
+    public int damage;
+    public bool isRangedAttack;
+    public float attackSpeed;
+    public float timeBetweenAttacks;
+    public Projectile projectile;
+    public Transform projectileSpawnPoint;
     public Collider detectorCollider;
     public Collider attackCollider;
     private List<Enemy> detectedEnemies = new List<Enemy>();
     private Enemy closestEnemy = null;
+    private bool alreadyAttacked;
 
     [Header("Health Module")]
     public GameObject healthModuleCanvas;
@@ -73,6 +82,7 @@ public class CharacterControlManager : MonoBehaviour
             EnableJoystick();
 
         loadHealth();
+        setCombatColliders();
     }
 
     void Update()
@@ -161,9 +171,15 @@ public class CharacterControlManager : MonoBehaviour
     #endregion
 
     #region Combat Module
+    private void setCombatColliders()
+    {
+        ((SphereCollider)detectorCollider).radius = detectorRange;
+        ((SphereCollider)attackCollider).radius = attackRange;
+    }
+
     public void HandleTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered with: " + other.name);
+        
         if (other.CompareTag("Enemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
@@ -175,12 +191,27 @@ public class CharacterControlManager : MonoBehaviour
     }
 
     void UpdateClosestEnemy()
-    {
+        {
+            if (rb == null)
+        {
+            return;
+        }
+
+        if (detectedEnemies == null)
+        {
+            return;
+        }
+
         float closestDistance = float.MaxValue;
         closestEnemy = null;
 
         foreach (Enemy enemy in detectedEnemies)
         {
+            if (enemy == null)
+            {
+                continue;
+            }
+
             float distance = Vector3.Distance(rb.position, enemy.transform.position);
             if (distance < closestDistance)
             {
@@ -194,8 +225,25 @@ public class CharacterControlManager : MonoBehaviour
     {
         if (closestEnemy != null && Vector3.Distance(rb.position, closestEnemy.transform.position) <= attackCollider.bounds.extents.x)
         {
-            // Perform attack logic here
-            Debug.Log("Attacking closest enemy: " + closestEnemy.name);
+            if (!alreadyAttacked && joystick.Horizontal == 0 && joystick.Vertical == 0)
+            {
+                alreadyAttacked = true;
+                rb.transform.LookAt(closestEnemy.transform.position);
+                // Attack code here
+                if(isRangedAttack)
+                {
+                    float yOffset = projectileSpawnPoint.position.y;
+                    Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
+                    _projectile.Fire(damage, closestEnemy.transform.position, yOffset);
+                }
+                
+                Debug.Log("Attacking closest enemy: " + closestEnemy.name);
+
+                DelayHelper.DelayAction(timeBetweenAttacks, () =>
+                {
+                    alreadyAttacked = false;
+                });
+            }
         }
     }
     #endregion

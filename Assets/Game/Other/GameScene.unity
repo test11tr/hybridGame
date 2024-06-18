@@ -436,8 +436,10 @@ MonoBehaviour:
   spawnAreaWidth: 20
   spawnAreaHeight: 10
   enemyPrefab: {fileID: 7578979912379580932, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
-  numberOfEnemies: 5
+  numberOfEnemies: 3
   spawnCooldown: 10
+  currentCooldownTime: 0
+  activeEnemies: 0
 --- !u!4 &440308674
 Transform:
   m_ObjectHideFlags: 0

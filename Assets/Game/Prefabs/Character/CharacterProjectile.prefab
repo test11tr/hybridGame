@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7542154921365661690}
   - component: {fileID: 5245411584409126686}
   m_Layer: 15
-  m_Name: EnemyProjectile
+  m_Name: CharacterProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f15a6d16ebdb948a896654cabbde09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerProjectile: 0
+  isPlayerProjectile: 1
   bulletSpeed: 10
   bulletMaxLifeTime: 2
   rb: {fileID: 7542154921365661690}

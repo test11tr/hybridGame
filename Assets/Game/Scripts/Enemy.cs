@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
     [Header("References")]
     public Rigidbody rb;
     public Animator enemyAnimator;
-    public GameObject floatingTextPrefab;
+    public floatingText floatingTextPrefab;
     private Transform player;
 
     [Header("Debug")]
@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
 
     public Action OnDeath { get; internal set; }
 
+    #region PreperationAndLoop
     void Start()
     {
         player = GameManager.Instance.player.rb.transform;
@@ -71,8 +72,14 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        AIStateBrain();
         CheckHealthForUI();     
+    }
+    #endregion
 
+    #region AIStates
+    void AIStateBrain()
+    {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -186,7 +193,9 @@ public class Enemy : MonoBehaviour
             walkPointSet = true;
         }
     }
+    #endregion
 
+    #region HealthModule
     private void CheckHealthForUI()
     {
         if(currentHealth < maxHealth)
@@ -204,12 +213,32 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void TakeDamage(int amount)
+    public void TakeDamage(int amount)
         {
             currentHealth -= amount;
             if (currentHealth <= 0)
             {
                 Die();
+            }
+
+            if(!isDead)
+            {
+                currentHealth -= amount;
+
+                healthBar.fillAmount = (float)currentHealth / maxHealth;
+
+                if(floatingTextPrefab)
+                {
+                    Vector3 spawnPosition = transform.position;
+                    spawnPosition.y += 1.5f;
+                    floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 3f);
+                }
+
+                if (currentHealth <= 0)
+                {
+                    Die();
+                }
             }
         }
 
@@ -223,7 +252,9 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         });
     }
+    #endregion
 
+    #region Debug
     void OnDrawGizmosSelected()
     {
         if (drawGizmos)
@@ -236,4 +267,5 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, walkPointRange);
         }
     }
+    #endregion
 }
