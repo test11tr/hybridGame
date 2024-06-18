@@ -65,6 +65,9 @@ public class CharacterControlManager : MonoBehaviour
     public ParticleSystem dashEffect;
     public ParticleSystem HealEffect;
     public TrailEffect[] dashTrailEffects;
+
+    [Header("Aim Lock Module")]
+    public GameObject aimLock;
     
     [Header("Debug")]
     public bool drawGizmos;
@@ -231,6 +234,15 @@ public class CharacterControlManager : MonoBehaviour
             }
         }
 
+        if(closestEnemy != null)
+        {
+            aimLock.SetActive(true);
+            aimLock.transform.position = closestEnemy.transform.position;
+        }else
+        {
+            aimLock.SetActive(false);
+        }
+
         if (detectedEnemies == null)
         {
             closestEnemy = null;
@@ -242,7 +254,7 @@ public class CharacterControlManager : MonoBehaviour
         if (closestEnemy != null && Vector3.Distance(rb.position, closestEnemy.transform.position) <= attackCollider.bounds.extents.x)
         {
             lookAnimator.ObjectToFollow = closestEnemy.lookTarget;
-            if (!alreadyAttacked && joystick.Horizontal == 0 && joystick.Vertical == 0)
+            if (!alreadyAttacked) //&& joystick.Horizontal == 0 && joystick.Vertical == 0)
             {
                 alreadyAttacked = true;
                 // Attack code here

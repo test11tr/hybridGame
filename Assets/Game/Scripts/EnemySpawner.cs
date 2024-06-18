@@ -1,4 +1,6 @@
 using UnityEngine;
+using Shapes;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -7,7 +9,14 @@ public class EnemySpawner : MonoBehaviour
     public float spawnAreaHeight = 10f;
     public GameObject enemyPrefab;
     public int numberOfEnemies = 5;
+    public bool respawnEnemies = true;
     public float spawnCooldown = 10f;
+
+    [Header("Spawner Visual")]
+    public TextMeshPro cooldownText;
+    public Rectangle bg;
+    public Rectangle outline;
+    public Rectangle loading;
 
     [Header("Debug")]
     [SerializeField]private float currentCooldownTime = 0f;
@@ -17,18 +26,32 @@ public class EnemySpawner : MonoBehaviour
     {
         SpawnEnemies();
         currentCooldownTime = spawnCooldown;
+        
+        bg.Width = spawnAreaWidth;
+        bg.Height = spawnAreaHeight;
+        outline.Width = spawnAreaWidth;
+        outline.Height = spawnAreaHeight;
+
+        bg.gameObject.SetActive(true);
+        outline.gameObject.SetActive(true);
+        cooldownText.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        if (activeEnemies <= 0)
+        if (activeEnemies <= 0 && respawnEnemies)
         {
             if (currentCooldownTime > 0)
             {
+                cooldownText.gameObject.SetActive(true);
+                cooldownText.text = "NEXT SPAWNS IN " + currentCooldownTime.ToString("F2") + "s";
+                loading.gameObject.SetActive(true);
                 currentCooldownTime -= Time.deltaTime;
             }
             else
             {
+                cooldownText.gameObject.SetActive(false);
+                loading.gameObject.SetActive(false);
                 SpawnEnemies();
                 currentCooldownTime = spawnCooldown;
             }

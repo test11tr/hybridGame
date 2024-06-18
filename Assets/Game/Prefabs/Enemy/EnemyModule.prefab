@@ -665,6 +665,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29837e5ced104354d9b81921ea1e93a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCivilian: 0
+  isMeleeAttack: 0
+  isRangedAttack: 1
+  isBoss: 0
   agent: {fileID: 7799707335106303053}
   whatIsGround:
     serializedVersion: 2
@@ -676,9 +680,10 @@ MonoBehaviour:
   movementSpeed: 3
   rotationSpeed: 120
   acceleration: 3
+  escapeSpeed: 0
+  escapeAcceleration: 0
   damage: 1
   timeBetweenAttacks: 1
-  isRangedAttack: 1
   projectile: {fileID: 5149638566504457480, guid: 6812b0ee5ff65f646b7c5b4f89cd5b18, type: 3}
   projectileSpawnPoint: {fileID: 1670267073243721467}
   enemyDestroyTimeOnDead: 0
