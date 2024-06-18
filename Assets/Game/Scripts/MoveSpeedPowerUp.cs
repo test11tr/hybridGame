@@ -36,11 +36,13 @@ public class MoveSpeedPowerUp : MonoBehaviour
     {
         transform.DOMove(playerPos * 2, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
         {
+            GameManager.Instance.player.playerAnimator.SetTrigger("PowerUpCollected");
             Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
             transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 GameManager.Instance.player.SpeedUp(speedMultiplier, powerUpDuration);
                 GameManager.Instance.player.PlayPowerUpEffect();
+                GameManager.Instance.player.playerAnimator.ResetTrigger("PowerUpCollected");
                 Destroy(gameObject);
                 ShowText();
             });

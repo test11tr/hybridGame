@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
     public Rigidbody rb;
     public Animator enemyAnimator;
     public floatingText floatingTextPrefab;
+    public Transform lookTarget;
     private Transform player;
 
     [Header("Debug")]

@@ -44,12 +44,14 @@ public class HealthPowerUp : MonoBehaviour
     {
         transform.DOMove(playerPos * 1.5f, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
         {
+            GameManager.Instance.player.playerAnimator.SetTrigger("PowerUpCollected");
             Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
             transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 GameManager.Instance.player.AddHealth(healthAmount);
                 GameManager.Instance.player.PlayPowerUpEffect();
                 GameManager.Instance.player.PlayHealEffect();
+                GameManager.Instance.player.playerAnimator.ResetTrigger("PowerUpCollected");
                 Destroy(gameObject);
                 //ShowText(); no need for HealthPowerUp 
             });

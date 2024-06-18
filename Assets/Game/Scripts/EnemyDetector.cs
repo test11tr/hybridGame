@@ -10,4 +10,9 @@ public CharacterControlManager characterControlManager;
     {
         characterControlManager.HandleTriggerEnter(other);
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        characterControlManager.HandleTriggerExit(other);
+    }
 }

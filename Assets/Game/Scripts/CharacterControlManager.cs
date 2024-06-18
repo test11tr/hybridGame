@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TrailsFX;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using FIMSpace;
+using FIMSpace.FLook;
 
 public class CharacterControlManager : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class CharacterControlManager : MonoBehaviour
     public bool isJoytick;
     public float movementSpeed;
     public float rotationSpeed;
+
+    [Header("Character Rotation Module")]
+    public FLookAnimator lookAnimator;
 
     [Header("Dash Module")]
     public float dashSpeed;
@@ -89,7 +93,7 @@ public class CharacterControlManager : MonoBehaviour
     {
         CheckHealthForUI();  
         UpdateClosestEnemy();
-        AttackClosestEnemy();       
+        AttackClosestEnemy();     
     }
 
     private void FixedUpdate()
@@ -190,14 +194,21 @@ public class CharacterControlManager : MonoBehaviour
         }
     }
 
+    public void HandleTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (detectedEnemies.Contains(enemy))
+            {
+                detectedEnemies.Remove(enemy);
+            }
+        }
+    }
+
     void UpdateClosestEnemy()
         {
-            if (rb == null)
-        {
-            return;
-        }
-
-        if (detectedEnemies == null)
+        if (rb == null || detectedEnemies == null)
         {
             return;
         }
@@ -219,16 +230,21 @@ public class CharacterControlManager : MonoBehaviour
                 closestEnemy = enemy;
             }
         }
+
+        if (detectedEnemies == null)
+        {
+            closestEnemy = null;
+        }
     }
 
     void AttackClosestEnemy()
     {
         if (closestEnemy != null && Vector3.Distance(rb.position, closestEnemy.transform.position) <= attackCollider.bounds.extents.x)
         {
+            lookAnimator.ObjectToFollow = closestEnemy.lookTarget;
             if (!alreadyAttacked && joystick.Horizontal == 0 && joystick.Vertical == 0)
             {
                 alreadyAttacked = true;
-                rb.transform.LookAt(closestEnemy.transform.position);
                 // Attack code here
                 if(isRangedAttack)
                 {
@@ -244,6 +260,9 @@ public class CharacterControlManager : MonoBehaviour
                     alreadyAttacked = false;
                 });
             }
+        }else
+        {
+            lookAnimator.ObjectToFollow = null;
         }
     }
     #endregion
