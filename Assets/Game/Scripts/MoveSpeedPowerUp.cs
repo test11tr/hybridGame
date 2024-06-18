@@ -42,7 +42,6 @@ public class MoveSpeedPowerUp : MonoBehaviour
             {
                 GameManager.Instance.player.SpeedUp(speedMultiplier, powerUpDuration);
                 GameManager.Instance.player.PlayPowerUpEffect();
-                GameManager.Instance.player.playerAnimator.ResetTrigger("PowerUpCollected");
                 Destroy(gameObject);
                 ShowText();
             });

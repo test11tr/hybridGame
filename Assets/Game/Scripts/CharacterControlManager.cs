@@ -304,9 +304,11 @@ public class CharacterControlManager : MonoBehaviour
     {
         if(!isDead)
         {
+            playerAnimator.SetTrigger("isHit");
+            
             currentHealth -= amount;
             GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
-
+            
             healthBar.fillAmount = (float)currentHealth / maxHealth;
 
             if(floatingTextPrefab)

@@ -51,7 +51,6 @@ public class HealthPowerUp : MonoBehaviour
                 GameManager.Instance.player.AddHealth(healthAmount);
                 GameManager.Instance.player.PlayPowerUpEffect();
                 GameManager.Instance.player.PlayHealEffect();
-                GameManager.Instance.player.playerAnimator.ResetTrigger("PowerUpCollected");
                 Destroy(gameObject);
                 //ShowText(); no need for HealthPowerUp 
             });
