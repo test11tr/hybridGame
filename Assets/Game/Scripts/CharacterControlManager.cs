@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using FIMSpace;
 using FIMSpace.FLook;
+using Shapes;
 
 public class CharacterControlManager : MonoBehaviour
 {
@@ -36,7 +37,6 @@ public class CharacterControlManager : MonoBehaviour
     public int meleeAttackRange;
     public int detectorRange;
     public int damage;
-    public float splashRange;
     public int splashDamageDivideMultiplier;
     public float attackSpeedRange;
     public float attackSpeedMelee;
@@ -61,6 +61,10 @@ public class CharacterControlManager : MonoBehaviour
 
     [Header("Collector Module")]
     public GameObject currencyCollector;
+
+    [Header("Attack Range Visualizer Module")]
+    public GameObject attackRangeVisualizer;
+    public Disc attackRangeVisualizerDisc;
 
     [Header("Floating Text Module")]
     public floatingText floatingTextPrefab;
@@ -108,6 +112,7 @@ public class CharacterControlManager : MonoBehaviour
         loadHealth();
         setCombatColliders();
         GetAllRenderers();
+        setAttackRangeVisualizer();
     }
 
     void Update()
@@ -148,6 +153,11 @@ public class CharacterControlManager : MonoBehaviour
         {
             originalMaterials[i] = includedRenderers[i].material;
         }
+    }
+
+    private void setAttackRangeVisualizer()
+    {
+        attackRangeVisualizerDisc.Radius = meleeAttackRange;
     }
     #endregion
     
@@ -268,9 +278,11 @@ public class CharacterControlManager : MonoBehaviour
         {
             aimLock.SetActive(true);
             aimLock.transform.position = closestEnemy.transform.position;
+            attackRangeVisualizer.SetActive(true);
         }else
         {
             aimLock.SetActive(false);
+            attackRangeVisualizer.SetActive(false);
         }
 
         if(isRangedAttack)
@@ -357,21 +369,6 @@ public class CharacterControlManager : MonoBehaviour
 
     public void DealMeleeDamage()
     {
-        /*if (closestEnemy != null)
-        {
-            swordSlashEffect.Play();
-            closestEnemy.TakeDamage(damage);
-
-            Collider[] hitColliders = Physics.OverlapSphere(closestEnemy.transform.position, splashRange);
-            foreach (var hitCollider in hitColliders)
-            {
-                Enemy enemy = hitCollider.GetComponent<Enemy>();
-                if (enemy != closestEnemy)
-                {
-                    enemy.TakeDamage(damage / splashDamageDivideMultiplier);
-                }
-            }
-        }*/
         if (closestEnemy != null)
         {
             swordSlashEffect.Play();
@@ -383,7 +380,7 @@ public class CharacterControlManager : MonoBehaviour
                     continue;
 
                 float distance = Vector3.Distance(rb.position, enemy.transform.position);
-                if (distance <= splashRange)
+                if (distance <= detectorCollider.bounds.extents.x)
                 {
                     if(enemy == closestEnemy)
                         continue;
@@ -552,8 +549,6 @@ public class CharacterControlManager : MonoBehaviour
             Gizmos.DrawWireSphere(rb.position, attackCollider.bounds.extents.x);
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(rb.position, detectorCollider.bounds.extents.x);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(rb.position, splashRange);
         }
     }
     #endregion
