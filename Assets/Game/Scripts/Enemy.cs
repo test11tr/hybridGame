@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CheckHealthForUI();  
-        if(isDead) 
+        if(isDead || agent.enabled == false) 
         return;
 
         if (isCivilian)
@@ -443,7 +443,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount)
         {
             currentHealth -= amount;
-            if (currentHealth <= 0)
+            if (currentHealth <= 0 && !isDead)
             {
                 Die();
             }
@@ -451,8 +451,8 @@ public class Enemy : MonoBehaviour
             if(!isDead)
             {
                 currentHealth -= amount;
-
                 healthBar.fillAmount = (float)currentHealth / maxHealth;
+
                 PlayHitFlash();
                 if(floatingTextPrefab)
                 {
@@ -461,6 +461,17 @@ public class Enemy : MonoBehaviour
                     floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
                     _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 3f);
                 }
+                
+                agent.enabled = false;
+                rb.isKinematic = false;
+                rb.useGravity = true;
+                rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+                DelayHelper.DelayAction(materialChangeDuration, () =>
+                {
+                    agent.enabled = true;
+                    rb.isKinematic = true;
+                    rb.useGravity = false;
+                });
 
                 if (currentHealth <= 0)
                 {

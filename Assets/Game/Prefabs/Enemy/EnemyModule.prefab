@@ -725,7 +725,7 @@ MonoBehaviour:
   flashMaterial: {fileID: 2100000, guid: 82c55bd8083424d4e8d4c89ffc565f56, type: 2}
   deadMaterial: {fileID: 2100000, guid: 91cdbbe514f956a4ca3af59ed5b0c9b7, type: 2}
   originalMaterials: []
-  materialChangeDuration: 0.2
+  materialChangeDuration: 0.35
   rb: {fileID: 3633537239632733543}
   enemyAnimator: {fileID: 1246211748937780715}
   floatingTextPrefab: {fileID: 4309162217667454326, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}

@@ -276,9 +276,16 @@ public class CharacterControlManager : MonoBehaviour
 
         if(closestEnemy != null)
         {
-            aimLock.SetActive(true);
-            aimLock.transform.position = closestEnemy.transform.position;
-            attackRangeVisualizer.SetActive(true);
+            if(!closestEnemy.isDead)
+            {
+                aimLock.SetActive(true);
+                aimLock.transform.position = closestEnemy.transform.position;
+                attackRangeVisualizer.SetActive(true);
+            }else
+            {
+                aimLock.SetActive(false);
+                attackRangeVisualizer.SetActive(false);
+            }
         }else
         {
             aimLock.SetActive(false);
