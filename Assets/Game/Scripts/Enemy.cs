@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour
     [Header("Effects Module")]
     public TrailRenderer trail;
     public ParticleSystem deathEffect;
+    public ParticleSystem pufEffect;
 
     [Header("FlashModule")]
     public Renderer[] includedRenderers;
@@ -94,6 +95,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        CheckHealthForUI();  
         if(isDead) 
         return;
 
@@ -114,7 +116,7 @@ public class Enemy : MonoBehaviour
             AIStateBrainBoss();
         }
         
-        CheckHealthForUI();     
+           
     }
 
     public void GetAllRenderers()
@@ -415,6 +417,12 @@ public class Enemy : MonoBehaviour
     #region HealthModule
     private void CheckHealthForUI()
     {
+        if(isDead)
+        {
+            healthModuleCanvas.SetActive(false);
+            return;
+        }
+
         if(currentHealth < maxHealth)
         {
             healthModuleCanvas.SetActive(true);
@@ -423,6 +431,8 @@ public class Enemy : MonoBehaviour
         {
             healthModuleCanvas.SetActive(false);
         }
+
+        
 
         if(healthBar.fillAmount != healthBarEase.fillAmount)
         {
@@ -454,7 +464,6 @@ public class Enemy : MonoBehaviour
 
                 if (currentHealth <= 0)
                 {
-                    deathEffect.Play();
                     Die();
                 }
             }
@@ -464,7 +473,8 @@ public class Enemy : MonoBehaviour
     {
         isDead = true;
         agent.enabled = false;
-        //enemyAnimator.SetBool("isDead", true);
+        deathEffect.Play();
+        pufEffect.Play();
         PlayDeadFlash();
 
         rb.isKinematic = false;
@@ -520,7 +530,6 @@ public class Enemy : MonoBehaviour
         foreach (var renderer in includedRenderers)
         {
             renderer.material = deadMaterial;
-            print("dead");
         }
     }
     #endregion

@@ -36,8 +36,12 @@ public class CharacterControlManager : MonoBehaviour
     public int meleeAttackRange;
     public int detectorRange;
     public int damage;
-    public float attackSpeed;
-    public float timeBetweenAttacks;
+    public float splashRange;
+    public int splashDamageDivideMultiplier;
+    public float attackSpeedRange;
+    public float attackSpeedMelee;
+    public float timeBetweenAttacksRanged;
+    public float timeBetweenAttacksMelee;
     public Projectile projectile;
     public Transform projectileSpawnPoint;
     public Collider detectorCollider;
@@ -68,6 +72,7 @@ public class CharacterControlManager : MonoBehaviour
     public ParticleSystem HealEffect;
     public TrailEffect[] dashTrailEffects;
     public ParticleSystem deathEffect;
+    public ParticleSystem swordSlashEffect;
 
     [Header("FlashModule")]
     public Renderer[] includedRenderers;
@@ -290,9 +295,7 @@ public class CharacterControlManager : MonoBehaviour
                 closestDistance = distance;
                 closestEnemy = enemy;
             }
-        }
-
-        
+        }        
 
         if (detectedEnemies == null)
         {
@@ -314,6 +317,11 @@ public class CharacterControlManager : MonoBehaviour
                     float yOffset = projectileSpawnPoint.position.y;
                     Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
                     _projectile.Fire(damage, closestEnemy.transform.position, yOffset);
+
+                    DelayHelper.DelayAction(timeBetweenAttacksRanged, () =>
+                    {
+                        alreadyAttacked = false;
+                    });
                 }
 
                 if(!isRangedAttack)
@@ -323,20 +331,23 @@ public class CharacterControlManager : MonoBehaviour
                     {
                         case 1:
                             playerAnimator.SetTrigger("Attack1");
+                            playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
                             break;
                         case 2:
                             playerAnimator.SetTrigger("Attack2");
+                            playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
                             break;
                         default:   
                             attackCounter = 0;
                             break;
                     }
+                    DelayHelper.DelayAction(timeBetweenAttacksMelee, () =>
+                    {
+                        alreadyAttacked = false;
+                    });
                 }
 
-                DelayHelper.DelayAction(timeBetweenAttacks, () =>
-                {
-                    alreadyAttacked = false;
-                });
+                
             }
         }else
         {
@@ -344,12 +355,42 @@ public class CharacterControlManager : MonoBehaviour
         }
     }
 
-    // This method will be called by the animation event
     public void DealMeleeDamage()
     {
+        /*if (closestEnemy != null)
+        {
+            swordSlashEffect.Play();
+            closestEnemy.TakeDamage(damage);
+
+            Collider[] hitColliders = Physics.OverlapSphere(closestEnemy.transform.position, splashRange);
+            foreach (var hitCollider in hitColliders)
+            {
+                Enemy enemy = hitCollider.GetComponent<Enemy>();
+                if (enemy != closestEnemy)
+                {
+                    enemy.TakeDamage(damage / splashDamageDivideMultiplier);
+                }
+            }
+        }*/
         if (closestEnemy != null)
         {
+            swordSlashEffect.Play();
             closestEnemy.TakeDamage(damage);
+
+            foreach (Enemy enemy in detectedEnemies)
+            {
+                if (enemy == null)
+                    continue;
+
+                float distance = Vector3.Distance(rb.position, enemy.transform.position);
+                if (distance <= splashRange)
+                {
+                    if(enemy == closestEnemy)
+                        continue;
+        
+                    enemy.TakeDamage(damage / splashDamageDivideMultiplier);
+                }
+            }
         }
     }
     #endregion
@@ -511,6 +552,8 @@ public class CharacterControlManager : MonoBehaviour
             Gizmos.DrawWireSphere(rb.position, attackCollider.bounds.extents.x);
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(rb.position, detectorCollider.bounds.extents.x);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(rb.position, splashRange);
         }
     }
     #endregion
