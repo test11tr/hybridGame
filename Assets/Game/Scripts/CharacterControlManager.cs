@@ -157,7 +157,10 @@ public class CharacterControlManager : MonoBehaviour
 
     private void setAttackRangeVisualizer()
     {
-        attackRangeVisualizerDisc.Radius = meleeAttackRange;
+        if(isRangedAttack)
+            attackRangeVisualizerDisc.Radius = rangedAttackRange;
+        else if(isMeleeAttack)
+            attackRangeVisualizerDisc.Radius = meleeAttackRange;
     }
     #endregion
     
@@ -294,8 +297,29 @@ public class CharacterControlManager : MonoBehaviour
 
         if(isRangedAttack)
         {
-            if(closestEnemy != null && !closestEnemy.isDead && Vector3.Distance(rb.position, closestEnemy.transform.position) <= detectorCollider.bounds.extents.x)
-            return;
+            if(closestEnemy == null)
+            {
+                float closestDistance = float.MaxValue;
+                closestEnemy = null;
+
+                foreach (Enemy enemy in detectedEnemies)
+                {
+                    if (enemy == null)
+                    {
+                        continue;
+                    }
+
+                    float distance = Vector3.Distance(rb.position, enemy.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestEnemy = enemy;
+                    }
+                }       
+            }else if(closestEnemy != null && !closestEnemy.isDead && Vector3.Distance(rb.position, closestEnemy.transform.position) <= detectorCollider.bounds.extents.x)
+            {
+                return;
+            }
         }
 
         if(isMeleeAttack)
@@ -334,14 +358,15 @@ public class CharacterControlManager : MonoBehaviour
             if (!alreadyAttacked) //&& joystick.Horizontal == 0 && joystick.Vertical == 0)
             {
                 alreadyAttacked = true;
-
+                
                 if(isRangedAttack)
                 {
-                    float yOffset = projectileSpawnPoint.position.y;
-                    Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
-                    _projectile.Fire(damage, closestEnemy.transform.position, yOffset);
+                    float timeToWait = 1;
+                    timeToWait = GetAnimationSpeed("rangedattack1");
+                    playerAnimator.SetTrigger("rangedattack1");
+                    playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
 
-                    DelayHelper.DelayAction(timeBetweenAttacksRanged, () =>
+                    DelayHelper.DelayAction(timeToWait, () =>
                     {
                         alreadyAttacked = false;
                     });
@@ -375,6 +400,13 @@ public class CharacterControlManager : MonoBehaviour
         {
             lookAnimator.ObjectToFollow = null;
         }
+    }
+
+    public void FireProjectile()
+    {
+        float yOffset = projectileSpawnPoint.position.y;
+        Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
+        _projectile.Fire(damage, closestEnemy.transform.position, yOffset);
     }
 
     public void DealMeleeDamage()

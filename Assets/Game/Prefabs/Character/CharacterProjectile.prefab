@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerProjectile: 1
-  bulletSpeed: 10
+  bulletSpeed: 25
   bulletMaxLifeTime: 2
   rb: {fileID: 7542154921365661690}
   impactEffect: {fileID: 4196364187756360313, guid: a52f5011a0500274e8fd922d71531904, type: 3}

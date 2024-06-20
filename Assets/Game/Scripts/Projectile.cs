@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     public float bulletMaxLifeTime;
     public Rigidbody rb;
     public GameObject impactEffect;
+    public GameObject impactEffect2;
 
     private int _bulletDamage;
     private Vector3 _startPos;
@@ -32,6 +33,10 @@ public class Projectile : MonoBehaviour
             if (other.CompareTag("Enemy"))
             {
                 Instantiate(impactEffect, transform.position, Quaternion.identity);
+                if(impactEffect2 != null)
+                {
+                    Instantiate(impactEffect2, other.transform.position, Quaternion.identity);
+                }
                 other.GetComponent<Enemy>().TakeDamage(_bulletDamage);
                 Destroy(gameObject);
             }
@@ -40,6 +45,10 @@ public class Projectile : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 Instantiate(impactEffect, transform.position, Quaternion.identity);
+                if(impactEffect2 != null)
+                {
+                    Instantiate(impactEffect2, other.transform.position, Quaternion.identity);
+                }
                 GameManager.Instance.player.TakeDamage(_bulletDamage);
                 Destroy(gameObject);
             }

@@ -15,4 +15,9 @@ public class characterAnimationEvents : MonoBehaviour
     {
         player.DealMeleeDamage();
     }
+
+    void dealDamageRanged()
+    {
+        player.FireProjectile();
+    }
 }
