@@ -277,76 +277,48 @@ public class CharacterControlManager : MonoBehaviour
             return;
         }
 
-        if(closestEnemy != null)
+        if(closestEnemy != null && !closestEnemy.isDead)
         {
-            if(!closestEnemy.isDead)
-            {
-                aimLock.SetActive(true);
-                aimLock.transform.position = closestEnemy.transform.position;
-                attackRangeVisualizer.SetActive(true);
-            }else
-            {
-                aimLock.SetActive(false);
-                attackRangeVisualizer.SetActive(false);
-            }
+            aimLock.SetActive(true);
+            aimLock.transform.position = closestEnemy.transform.position;
+            attackRangeVisualizer.SetActive(true);
         }else
         {
             aimLock.SetActive(false);
             attackRangeVisualizer.SetActive(false);
+            closestEnemy = null;
+            FindClosestEnemy();
         }
 
-        if(isRangedAttack)
+        if (closestEnemy != null && isRangedAttack && Vector3.Distance(rb.position, closestEnemy.transform.position) <= detectorCollider.bounds.extents.x)
         {
-            if(closestEnemy == null)
-            {
-                float closestDistance = float.MaxValue;
-                closestEnemy = null;
+            return;
+        }
 
-                foreach (Enemy enemy in detectedEnemies)
-                {
-                    if (enemy == null)
-                    {
-                        continue;
-                    }
+        if (isRangedAttack || isMeleeAttack)
+        {
+            FindClosestEnemy();
+        }
+    }
 
-                    float distance = Vector3.Distance(rb.position, enemy.transform.position);
-                    if (distance < closestDistance)
-                    {
-                        closestDistance = distance;
-                        closestEnemy = enemy;
-                    }
-                }       
-            }else if(closestEnemy != null && !closestEnemy.isDead && Vector3.Distance(rb.position, closestEnemy.transform.position) <= detectorCollider.bounds.extents.x)
+    void FindClosestEnemy()
+    {
+        float closestDistance = float.MaxValue;
+        closestEnemy = null;
+
+        foreach (Enemy enemy in detectedEnemies)
+        {
+            if (enemy == null || enemy.isDead)
             {
-                return;
+                continue;
             }
-        }
 
-        if(isMeleeAttack)
-        {
-            float closestDistance = float.MaxValue;
-            closestEnemy = null;
-
-            foreach (Enemy enemy in detectedEnemies)
+            float distance = Vector3.Distance(rb.position, enemy.transform.position);
+            if (distance < closestDistance)
             {
-                if (enemy == null)
-                {
-                    continue;
-                }
-
-                float distance = Vector3.Distance(rb.position, enemy.transform.position);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestEnemy = enemy;
-                }
-            }        
-        }
-        
-
-        if (detectedEnemies == null)
-        {
-            closestEnemy = null;
+                closestDistance = distance;
+                closestEnemy = enemy;
+            }
         }
     }
 
