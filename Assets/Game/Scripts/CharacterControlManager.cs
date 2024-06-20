@@ -89,6 +89,10 @@ public class CharacterControlManager : MonoBehaviour
 
     [Header("Aim Lock Module")]
     public GameObject aimLock;
+
+    [Header("Weapon References")]
+    public List<GameObject> MeleeWeapons;
+    public List<GameObject> RangedWeapons;
     
     [Header("Debug")]
     public bool drawGizmos;
@@ -113,6 +117,16 @@ public class CharacterControlManager : MonoBehaviour
         setCombatColliders();
         GetAllRenderers();
         setAttackRangeVisualizer();
+        InitializeWeaponPools();
+
+        if (isMeleeAttack)
+        {
+            ActivateWeapon(MeleeWeapons, 0);
+        }
+        else if (isRangedAttack)
+        {
+            ActivateWeapon(RangedWeapons, 0);
+        }
     }
 
     void Update()
@@ -161,6 +175,27 @@ public class CharacterControlManager : MonoBehaviour
             attackRangeVisualizerDisc.Radius = rangedAttackRange;
         else if(isMeleeAttack)
             attackRangeVisualizerDisc.Radius = meleeAttackRange;
+    }
+
+    private void InitializeWeaponPools()
+    {
+        foreach (var weapon in MeleeWeapons)
+        {
+            weapon.SetActive(false);
+        }
+
+        foreach (var weapon in RangedWeapons)
+        {
+            weapon.SetActive(false);
+        }
+    }
+
+    private void ActivateWeapon(List<GameObject> weaponPool, int index)
+    {
+        if (weaponPool.Count > index)
+        {
+            weaponPool[index].SetActive(true);
+        }
     }
     #endregion
     
