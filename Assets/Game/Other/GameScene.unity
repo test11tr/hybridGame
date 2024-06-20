@@ -1035,6 +1035,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2613476253888082587, guid: 1ae25edefce76324e8398cec448cc411, type: 3}
+      propertyPath: spawnAreaHeight
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7848823606371378694, guid: 1ae25edefce76324e8398cec448cc411, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

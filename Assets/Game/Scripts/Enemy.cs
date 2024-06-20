@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using EpicToonFX;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
@@ -69,6 +68,7 @@ public class Enemy : MonoBehaviour
     public floatingText floatingTextPrefab;
     public Transform lookTarget;
     private Transform player;
+    public GameObject visual;
 
     [Header("Debug")]
     public bool drawGizmos;
@@ -462,16 +462,7 @@ public class Enemy : MonoBehaviour
                     _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 3f);
                 }
                 
-                agent.enabled = false;
-                rb.isKinematic = false;
-                rb.useGravity = true;
-                rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
-                DelayHelper.DelayAction(materialChangeDuration, () =>
-                {
-                    agent.enabled = true;
-                    rb.isKinematic = true;
-                    rb.useGravity = false;
-                });
+                knockBack();
 
                 if (currentHealth <= 0)
                 {
@@ -483,21 +474,11 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        agent.enabled = false;
         deathEffect.Play();
         pufEffect.Play();
         PlayDeadFlash();
-
-        rb.isKinematic = false;
-        rb.useGravity = true;
-        var attackerPos = player.position; 
-        attackerPos.y = 0;
-        var position = transform.position;
-        position.y = 0;
-
-        var direction = (position - attackerPos).normalized;
-        rb.AddForce(5 * (direction + Vector3.one), ForceMode.Impulse);
-        rb.AddTorque(UnityEngine.Random.insideUnitSphere  * 0.5f, ForceMode.Impulse);
+        trail.emitting = false;
+        visual.SetActive(false);
 
         OnDeath?.Invoke();
         DelayHelper.DelayAction(enemyDestroyTimeOnDead, () =>
@@ -542,6 +523,10 @@ public class Enemy : MonoBehaviour
         {
             renderer.material = deadMaterial;
         }
+    }
+    public void knockBack()
+    {
+        transform.DOJump(transform.position, 1f, 1, 0.35f);
     }
     #endregion
 

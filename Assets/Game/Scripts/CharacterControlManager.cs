@@ -33,6 +33,7 @@ public class CharacterControlManager : MonoBehaviour
 
     [Header("Combat Module")]
     public bool isRangedAttack;
+    public bool isMeleeAttack;
     public int rangedAttackRange;
     public int meleeAttackRange;
     public int detectorRange;
@@ -41,7 +42,6 @@ public class CharacterControlManager : MonoBehaviour
     public float attackSpeedRange;
     public float attackSpeedMelee;
     public float timeBetweenAttacksRanged;
-    public float timeBetweenAttacksMelee;
     public Projectile projectile;
     public Transform projectileSpawnPoint;
     public Collider detectorCollider;
@@ -196,40 +196,40 @@ public class CharacterControlManager : MonoBehaviour
     #endregion
 
     #region Dash Module
-        public void Dash()
+    public void Dash()
+    {
+        if(!isDead && !isDashing && dashCooldownComplete)
         {
-            if(!isDead && !isDashing && dashCooldownComplete)
-            {
-                playerAnimator.SetBool("isDashing", true);
-                dashCooldownComplete = false;
-                isDashing = true;
-                dashEffect.Play();
-                Vector3 dashDirection = rb.transform.forward;
-                rb.velocity = dashDirection * dashSpeed;
+            playerAnimator.SetBool("isDashing", true);
+            dashCooldownComplete = false;
+            isDashing = true;
+            dashEffect.Play();
+            Vector3 dashDirection = rb.transform.forward;
+            rb.velocity = dashDirection * dashSpeed;
 
+            for (int i = 0; i < dashTrailEffects.Length; i++)
+            {
+                dashTrailEffects[i].active = true;
+            }
+
+            DelayHelper.DelayAction(dashDuration, () => 
+            { 
+                playerAnimator.SetBool("isDashing", false);
+                dashEffect.Stop();
+                rb.velocity = Vector3.zero; 
+                isDashing = false; 
                 for (int i = 0; i < dashTrailEffects.Length; i++)
                 {
-                    dashTrailEffects[i].active = true;
+                    dashTrailEffects[i].active = false;
                 }
+            });
 
-                DelayHelper.DelayAction(dashDuration, () => 
-                { 
-                    playerAnimator.SetBool("isDashing", false);
-                    dashEffect.Stop();
-                    rb.velocity = Vector3.zero; 
-                    isDashing = false; 
-                    for (int i = 0; i < dashTrailEffects.Length; i++)
-                    {
-                        dashTrailEffects[i].active = false;
-                    }
-                });
-
-                DelayHelper.DelayAction(dashCooldownTime + dashDuration, () => 
-                { 
-                    dashCooldownComplete = true; 
-                });
-            }
+            DelayHelper.DelayAction(dashCooldownTime + dashDuration, () => 
+            { 
+                dashCooldownComplete = true; 
+            });
         }
+    }
     #endregion
 
     #region Combat Module
@@ -238,7 +238,7 @@ public class CharacterControlManager : MonoBehaviour
         ((SphereCollider)detectorCollider).radius = detectorRange;
         if(isRangedAttack)
             ((SphereCollider)attackCollider).radius = rangedAttackRange;
-        else
+        else if(isMeleeAttack)
             ((SphereCollider)attackCollider).radius = meleeAttackRange;
     }
 
@@ -298,23 +298,27 @@ public class CharacterControlManager : MonoBehaviour
             return;
         }
 
-        float closestDistance = float.MaxValue;
-        closestEnemy = null;
-
-        foreach (Enemy enemy in detectedEnemies)
+        if(isMeleeAttack)
         {
-            if (enemy == null)
-            {
-                continue;
-            }
+            float closestDistance = float.MaxValue;
+            closestEnemy = null;
 
-            float distance = Vector3.Distance(rb.position, enemy.transform.position);
-            if (distance < closestDistance)
+            foreach (Enemy enemy in detectedEnemies)
             {
-                closestDistance = distance;
-                closestEnemy = enemy;
-            }
-        }        
+                if (enemy == null)
+                {
+                    continue;
+                }
+
+                float distance = Vector3.Distance(rb.position, enemy.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestEnemy = enemy;
+                }
+            }        
+        }
+        
 
         if (detectedEnemies == null)
         {
@@ -343,30 +347,29 @@ public class CharacterControlManager : MonoBehaviour
                     });
                 }
 
-                if(!isRangedAttack)
+                if(isMeleeAttack)
                 {
-                    attackCounter++;
-                    switch (attackCounter)
+                    float timeToWait = 1;
+                    if(attackCounter == 0)
                     {
-                        case 1:
-                            playerAnimator.SetTrigger("Attack1");
-                            playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
-                            break;
-                        case 2:
-                            playerAnimator.SetTrigger("Attack2");
-                            playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
-                            break;
-                        default:   
-                            attackCounter = 0;
-                            break;
+                        timeToWait = GetAnimationSpeed("meleeattack1");
+                        playerAnimator.SetTrigger("meleeattack1");
+                        playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
+                        attackCounter++;
+                    }else
+                    {
+                        timeToWait = GetAnimationSpeed("meleeattack2");
+                        playerAnimator.SetTrigger("meleeattack2");
+                        playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
+                        attackCounter = 0;
                     }
-                    DelayHelper.DelayAction(timeBetweenAttacksMelee, () =>
+                    
+                    print("timeToWait: " + timeToWait);
+                    DelayHelper.DelayAction(timeToWait, () =>
                     {
                         alreadyAttacked = false;
-                    });
+                    });       
                 }
-
-                
             }
         }else
         {
@@ -387,7 +390,7 @@ public class CharacterControlManager : MonoBehaviour
                     continue;
 
                 float distance = Vector3.Distance(rb.position, enemy.transform.position);
-                if (distance <= detectorCollider.bounds.extents.x)
+                if (distance <= attackCollider.bounds.extents.x)
                 {
                     if(enemy == closestEnemy)
                         continue;
@@ -396,6 +399,21 @@ public class CharacterControlManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    float GetAnimationSpeed(string clipName)
+    {
+        RuntimeAnimatorController controller = playerAnimator.runtimeAnimatorController;
+        foreach (AnimationClip clip in controller.animationClips)
+        {
+            if (clip.name == clipName)
+            {
+                return clip.length / attackSpeedMelee;
+            }
+        }
+
+        Debug.LogWarning($"Animation clip '{clipName}' not found.");
+        return -1f;
     }
     #endregion
 

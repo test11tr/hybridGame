@@ -659,6 +659,7 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldownTime: 1
   isRangedAttack: 0
+  isMeleeAttack: 1
   rangedAttackRange: 5
   meleeAttackRange: 2
   detectorRange: 5
