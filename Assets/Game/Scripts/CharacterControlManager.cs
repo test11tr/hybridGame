@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using FIMSpace;
 using FIMSpace.FLook;
 using Shapes;
+using DG.Tweening;
 
 public class CharacterControlManager : MonoBehaviour
 {
@@ -506,7 +507,7 @@ public class CharacterControlManager : MonoBehaviour
                 Vector3 spawnPosition = rb.transform.position;
                 spawnPosition.y += 1.5f;
                 floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
-                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 3f);
+                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
             }
 
             if (currentHealth <= 0)
@@ -530,7 +531,7 @@ public class CharacterControlManager : MonoBehaviour
                 Vector3 spawnPosition = rb.transform.position;
                 spawnPosition.y += 1.5f;
                 floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
-                _floatingText.SetText("+" + amount.ToString() + "hp", Color.green, 3f);
+                _floatingText.SetText("+" + amount.ToString() + "hp", Color.green, 6f);
             }
 
             if (currentHealth >= maxHealth)

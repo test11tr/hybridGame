@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveInfo:
-    goldCount: 0
+    coinCount: 0
     gemCount: 0
     characterCurrentHealth: 0
 --- !u!1 &7231375441383399008
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveModule: {fileID: 9167223449323644830}
-  player: {fileID: 2224891057885841334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
+  player: {fileID: 3705544065107151984, guid: 4f6df843284981e408fac68ec645fc68, type: 3}
   wallet: {fileID: 6849947526004805154}
   delayHelper: {fileID: 6115582019743110552}
   mainCamera: {fileID: 5593791184816541385}
@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalletModule
       objectReference: {fileID: 0}
+    - target: {fileID: 8908759057306382363, guid: 9320e511ac244ee46be1805eae68f96d, type: 3}
+      propertyPath: coinText
+      value: 
+      objectReference: {fileID: 4168996938844026504}
     - target: {fileID: 9038428095959527042, guid: 9320e511ac244ee46be1805eae68f96d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -577,6 +581,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9320e511ac244ee46be1805eae68f96d, type: 3}
+--- !u!114 &4168996938844026504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2123134355946752177, guid: 9320e511ac244ee46be1805eae68f96d, type: 3}
+  m_PrefabInstance: {fileID: 2642948678706232889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6468103259789496507 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9038428095959527042, guid: 9320e511ac244ee46be1805eae68f96d, type: 3}

@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5149638566504457480, guid: 53f936b3139146f498070a93b6f2c3d6, type: 3}
+      propertyPath: bulletSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149638566504457480, guid: 53f936b3139146f498070a93b6f2c3d6, type: 3}
       propertyPath: impactEffect2
       value: 
       objectReference: {fileID: 199860, guid: 3983ce8f3e5f87e49a79386600fb207b, type: 3}

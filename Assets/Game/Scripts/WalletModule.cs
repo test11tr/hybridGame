@@ -6,25 +6,25 @@ using TMPro;
 public class WalletModule : MonoBehaviour
 {
 
-    public TMP_Text goldText;
+    public TMP_Text coinText;
     public TMP_Text gemText;
 
-    private int goldCount;
+    private int coinCount;
     private int gemCount;
 
     private void Start()
     {
-        goldCount = GameManager.Instance.saveModule.saveInfo.goldCount;
+        coinCount = GameManager.Instance.saveModule.saveInfo.coinCount;
         gemCount = GameManager.Instance.saveModule.saveInfo.gemCount;
-        goldText.text = goldCount.ToString();
+        coinText.text = coinCount.ToString();
         gemText.text = gemCount.ToString();
     }
 
-    public void AddGold(int amount)
+    public void AddCoin(int amount)
     {
-        goldCount += amount;
-        goldText.text = goldCount.ToString();
-        GameManager.Instance.saveModule.saveInfo.goldCount = goldCount;
+        coinCount += amount;
+        coinText.text = coinCount.ToString();
+        GameManager.Instance.saveModule.saveInfo.coinCount = coinCount;
     }
 
     public void AddGem(int amount)

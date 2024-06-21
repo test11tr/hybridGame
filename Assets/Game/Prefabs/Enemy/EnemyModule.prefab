@@ -683,6 +683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 507668838862472055}
   - component: {fileID: 1759109792471291235}
+  - component: {fileID: 7308711344428413}
   - component: {fileID: 7799707335106303053}
   - component: {fileID: 3633537239632733543}
   - component: {fileID: 6543765989613912315}
@@ -750,6 +751,8 @@ MonoBehaviour:
   healthBarEase: {fileID: 3530089313789869345}
   maxHealth: 100
   healthEaseSpeed: 1.5
+  lootBag: {fileID: 7308711344428413}
+  dropCount: 3
   trail: {fileID: 3430284793497970592}
   deathEffect: {fileID: 8100725849515834997}
   pufEffect: {fileID: 2245771716850502214}
@@ -768,6 +771,21 @@ MonoBehaviour:
   spawnAreaWidth: 0
   spawnAreaHeight: 0
   isDead: 0
+--- !u!114 &7308711344428413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578979912379580932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a751aad8a4b61ba46aeb82b3289b1a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 6690307532851547712, guid: a07bffa0eee5af64bb588beeea8a57ca, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: 8044e0c10f1eb7b43a4871b58698a347, type: 2}
 --- !u!195 &7799707335106303053
 NavMeshAgent:
   m_ObjectHideFlags: 0

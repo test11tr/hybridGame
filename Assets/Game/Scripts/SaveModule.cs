@@ -75,7 +75,7 @@ public class SaveModule : MonoBehaviour
     [Serializable]
     public class SaveInfo
     {
-        public int goldCount;
+        public int coinCount;
         public int gemCount;
         public int characterCurrentHealth;
     }

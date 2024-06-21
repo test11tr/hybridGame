@@ -8,8 +8,8 @@ public class CollectorModule : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Collectable"))
         {
-            Collectable collectable = other.GetComponent<Collectable>();
-            collectable.TriggerAction(gameObject);
+            LootCollectable lootCollectable = other.GetComponent<LootCollectable>();
+            lootCollectable.TriggerAction(gameObject);
         }
     }
 }

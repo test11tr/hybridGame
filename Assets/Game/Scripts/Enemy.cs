@@ -48,6 +48,10 @@ public class Enemy : MonoBehaviour
     public float healthEaseSpeed;
     private int currentHealth;
 
+    [Header("Loot Module")]
+    public LootBag lootBag;
+    public int dropCount;
+
     [Header("Effects Module")]
     public TrailRenderer trail;
     public ParticleSystem deathEffect;
@@ -442,6 +446,14 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
         {
+            if(floatingTextPrefab)
+            {
+                Vector3 spawnPosition = transform.position;
+                spawnPosition.y += 1.5f;
+                floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+            }
+
             currentHealth -= amount;
             if (currentHealth <= 0 && !isDead)
             {
@@ -454,14 +466,6 @@ public class Enemy : MonoBehaviour
                 healthBar.fillAmount = (float)currentHealth / maxHealth;
 
                 PlayHitFlash();
-                if(floatingTextPrefab)
-                {
-                    Vector3 spawnPosition = transform.position;
-                    spawnPosition.y += 1.5f;
-                    floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
-                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 3f);
-                }
-                
                 knockBack();
 
                 if (currentHealth <= 0)
@@ -479,6 +483,7 @@ public class Enemy : MonoBehaviour
         PlayDeadFlash();
         trail.emitting = false;
         visual.SetActive(false);
+        lootBag.InstantiateLoot(transform.position, dropCount);
 
         OnDeath?.Invoke();
         DelayHelper.DelayAction(enemyDestroyTimeOnDead, () =>
