@@ -397,7 +397,6 @@ public class CharacterControlManager : MonoBehaviour
                         attackCounter = 0;
                     }
                     
-                    print("timeToWait: " + timeToWait);
                     DelayHelper.DelayAction(timeToWait, () =>
                     {
                         alreadyAttacked = false;
