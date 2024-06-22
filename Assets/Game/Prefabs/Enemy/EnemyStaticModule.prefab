@@ -179,7 +179,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6366450441779438747}
-  - component: {fileID: 611350156997959314}
   - component: {fileID: 1153184723458305714}
   - component: {fileID: 4436721210916939201}
   m_Layer: 14
@@ -205,37 +204,6 @@ Transform:
   - {fileID: 1037877949011165022}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &611350156997959314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924179117456582630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bcb10a155ef8f24d99a19fbcebc0aec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStatic: 1
-  healthModuleCanvas: {fileID: 5443052964330907328}
-  healthBar: {fileID: 1239362518132691656}
-  healthBarEase: {fileID: 6401595893697698685}
-  maxHealth: 100
-  healthEaseSpeed: 1.5
-  enemyDestroyTimeOnDead: 5
-  lootBag: {fileID: 1153184723458305714}
-  dropCount: 5
-  pufEffect: {fileID: 6503203245013961351}
-  includedRenderers: []
-  flashMaterial: {fileID: 2100000, guid: 82c55bd8083424d4e8d4c89ffc565f56, type: 2}
-  deadMaterial: {fileID: 2100000, guid: 91cdbbe514f956a4ca3af59ed5b0c9b7, type: 2}
-  originalMaterials: []
-  materialChangeDuration: 0.2
-  floatingTextPrefab: {fileID: 4309162217667454326, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}
-  lookTarget: {fileID: 2267267367213885761}
-  visual: {fileID: 8997075435314152458}
-  isDead: 0
 --- !u!114 &1153184723458305714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,10 +636,5 @@ PrefabInstance:
 --- !u!4 &6503203244994517729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 421996, guid: 0b0499a6b1114d74c93c8edc75b408f8, type: 3}
-  m_PrefabInstance: {fileID: 6503203244994898573}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6503203245013961351 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19865610, guid: 0b0499a6b1114d74c93c8edc75b408f8, type: 3}
   m_PrefabInstance: {fileID: 6503203244994898573}
   m_PrefabAsset: {fileID: 0}

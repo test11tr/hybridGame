@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     bool alreadyAttacked;
     public int enemyDestroyTimeOnDead;
 
-    [Header("Enemy States")]
+    [Header("Enemy Sight Module")]
     public float sightRange;
     public float attackRange;
     private bool playerInSightRange;
