@@ -9,7 +9,7 @@ public class VirtualWalletModule : MonoBehaviour
     private Dictionary<GameObject, int> uiItemsToValues = new Dictionary<GameObject, int>();
     [Header("Wallet - Limits")]
     public int maxCargo = 100;
-    private int currentCargo = 0;
+    [HideInInspector] public int currentCargo = 0;
 
     [Header("Wallet - UI References")]
     public TMP_Text currentCargoText;
@@ -65,6 +65,16 @@ public class VirtualWalletModule : MonoBehaviour
         uiItemsToValues[gemUIItem] = currentGem;
         uiItemsToValues[woodUIItem] = currentWood;
         uiItemsToValues[stoneUIItem] = currentStone;
+
+        if(currentCargo >= maxCargo)
+        {
+            progressBar.color = Color.red;
+        }
+        else
+        {
+            progressBar.color = Color.white;
+        }
+
         foreach (var item in uiItemsToValues)
         {
             item.Key.SetActive(item.Value > 0);
@@ -78,58 +88,30 @@ public class VirtualWalletModule : MonoBehaviour
 
     public void AddCoin(int amount)
     {
-        if(currentCargo + amount > maxCargo)
-        {
-            Debug.Log("Inventory is full!");
-            return;
-        }else
-        {
-            currentCoin += amount;
-            coinText.text = currentCoin.ToString();
-            GameManager.Instance.saveModule.saveInfo.virtualCoin = currentCoin;
-        }
+        currentCoin += amount;
+        coinText.text = currentCoin.ToString();
+        GameManager.Instance.saveModule.saveInfo.virtualCoin = currentCoin;
     }
 
     public void AddGem(int amount)
     {
-        if(currentCargo + amount > maxCargo)
-        {
-            Debug.Log("Inventory is full!");
-            return;
-        }else
-        {
-            currentGem += amount;
-            gemText.text = currentGem.ToString();
-            GameManager.Instance.saveModule.saveInfo.virtualGem = currentGem;
-        }
+        currentGem += amount;
+        gemText.text = currentGem.ToString();
+        GameManager.Instance.saveModule.saveInfo.virtualGem = currentGem;
     }
 
     public void AddWood(int amount)
     {
-        if(currentCargo + amount > maxCargo)
-        {
-            Debug.Log("Inventory is full!");
-            return;
-        }else
-        {
-            currentWood += amount;
-            woodText.text = currentWood.ToString();
-            GameManager.Instance.saveModule.saveInfo.virtualWood = currentWood;
-        }
+        currentWood += amount;
+        woodText.text = currentWood.ToString();
+        GameManager.Instance.saveModule.saveInfo.virtualWood = currentWood;
     }
 
     public void AddStone(int amount)
     {
-        if(currentCargo + amount > maxCargo)
-        {
-            Debug.Log("Inventory is full!");
-            return;
-        }else
-        {
-            currentStone += amount;
-            stoneText.text = currentStone.ToString();
-            GameManager.Instance.saveModule.saveInfo.virtualStone = currentStone;
-        }
+        currentStone += amount;
+        stoneText.text = currentStone.ToString();
+        GameManager.Instance.saveModule.saveInfo.virtualStone = currentStone;
     }
 
     public void TransferToWallet()

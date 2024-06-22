@@ -306,14 +306,6 @@ public class CharacterControlManager : MonoBehaviour
             {
                 detectedEnemies.Remove(enemy);
             }
-        }else if(other.CompareTag("EnemyStatic"))
-        {
-            //CONTINUE FROM HERE
-            /*EnemyStatic enemy = other.GetComponent<EnemyStatic>();
-            if (detectedEnemies.Contains(enemy))
-            {
-                detectedEnemies.Remove(enemy);
-            }*/
         }
     }
 

@@ -2191,6 +2191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCargo: 100
+  currentCargo: 0
   currentCargoText: {fileID: 6220814356542061502}
   coinUIItem: {fileID: 6707403976119422563}
   gemUIItem: {fileID: 6010678078608134841}

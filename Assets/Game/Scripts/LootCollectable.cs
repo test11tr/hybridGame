@@ -48,6 +48,17 @@ public class LootCollectable : MonoBehaviour
 
     private void MoveToPlayer()
     {
+        if(GameManager.Instance.player.virtualWallet.currentCargo >= GameManager.Instance.player.virtualWallet.maxCargo)
+        {
+            print("Wallet is Full");
+        }else
+        {
+            Collect();
+        }
+    }
+
+    private void Collect()
+    {
         Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
         transform.DOJump(playerPos, jumpPower, 1, collectDuration).SetEase(Ease.OutCirc).OnComplete(() =>
         {
