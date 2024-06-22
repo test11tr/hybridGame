@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using DG.Tweening;
 using Unity.VisualScripting;
+using System.Runtime.InteropServices;
 
 public class Enemy : MonoBehaviour
 {
@@ -55,6 +56,9 @@ public class Enemy : MonoBehaviour
     public int maxHealth;
     public float healthEaseSpeed;
     private int currentHealth;
+
+    [Header("NoBehaviourAI Module")]
+    public int requiredHitsToDie;
 
     [Header("Loot Module")]
     public LootBag lootBag;
@@ -1316,6 +1320,7 @@ public class Enemy : MonoBehaviour
     {
         #region AIBrain
         private Enemy parent;
+        private int hitCount = 0;
 
         public NoBehaviorAI(Enemy parent)
         {
@@ -1324,65 +1329,38 @@ public class Enemy : MonoBehaviour
 
         public void Update()
         {
-            CheckHealthForUI();
             if(parent.isDead) 
             return;
         }
         #endregion
 
         #region HealthModule
-        private void CheckHealthForUI()
-        {
-            if(parent.isDead)
-            {
-                parent.healthModuleCanvas.SetActive(false);
-                return;
-            }
-
-            if(parent.currentHealth < parent.maxHealth)
-            {
-                parent.healthModuleCanvas.SetActive(true);
-            }
-            else
-            {
-                parent.healthModuleCanvas.SetActive(false);
-            }
-
-            
-
-            if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
-            {
-                parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
-            }
-        }
-
         public void TakeDamage(int amount)
             {
-                if(parent.floatingTextPrefab)
+                /*if(parent.floatingTextPrefab)
                 {
                     Vector3 spawnPosition = parent.transform.position;
                     spawnPosition.y += 1.5f;
                     floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
                     _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
-                }
+                }*/
 
                 parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
 
-                parent.currentHealth -= amount;
-                if (parent.currentHealth <= 0 && !parent.isDead)
+                hitCount++;
+
+                if (hitCount >= parent.requiredHitsToDie && !parent.isDead)
                 {
                     Die();
                 }
 
                 if(!parent.isDead)
                 {
-                    parent.currentHealth -= amount;
-                    parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
-
                     PlayHitFlash();
                     knockBack();
-
-                    if (parent.currentHealth <= 0)
+                    ScaleDown();
+                    
+                    if (hitCount >= parent.requiredHitsToDie)
                     {
                         Die();
                     }
@@ -1432,6 +1410,11 @@ public class Enemy : MonoBehaviour
         public void knockBack()
         {
             parent.transform.DOJump(parent.transform.position, 1f, 1, 0.35f);
+        }
+        public void ScaleDown()
+        {
+             Transform target = parent.visual.transform;
+            target.DOScale(target.localScale * 0.75f, 0.35f);
         }
         #endregion
     }
