@@ -17,6 +17,7 @@ public class PowerUpExample : MonoBehaviour
     [Header("Other Settings")]
     public floatingText floatingTextPrefab;
     public float collectDuration;
+    public float jumpPower;
     public TrailRenderer trail;
     private Vector3 playerPos;
 
@@ -33,15 +34,11 @@ public class PowerUpExample : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        transform.DOMove(playerPos * 2, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
+        Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
+        transform.DOJump(playerPos, jumpPower, 1, collectDuration).SetEase(Ease.OutCirc).OnComplete(() =>
         {
-            Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
-            transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
-            {
-                //DO POWER UP ACTION
-                Destroy(gameObject);
-                ShowText();
-            });
+            Destroy(gameObject);
+            ShowText();
         });
     }
 

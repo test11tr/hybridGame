@@ -11,22 +11,25 @@ public class LootBag : MonoBehaviour
 
     Loot GetDroppedItem()
     {
-        int randomNumber = Random.Range(1, 101);
-        List<Loot> possibleItems = new List<Loot>();
-
-        foreach(Loot item in lootList)
+        int totalDropChance = 0;
+        foreach (Loot item in lootList)
         {
-            if(randomNumber <= item.dropChance)
+            totalDropChance += item.dropChance;
+        }
+
+        int randomNumber = Random.Range(1, totalDropChance + 1);
+        int cumulativeChance = 0;
+
+        foreach (Loot item in lootList)
+        {
+            cumulativeChance += item.dropChance;
+            if (randomNumber <= cumulativeChance)
             {
-                possibleItems.Add(item);
+                return item;
             }
         }
-        if(possibleItems.Count > 0)
-        {
-                Loot droppedItem = possibleItems[Random.Range(0, possibleItems.Count)];
-                return droppedItem;
-        }
-        Debug.Log("No item dropped");
+
+        Debug.LogError("Hata: Loot seçimi yapılamadı.");
         return null;
     }
 

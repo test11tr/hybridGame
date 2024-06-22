@@ -17,6 +17,7 @@ public class HealthPowerUp : MonoBehaviour
     [Header("Other Settings")]
     public floatingText floatingTextPrefab;
     public float collectDuration;
+    public float jumpPower;
     public TrailRenderer trail;
     public ParticleSystem collectEffect;
 
@@ -42,18 +43,14 @@ public class HealthPowerUp : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        transform.DOMove(playerPos * 1.5f, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
+        Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
+        transform.DOJump(playerPos, jumpPower, 1, collectDuration).SetEase(Ease.OutCirc).OnComplete(() =>
         {
-            GameManager.Instance.player.playerAnimator.SetTrigger("PowerUpCollected");
-            Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
-            transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
-            {
-                GameManager.Instance.player.AddHealth(healthAmount);
-                GameManager.Instance.player.PlayPowerUpEffect();
-                GameManager.Instance.player.PlayHealEffect();
-                Destroy(gameObject);
-                //ShowText(); no need for HealthPowerUp 
-            });
+            GameManager.Instance.player.AddHealth(healthAmount);
+            GameManager.Instance.player.PlayPowerUpEffect();
+            GameManager.Instance.player.PlayHealEffect();
+            Destroy(gameObject);
+            //ShowText(); no need for HealthPowerUp 
         });
     }
 

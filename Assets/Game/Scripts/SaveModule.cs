@@ -77,6 +77,8 @@ public class SaveModule : MonoBehaviour
     {
         public int coinCount;
         public int gemCount;
+        public int woodAmount;
+        public int stoneAmount;
         public int characterCurrentHealth;
     }
 }

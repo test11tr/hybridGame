@@ -138,5 +138,6 @@ MonoBehaviour:
   speedMultiplier: 1.5
   powerUpDuration: 5
   floatingTextPrefab: {fileID: 4309162217667454326, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}
-  collectDuration: 0.4
+  collectDuration: 1
+  jumpPower: 5
   trail: {fileID: 3839964923947417838}

@@ -8,7 +8,9 @@ public class LootCollectable : MonoBehaviour
     public enum CollectableType
     {
         Coin,
-        Gem
+        Gem,
+        Wood,
+        Stone
     }
 
     private CollectableType collectableType;
@@ -19,12 +21,19 @@ public class LootCollectable : MonoBehaviour
 
     public void initCollectable(string name)
     {
+        print(name);
         if(name == "Coin")
         {
             collectableType = CollectableType.Coin;
         }else if(name == "Gem")
         {
             collectableType = CollectableType.Gem;
+        }else if(name == "Wood")
+        {
+            collectableType = CollectableType.Wood;
+        }else if(name == "Stone")
+        {
+            collectableType = CollectableType.Stone;
         }
     }
 
@@ -46,6 +55,10 @@ public class LootCollectable : MonoBehaviour
                 GameManager.Instance.wallet.AddCoin(1);
             else if(collectableType == CollectableType.Gem)
                 GameManager.Instance.wallet.AddGem(1);
+            else if(collectableType == CollectableType.Wood)
+                GameManager.Instance.wallet.AddWood(1);
+            else if(collectableType == CollectableType.Stone)
+                GameManager.Instance.wallet.AddStone(1);
 
             ShowText();
             Destroy(gameObject);

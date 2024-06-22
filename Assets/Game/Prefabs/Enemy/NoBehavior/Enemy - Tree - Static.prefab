@@ -91,9 +91,17 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1153184723458305714, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
+      propertyPath: lootList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153184723458305714, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
       propertyPath: lootList.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 277e25edb247d2f499e336ea62100c6e, type: 2}
+    - target: {fileID: 1153184723458305714, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8044e0c10f1eb7b43a4871b58698a347, type: 2}
     - target: {fileID: 4112722852153083017, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
       propertyPath: healthRegenRate
       value: 10

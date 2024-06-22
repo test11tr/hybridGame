@@ -18,6 +18,7 @@ public class MoveSpeedPowerUp : MonoBehaviour
     [Header("Other Settings")]
     public floatingText floatingTextPrefab;
     public float collectDuration;
+    public float jumpPower;
     public TrailRenderer trail;
     private Vector3 playerPos;
 
@@ -34,17 +35,13 @@ public class MoveSpeedPowerUp : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        transform.DOMove(playerPos * 2, collectDuration * 2).SetEase(Ease.OutCirc).OnComplete(() =>
+        Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
+        transform.DOJump(playerPos, jumpPower, 1, collectDuration).SetEase(Ease.OutCirc).OnComplete(() =>
         {
-            GameManager.Instance.player.playerAnimator.SetTrigger("PowerUpCollected");
-            Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
-            transform.DOMove(playerPos, collectDuration).SetEase(Ease.OutSine).OnComplete(() =>
-            {
-                GameManager.Instance.player.SpeedUp(speedMultiplier, powerUpDuration);
-                GameManager.Instance.player.PlayPowerUpEffect();
-                Destroy(gameObject);
-                ShowText();
-            });
+            GameManager.Instance.player.SpeedUp(speedMultiplier, powerUpDuration);
+            GameManager.Instance.player.PlayPowerUpEffect();
+            Destroy(gameObject);
+            ShowText();
         });
     }
 

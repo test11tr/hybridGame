@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Gem
   m_EditorClassIdentifier: 
   lootSprite: {fileID: 21300000, guid: 879e24e4e5fb65444a0f17d51d8cc67e, type: 3}
-  lootName: Star
+  lootName: Gem
   dropChance: 100
