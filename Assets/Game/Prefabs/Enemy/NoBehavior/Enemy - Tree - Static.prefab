@@ -106,6 +106,10 @@ PrefabInstance:
       propertyPath: healthRegenRate
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4112722852153083017, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
+      propertyPath: enemyDestroyTimeOnDead
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4436721210916939201, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
       propertyPath: m_Height
       value: 4.86

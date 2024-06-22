@@ -113,7 +113,7 @@ public class VirtualWalletModule : MonoBehaviour
         }else
         {
             currentWood += amount;
-            woodText.text = currentGem.ToString();
+            woodText.text = currentWood.ToString();
             GameManager.Instance.saveModule.saveInfo.virtualWood = currentWood;
         }
     }
@@ -127,7 +127,7 @@ public class VirtualWalletModule : MonoBehaviour
         }else
         {
             currentStone += amount;
-            stoneText.text = currentWood.ToString();
+            stoneText.text = currentStone.ToString();
             GameManager.Instance.saveModule.saveInfo.virtualStone = currentStone;
         }
     }
