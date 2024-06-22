@@ -16,6 +16,7 @@ TagManager:
   - Projectile
   - ignoreRenderer
   - EnemyStatic
+  - Base
   layers:
   - Default
   - TransparentFX

@@ -132,11 +132,22 @@ public class VirtualWalletModule : MonoBehaviour
         }
     }
 
-    // Base'e varınca çağrılacak fonksiyon
     public void TransferToWallet()
     {
-        // Burada Wallet Module'e transfer işlemleri yapılacak
-        // Örneğin: walletModule.AddMoney(currentMoney);
-        // currentMoney ve currentMaterials sıfırlanır, UI güncellenir
+        WalletModule walletModule = FindObjectOfType<WalletModule>(); // WalletModule'ü bul
+    if (walletModule != null)
+    {
+        walletModule.AddCoin(currentCoin);
+        walletModule.AddGem(currentGem);
+        walletModule.AddWood(currentWood);
+        walletModule.AddStone(currentStone);
+
+        currentCoin = 0;
+        currentGem = 0;
+        currentWood = 0;
+        currentStone = 0;
+
+        UpdateUI();
+    }
     }
 }
