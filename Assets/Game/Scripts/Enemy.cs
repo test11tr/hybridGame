@@ -5,14 +5,22 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class Enemy : MonoBehaviour
 {
+    private CivilianAI civilianAI;
+    private MeleeAttackAI meleeAttackAI;
+    private RangedAttackAI rangedAttackAI;
+    private BossAI bossAI;
+    private NoBehaviorAI noBehaviorAI;
+
     [Header("Enemy Settings")]
     public bool isCivilian;
     public bool isMeleeAttack;
     public bool isRangedAttack;
     public bool isBoss;
+    public bool noBehaviour;
 
     [Header("Enemy Movement")]
     public NavMeshAgent agent;
@@ -85,7 +93,7 @@ public class Enemy : MonoBehaviour
 
     public Action OnDeath { get; internal set; }
 
-    #region PreperationAndLoop
+    #region SettersAndGetters
     void Start()
     {
         player = GameManager.Instance.player.rb.transform;
@@ -95,214 +103,331 @@ public class Enemy : MonoBehaviour
         agent.acceleration = acceleration;
         currentHealth = maxHealth;
         GetAllRenderers();
-    }
 
-    void Update()
-    {
-        CheckHealthForUI();  
-        if(isDead || agent.enabled == false) 
-        return;
-
-        if (isCivilian)
+        if(isCivilian)
         {
-            AIStateBrainCivilian();
+            civilianAI = new CivilianAI(this);
         }
         else if(isMeleeAttack)
         {
-            AIStateBrainMelee();
+            meleeAttackAI = new MeleeAttackAI(this);
         }
         else if(isRangedAttack)
         {
-            AIStateBrainRanged();
+            rangedAttackAI = new RangedAttackAI(this);
         }
         else if(isBoss)
         {
-            AIStateBrainBoss();
+            bossAI = new BossAI(this);
         }
-        
-           
+        else if(noBehaviour)
+        {
+            noBehaviorAI = new NoBehaviorAI(this);
+        }
     }
 
-    public void GetAllRenderers()
+    public void Update()
     {
-        List<Renderer> tempIncludedRenderers = new List<Renderer>();
-        SkinnedMeshRenderer[] allSkinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        MeshRenderer[] allMeshRenderers = GetComponentsInChildren<MeshRenderer>();
-        foreach (var renderer in allSkinnedMeshRenderers)
+        if(isCivilian)
         {
-            if (renderer.gameObject.tag != "ignoreRenderer")
-            {
-                tempIncludedRenderers.Add(renderer);
-            }
+            civilianAI.Update();
+        }else if(isMeleeAttack)
+        {
+            meleeAttackAI.Update();
+        }else if(isRangedAttack)
+        {
+            rangedAttackAI.Update();
+        }else if(isBoss)
+        {
+            bossAI.Update();
+        }else if(noBehaviour)
+        {
+            noBehaviorAI.Update();
         }
-        foreach (var renderer in allMeshRenderers)
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if(isCivilian)
         {
-            if (renderer.gameObject.tag != "ignoreRenderer")
-            {
-                tempIncludedRenderers.Add(renderer);
-            }
-        }
-        includedRenderers = tempIncludedRenderers.ToArray();
-        originalMaterials = new Material[includedRenderers.Length];
-        for (int i = 0; i < includedRenderers.Length; i++)
+            civilianAI.TakeDamage(amount);
+        }else if(isMeleeAttack)
         {
-            originalMaterials[i] = includedRenderers[i].material;
+            meleeAttackAI.TakeDamage(amount);
+        }else if(isRangedAttack)
+        {
+            rangedAttackAI.TakeDamage(amount);
+        }else if(isBoss)
+        {
+            bossAI.TakeDamage(amount);
+        }else if(noBehaviour)
+        {
+            noBehaviorAI.TakeDamage(amount);
         }
     }
     #endregion
 
-    #region AIStates
-    void AIStateBrainCivilian()
+    #region CivilianAI
+    private class CivilianAI
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        #region AIBrain
+        private Enemy parent;
 
-        if (!playerInSightRange && !isReturningToPatrolArea)
+        public CivilianAI(Enemy parent)
         {
-            agent.speed = movementSpeed;
-            agent.acceleration = acceleration;
-            HandleTrailConditionally(false);
+            this.parent = parent;
+        }
 
-            if (!IsWithinSpawnArea())
+        public void Update()
+        {
+            CheckHealthForUI();
+            if(parent.isDead || parent.agent.enabled == false) 
+            return;
+            AIStateBrain();   
+        }
+
+        public void AIStateBrain()
+        {
+            parent.playerInSightRange = Physics.CheckSphere(parent.transform.position, parent.sightRange, parent.whatIsPlayer);
+            parent.playerInAttackRange = Physics.CheckSphere(parent.transform.position, parent.attackRange, parent.whatIsPlayer);
+
+            if (!parent.playerInSightRange && !parent.isReturningToPatrolArea)
             {
-                isReturningToPatrolArea = true;
-                SetDestinationToSpawnAreaCenter();
+                parent.agent.speed = parent.movementSpeed;
+                parent.agent.acceleration = parent.acceleration;
+                HandleTrailConditionally(false);
+
+                if (!IsWithinSpawnArea())
+                {
+                    parent.isReturningToPatrolArea = true;
+                    SetDestinationToSpawnAreaCenter();
+                }
+                else
+                {
+                    Patrolling();
+                }
+            }
+            else if (parent.playerInSightRange && !parent.playerInAttackRange)
+            {
+                EscapeFromPlayer();
+                parent.agent.speed = parent.escapeSpeed;
+                parent.agent.acceleration = parent.escapeAcceleration;
+                HandleTrailConditionally(true);
+                parent.isReturningToPatrolArea = false;
+            }
+            else if (parent.isReturningToPatrolArea)
+            {
+                parent.agent.speed = parent.movementSpeed;
+                parent.agent.acceleration = parent.acceleration;
+                HandleTrailConditionally(false);
+                if (IsWithinSpawnArea() && !parent.agent.pathPending)
+                {
+                    parent.isReturningToPatrolArea = false;
+                    Patrolling();
+                }
+            }
+        }
+
+        public void getSpawnerInfo(Vector3 center, float width, float height)
+        {
+            parent.spawnAreaCenter = center;
+            parent.spawnAreaWidth = width;
+            parent.spawnAreaHeight = height;
+        }
+
+        bool IsWithinSpawnArea()
+        {
+            return Vector3.Distance(parent.transform.position, parent.spawnAreaCenter) <= Mathf.Max(parent.spawnAreaWidth, parent.spawnAreaHeight) / 2;
+        }
+
+        void SetDestinationToSpawnAreaCenter()
+        {
+            parent.agent.SetDestination(parent.spawnAreaCenter);
+        }
+
+        private void Patrolling()
+        {
+            if (!parent.walkPointSet)
+            {
+                SearchWalkPoint();
             }
             else
             {
-                Patrolling();
+                parent.agent.SetDestination(parent.walkPoint);
+            }
+
+            Vector3 distanceToWalkPoint = parent.transform.position - parent.walkPoint;
+
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                parent.walkPointSet = false;
             }
         }
-        else if (playerInSightRange && !playerInAttackRange)
-        {
-            EscapeFromPlayer();
-            agent.speed = escapeSpeed;
-            agent.acceleration = escapeAcceleration;
-            HandleTrailConditionally(true);
-            isReturningToPatrolArea = false;
-        }
-        else if (isReturningToPatrolArea)
-        {
-            agent.speed = movementSpeed;
-            agent.acceleration = acceleration;
-            HandleTrailConditionally(false);
-            if (IsWithinSpawnArea() && !agent.pathPending)
-            {
-                isReturningToPatrolArea = false;
-                Patrolling();
-            }
-        }
-    }
 
-    void AIStateBrainMelee()
-    {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (!playerInSightRange && !isReturningToPatrolArea)
+        private void EscapeFromPlayer()
         {
-            if (!IsWithinSpawnArea())
+            if (!parent.walkPointSet)
             {
-                isReturningToPatrolArea = true;
-                SetDestinationToSpawnAreaCenter();
+                SearhEscapeWalkPoint();
             }
             else
             {
-                Patrolling();
+                parent.agent.SetDestination(parent.walkPoint);
+            }
+
+            Vector3 distanceToWalkPoint = parent.transform.position - parent.walkPoint;
+
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                parent.walkPointSet = false;
             }
         }
-        else if (playerInSightRange && !playerInAttackRange)
+
+        private void SearhEscapeWalkPoint()
         {
-            ChasePlayer();
-            isReturningToPatrolArea = false;
-        }
-        else if (playerInAttackRange && playerInSightRange)
-        {
-            AttackPlayer();
-            isReturningToPatrolArea = false;
-        }
-        else if (isReturningToPatrolArea)
-        {
-            if (IsWithinSpawnArea() && !agent.pathPending)
+            float randomZ = UnityEngine.Random.Range(-parent.walkPointRange, parent.walkPointRange);
+            float randomX = UnityEngine.Random.Range(-parent.walkPointRange, parent.walkPointRange);
+
+            parent.walkPoint = new Vector3(parent.transform.position.x + randomX, parent.transform.position.y, parent.transform.position.z + randomZ);
+            parent.agent.SetDestination(parent.walkPoint);
+
+            if(Physics.Raycast(parent.walkPoint, -parent.transform.up, 2f, parent.whatIsGround))
             {
-                isReturningToPatrolArea = false;
-                Patrolling();
+                parent.walkPointSet = true;
             }
         }
-    }
 
-    void AIStateBrainRanged()
-    {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (!playerInSightRange && !isReturningToPatrolArea)
+        private void SearchWalkPoint()
         {
-            if (!IsWithinSpawnArea())
+            float randomZ = UnityEngine.Random.Range(-parent.spawnAreaHeight / 2, parent.spawnAreaHeight / 2);
+            float randomX = UnityEngine.Random.Range(-parent.spawnAreaWidth / 2, parent.spawnAreaWidth / 2);
+
+            Vector3 randomPoint = parent.spawnAreaCenter + new Vector3(randomX, 0, randomZ);
+            parent.walkPoint = new Vector3(randomPoint.x, parent.transform.position.y, randomPoint.z);
+
+            if (Physics.Raycast(parent.walkPoint, -parent.transform.up, 2f,parent. whatIsGround))
             {
-                isReturningToPatrolArea = true;
-                SetDestinationToSpawnAreaCenter();
+                parent.walkPointSet = true;
+            }
+        }
+        #endregion
+
+        #region HealthModule
+        public void CheckHealthForUI()
+        {
+            if(parent.isDead)
+            {
+                parent.healthModuleCanvas.SetActive(false);
+                return;
+            }
+
+            if(parent.currentHealth < parent.maxHealth)
+            {
+                parent.healthModuleCanvas.SetActive(true);
             }
             else
             {
-                Patrolling();
+                parent.healthModuleCanvas.SetActive(false);
             }
-        }
-        else if (playerInSightRange && !playerInAttackRange)
-        {
-            ChasePlayer();
-            isReturningToPatrolArea = false;
-        }
-        else if (playerInAttackRange && playerInSightRange)
-        {
-            AttackPlayer();
-            isReturningToPatrolArea = false;
-        }
-        else if (isReturningToPatrolArea)
-        {
-            if (IsWithinSpawnArea() && !agent.pathPending)
-            {
-                isReturningToPatrolArea = false;
-                Patrolling();
-            }
-        }
-    }
 
-    void AIStateBrainBoss()
-    {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            
 
-        if (!playerInSightRange && !isReturningToPatrolArea)
-        {
-            if (!IsWithinSpawnArea())
+            if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
             {
-                isReturningToPatrolArea = true;
-                SetDestinationToSpawnAreaCenter();
-            }
-            else
-            {
-                Patrolling();
+                parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
             }
         }
-        else if (playerInSightRange && !playerInAttackRange)
+
+        public void TakeDamage(int amount)
         {
-            ChasePlayer();
-            isReturningToPatrolArea = false;
-        }
-        else if (playerInAttackRange && playerInSightRange)
-        {
-            AttackPlayer();
-            isReturningToPatrolArea = false;
-        }
-        else if (isReturningToPatrolArea)
-        {
-            if (IsWithinSpawnArea() && !agent.pathPending)
+            if(parent.floatingTextPrefab)
             {
-                isReturningToPatrolArea = false;
-                Patrolling();
+                Vector3 spawnPosition = parent.transform.position;
+                spawnPosition.y += 1.5f;
+                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+            }
+
+            parent.currentHealth -= amount;
+            if (parent.currentHealth <= 0 && !parent.isDead)
+            {
+                Die();
+            }
+
+            if(!parent.isDead)
+            {
+                parent.currentHealth -= amount;
+                parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
+
+                PlayHitFlash();
+                knockBack();
+
+                if (parent.currentHealth <= 0)
+                {
+                    Die();
+                }
             }
         }
+
+        public void Die()
+        {
+            parent.isDead = true;
+            parent.deathEffect.Play();
+            parent.pufEffect.Play();
+            PlayDeadFlash();
+            parent.trail.emitting = false;
+            parent.visual.SetActive(false);
+            parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
+
+            parent.OnDeath?.Invoke();
+            DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
+            {
+                Destroy(parent.gameObject);
+            });
+        }
+        #endregion
+
+        #region Effects Module
+        void HandleTrailConditionally(bool shouldEmit)
+        {
+            if(parent.trail.emitting != shouldEmit)
+            {
+                handleTrail();
+            }
+        }
+        public void handleTrail()
+        {
+            parent.trail.emitting = !parent.trail.emitting;
+        }
+        public void PlayHitFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.flashMaterial;
+            }
+
+            DelayHelper.DelayAction(parent.materialChangeDuration, () =>
+            {
+                if(parent.isDead) return;
+                for (int i = 0; i < parent.includedRenderers.Length; i++)
+                {
+                    parent.includedRenderers[i].material = parent.originalMaterials[i];
+                }
+            });
+        }
+
+        public void PlayDeadFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.deadMaterial;
+            }
+        }
+        public void knockBack()
+        {
+            parent.transform.DOJump(parent.transform.position, 1f, 1, 0.35f);
+        }
+        #endregion
     }
 
     public void getSpawnerInfo(Vector3 center, float width, float height)
@@ -418,120 +543,921 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    #region HealthModule
-    private void CheckHealthForUI()
+    #region MeleeAttackAI
+    private class MeleeAttackAI
     {
-        if(isDead)
+        #region AIBrain
+        private Enemy parent;
+
+        public MeleeAttackAI(Enemy parent)
         {
-            healthModuleCanvas.SetActive(false);
+            this.parent = parent;
+        }
+
+        public void Update()
+        {
+            CheckHealthForUI();
+            if(parent.isDead || parent.agent.enabled == false) 
             return;
+            AIStateBrain();   
         }
 
-        if(currentHealth < maxHealth)
+        public void AIStateBrain()
         {
-            healthModuleCanvas.SetActive(true);
-        }
-        else
-        {
-            healthModuleCanvas.SetActive(false);
-        }
+            parent.playerInSightRange = Physics.CheckSphere(parent.transform.position, parent.sightRange, parent.whatIsPlayer);
+            parent.playerInAttackRange = Physics.CheckSphere(parent.transform.position, parent.attackRange, parent.whatIsPlayer);
 
-        
-
-        if(healthBar.fillAmount != healthBarEase.fillAmount)
-        {
-            healthBarEase.fillAmount = Mathf.Lerp(healthBarEase.fillAmount, healthBar.fillAmount, healthEaseSpeed * Time.deltaTime);
-        }
-    }
-
-    public void TakeDamage(int amount)
-        {
-            if(floatingTextPrefab)
+            if (!parent.playerInSightRange && !parent.isReturningToPatrolArea)
             {
-                Vector3 spawnPosition = transform.position;
+                if (!IsWithinSpawnArea())
+                {
+                    parent.isReturningToPatrolArea = true;
+                    SetDestinationToSpawnAreaCenter();
+                }
+                else
+                {
+                    Patrolling();
+                }
+            }
+            else if (parent.playerInSightRange && !parent.playerInAttackRange)
+            {
+                ChasePlayer();
+                parent.isReturningToPatrolArea = false;
+            }
+            else if (parent.playerInAttackRange && parent.playerInSightRange)
+            {
+                AttackPlayer();
+                parent.isReturningToPatrolArea = false;
+            }
+            else if (parent.isReturningToPatrolArea)
+            {
+                if (IsWithinSpawnArea() && !parent.agent.pathPending)
+                {
+                    parent.isReturningToPatrolArea = false;
+                    Patrolling();
+                }
+            }
+        }
+
+        public void getSpawnerInfo(Vector3 center, float width, float height)
+        {
+            parent.spawnAreaCenter = center;
+            parent.spawnAreaWidth = width;
+            parent.spawnAreaHeight = height;
+        }
+
+        bool IsWithinSpawnArea()
+        {
+            return Vector3.Distance(parent.transform.position, parent.spawnAreaCenter) <= Mathf.Max(parent.spawnAreaWidth, parent.spawnAreaHeight) / 2;
+        }
+
+        void SetDestinationToSpawnAreaCenter()
+        {
+            parent.agent.SetDestination(parent.spawnAreaCenter);
+        }
+
+        private void Patrolling()
+        {
+            if (!parent.walkPointSet)
+            {
+                SearchWalkPoint();
+            }
+            else
+            {
+                parent.agent.SetDestination(parent.walkPoint);
+            }
+
+            Vector3 distanceToWalkPoint = parent.transform.position - parent.walkPoint;
+
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                parent.walkPointSet = false;
+            }
+        }
+
+        private void ChasePlayer()
+        {
+            parent.agent.SetDestination(parent.player.position);
+        }
+
+        private void AttackPlayer()
+        {
+            parent.agent.SetDestination(parent.transform.position);
+
+            parent.transform.LookAt(parent.player);
+
+            if (!parent.alreadyAttacked)
+            {
+                parent.alreadyAttacked = true;
+                // Attack code here
+                if(parent.isRangedAttack)
+                {
+                    float yOffset = parent.projectileSpawnPoint.position.y;
+                    Projectile _projectile = Instantiate(parent.projectile, parent.projectileSpawnPoint.position, Quaternion.identity);
+                    _projectile.Fire(parent.damage, parent.player.position, yOffset);
+                }
+                
+                DelayHelper.DelayAction(parent.timeBetweenAttacks, () =>
+                {
+                    parent.alreadyAttacked = false;
+                });
+            }
+        }
+
+        private void SearchWalkPoint()
+        {
+            float randomZ = UnityEngine.Random.Range(-parent.spawnAreaHeight / 2, parent.spawnAreaHeight / 2);
+            float randomX = UnityEngine.Random.Range(-parent.spawnAreaWidth / 2, parent.spawnAreaWidth / 2);
+
+            Vector3 randomPoint = parent.spawnAreaCenter + new Vector3(randomX, 0, randomZ);
+            parent.walkPoint = new Vector3(randomPoint.x, parent.transform.position.y, randomPoint.z);
+
+            if (Physics.Raycast(parent.walkPoint, -parent.transform.up, 2f,parent. whatIsGround))
+            {
+                parent.walkPointSet = true;
+            }
+        }
+        #endregion
+
+        #region HealthModule
+        public void CheckHealthForUI()
+        {
+            if(parent.isDead)
+            {
+                parent.healthModuleCanvas.SetActive(false);
+                return;
+            }
+
+            if(parent.currentHealth < parent.maxHealth)
+            {
+                parent.healthModuleCanvas.SetActive(true);
+            }
+            else
+            {
+                parent.healthModuleCanvas.SetActive(false);
+            }
+
+            
+
+            if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
+            {
+                parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
+            }
+        }
+
+        public void TakeDamage(int amount)
+        {
+            if(parent.floatingTextPrefab)
+            {
+                Vector3 spawnPosition = parent.transform.position;
                 spawnPosition.y += 1.5f;
-                floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
                 _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
             }
 
-            currentHealth -= amount;
-            if (currentHealth <= 0 && !isDead)
+            parent.currentHealth -= amount;
+            if (parent.currentHealth <= 0 && !parent.isDead)
             {
                 Die();
             }
 
-            if(!isDead)
+            if(!parent.isDead)
             {
-                currentHealth -= amount;
-                healthBar.fillAmount = (float)currentHealth / maxHealth;
+                parent.currentHealth -= amount;
+                parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
 
                 PlayHitFlash();
                 knockBack();
 
-                if (currentHealth <= 0)
+                if (parent.currentHealth <= 0)
                 {
                     Die();
                 }
             }
         }
 
-    public void Die()
-    {
-        isDead = true;
-        deathEffect.Play();
-        pufEffect.Play();
-        PlayDeadFlash();
-        trail.emitting = false;
-        visual.SetActive(false);
-        lootBag.InstantiateLoot(transform.position, dropCount);
-
-        OnDeath?.Invoke();
-        DelayHelper.DelayAction(enemyDestroyTimeOnDead, () =>
+        public void Die()
         {
-            Destroy(gameObject);
-        });
+            parent.isDead = true;
+            parent.deathEffect.Play();
+            parent.pufEffect.Play();
+            PlayDeadFlash();
+            parent.trail.emitting = false;
+            parent.visual.SetActive(false);
+            parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
+
+            parent.OnDeath?.Invoke();
+            DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
+            {
+                Destroy(parent.gameObject);
+            });
+        }
+        #endregion
+
+        #region Effects Module
+        void HandleTrailConditionally(bool shouldEmit)
+        {
+            if(parent.trail.emitting != shouldEmit)
+            {
+                handleTrail();
+            }
+        }
+        public void handleTrail()
+        {
+            parent.trail.emitting = !parent.trail.emitting;
+        }
+        public void PlayHitFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.flashMaterial;
+            }
+
+            DelayHelper.DelayAction(parent.materialChangeDuration, () =>
+            {
+                if(parent.isDead) return;
+                for (int i = 0; i < parent.includedRenderers.Length; i++)
+                {
+                    parent.includedRenderers[i].material = parent.originalMaterials[i];
+                }
+            });
+        }
+
+        public void PlayDeadFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.deadMaterial;
+            }
+        }
+        public void knockBack()
+        {
+            parent.transform.DOJump(parent.transform.position, 1f, 1, 0.35f);
+        }
+        #endregion
     }
     #endregion
 
-    #region Effects Module
-    void HandleTrailConditionally(bool shouldEmit)
+    #region RangedAttackAI
+    private class RangedAttackAI
     {
-        if(trail.emitting != shouldEmit)
+        #region AIBrain
+        private Enemy parent;
+
+        public RangedAttackAI(Enemy parent)
         {
-            handleTrail();
-        }
-    }
-    public void handleTrail()
-    {
-        trail.emitting = !trail.emitting;
-    }
-    public void PlayHitFlash()
-    {
-        foreach (var renderer in includedRenderers)
-        {
-            renderer.material = flashMaterial;
+            this.parent = parent;
         }
 
-        DelayHelper.DelayAction(materialChangeDuration, () =>
+        public void Update()
         {
-            if(isDead) return;
-            for (int i = 0; i < includedRenderers.Length; i++)
+            CheckHealthForUI();
+            if(parent.isDead || parent.agent.enabled == false) 
+            return;
+            AIStateBrain();   
+        }
+
+        public void AIStateBrain()
+        {
+            parent.playerInSightRange = Physics.CheckSphere(parent.transform.position, parent.sightRange, parent.whatIsPlayer);
+            parent.playerInAttackRange = Physics.CheckSphere(parent.transform.position, parent.attackRange, parent.whatIsPlayer);
+
+            if (!parent.playerInSightRange && !parent.isReturningToPatrolArea)
             {
-                includedRenderers[i].material = originalMaterials[i];
+                if (!IsWithinSpawnArea())
+                {
+                    parent.isReturningToPatrolArea = true;
+                    SetDestinationToSpawnAreaCenter();
+                }
+                else
+                {
+                    Patrolling();
+                }
             }
-        });
-    }
-
-    public void PlayDeadFlash()
-    {
-        foreach (var renderer in includedRenderers)
-        {
-            renderer.material = deadMaterial;
+            else if (parent.playerInSightRange && !parent.playerInAttackRange)
+            {
+                ChasePlayer();
+                parent.isReturningToPatrolArea = false;
+            }
+            else if (parent.playerInAttackRange && parent.playerInSightRange)
+            {
+                AttackPlayer();
+                parent.isReturningToPatrolArea = false;
+            }
+            else if (parent.isReturningToPatrolArea)
+            {
+                if (IsWithinSpawnArea() && !parent.agent.pathPending)
+                {
+                    parent.isReturningToPatrolArea = false;
+                    Patrolling();
+                }
+            }
         }
+
+        public void getSpawnerInfo(Vector3 center, float width, float height)
+        {
+            parent.spawnAreaCenter = center;
+            parent.spawnAreaWidth = width;
+            parent.spawnAreaHeight = height;
+        }
+
+        bool IsWithinSpawnArea()
+        {
+            return Vector3.Distance(parent.transform.position, parent.spawnAreaCenter) <= Mathf.Max(parent.spawnAreaWidth, parent.spawnAreaHeight) / 2;
+        }
+
+        void SetDestinationToSpawnAreaCenter()
+        {
+            parent.agent.SetDestination(parent.spawnAreaCenter);
+        }
+
+        private void Patrolling()
+        {
+            if (!parent.walkPointSet)
+            {
+                SearchWalkPoint();
+            }
+            else
+            {
+                parent.agent.SetDestination(parent.walkPoint);
+            }
+
+            Vector3 distanceToWalkPoint = parent.transform.position - parent.walkPoint;
+
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                parent.walkPointSet = false;
+            }
+        }
+
+        private void ChasePlayer()
+        {
+            parent.agent.SetDestination(parent.player.position);
+        }
+
+        private void AttackPlayer()
+        {
+            parent.agent.SetDestination(parent.transform.position);
+
+            parent.transform.LookAt(parent.player);
+
+            if (!parent.alreadyAttacked)
+            {
+                parent.alreadyAttacked = true;
+                // Attack code here
+                if(parent.isRangedAttack)
+                {
+                    float yOffset = parent.projectileSpawnPoint.position.y;
+                    Projectile _projectile = Instantiate(parent.projectile, parent.projectileSpawnPoint.position, Quaternion.identity);
+                    _projectile.Fire(parent.damage, parent.player.position, yOffset);
+                }
+                
+                DelayHelper.DelayAction(parent.timeBetweenAttacks, () =>
+                {
+                    parent.alreadyAttacked = false;
+                });
+            }
+        }
+
+        private void SearchWalkPoint()
+        {
+            float randomZ = UnityEngine.Random.Range(-parent.spawnAreaHeight / 2, parent.spawnAreaHeight / 2);
+            float randomX = UnityEngine.Random.Range(-parent.spawnAreaWidth / 2, parent.spawnAreaWidth / 2);
+
+            Vector3 randomPoint = parent.spawnAreaCenter + new Vector3(randomX, 0, randomZ);
+            parent.walkPoint = new Vector3(randomPoint.x, parent.transform.position.y, randomPoint.z);
+
+            if (Physics.Raycast(parent.walkPoint, -parent.transform.up, 2f,parent. whatIsGround))
+            {
+                parent.walkPointSet = true;
+            }
+        }
+        #endregion
+
+        #region HealthModule
+        public void CheckHealthForUI()
+        {
+            if(parent.isDead)
+            {
+                parent.healthModuleCanvas.SetActive(false);
+                return;
+            }
+
+            if(parent.currentHealth < parent.maxHealth)
+            {
+                parent.healthModuleCanvas.SetActive(true);
+            }
+            else
+            {
+                parent.healthModuleCanvas.SetActive(false);
+            }
+
+            
+
+            if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
+            {
+                parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
+            }
+        }
+
+        public void TakeDamage(int amount)
+        {
+            if(parent.floatingTextPrefab)
+            {
+                Vector3 spawnPosition = parent.transform.position;
+                spawnPosition.y += 1.5f;
+                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+            }
+
+            parent.currentHealth -= amount;
+            if (parent.currentHealth <= 0 && !parent.isDead)
+            {
+                Die();
+            }
+
+            if(!parent.isDead)
+            {
+                parent.currentHealth -= amount;
+                parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
+
+                PlayHitFlash();
+                knockBack();
+
+                if (parent.currentHealth <= 0)
+                {
+                    Die();
+                }
+            }
+        }
+
+        public void Die()
+        {
+            parent.isDead = true;
+            parent.deathEffect.Play();
+            parent.pufEffect.Play();
+            PlayDeadFlash();
+            parent.trail.emitting = false;
+            parent.visual.SetActive(false);
+            parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
+
+            parent.OnDeath?.Invoke();
+            DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
+            {
+                Destroy(parent.gameObject);
+            });
+        }
+        #endregion
+
+        #region Effects Module
+        void HandleTrailConditionally(bool shouldEmit)
+        {
+            if(parent.trail.emitting != shouldEmit)
+            {
+                handleTrail();
+            }
+        }
+        public void handleTrail()
+        {
+            parent.trail.emitting = !parent.trail.emitting;
+        }
+        public void PlayHitFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.flashMaterial;
+            }
+
+            DelayHelper.DelayAction(parent.materialChangeDuration, () =>
+            {
+                if(parent.isDead) return;
+                for (int i = 0; i < parent.includedRenderers.Length; i++)
+                {
+                    parent.includedRenderers[i].material = parent.originalMaterials[i];
+                }
+            });
+        }
+
+        public void PlayDeadFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.deadMaterial;
+            }
+        }
+        public void knockBack()
+        {
+            parent.transform.DOJump(parent.transform.position, 1f, 1, 0.35f);
+        }
+        #endregion
     }
-    public void knockBack()
+    #endregion
+
+    #region BossAI
+    private class BossAI
     {
-        transform.DOJump(transform.position, 1f, 1, 0.35f);
+        #region AIBrain
+        private Enemy parent;
+
+        public BossAI(Enemy parent)
+        {
+            this.parent = parent;
+        }
+
+        public void Update()
+        {
+            CheckHealthForUI();
+            if(parent.isDead || parent.agent.enabled == false) 
+            return;
+            AIStateBrain();   
+        }
+
+        public void AIStateBrain()
+        {
+            parent.playerInSightRange = Physics.CheckSphere(parent.transform.position, parent.sightRange, parent.whatIsPlayer);
+            parent.playerInAttackRange = Physics.CheckSphere(parent.transform.position, parent.attackRange, parent.whatIsPlayer);
+
+            if (!parent.playerInSightRange && !parent.isReturningToPatrolArea)
+            {
+                if (!IsWithinSpawnArea())
+                {
+                    parent.isReturningToPatrolArea = true;
+                    SetDestinationToSpawnAreaCenter();
+                }
+                else
+                {
+                    Patrolling();
+                }
+            }
+            else if (parent.playerInSightRange && !parent.playerInAttackRange)
+            {
+                ChasePlayer();
+                parent.isReturningToPatrolArea = false;
+            }
+            else if (parent.playerInAttackRange && parent.playerInSightRange)
+            {
+                AttackPlayer();
+                parent.isReturningToPatrolArea = false;
+            }
+            else if (parent.isReturningToPatrolArea)
+            {
+                if (IsWithinSpawnArea() && !parent.agent.pathPending)
+                {
+                    parent.isReturningToPatrolArea = false;
+                    Patrolling();
+                }
+            }
+        }
+
+        public void getSpawnerInfo(Vector3 center, float width, float height)
+        {
+            parent.spawnAreaCenter = center;
+            parent.spawnAreaWidth = width;
+            parent.spawnAreaHeight = height;
+        }
+
+        bool IsWithinSpawnArea()
+        {
+            return Vector3.Distance(parent.transform.position, parent.spawnAreaCenter) <= Mathf.Max(parent.spawnAreaWidth, parent.spawnAreaHeight) / 2;
+        }
+
+        void SetDestinationToSpawnAreaCenter()
+        {
+            parent.agent.SetDestination(parent.spawnAreaCenter);
+        }
+
+        private void Patrolling()
+        {
+            if (!parent.walkPointSet)
+            {
+                SearchWalkPoint();
+            }
+            else
+            {
+                parent.agent.SetDestination(parent.walkPoint);
+            }
+
+            Vector3 distanceToWalkPoint = parent.transform.position - parent.walkPoint;
+
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                parent.walkPointSet = false;
+            }
+        }
+
+        private void ChasePlayer()
+        {
+            parent.agent.SetDestination(parent.player.position);
+        }
+
+        private void AttackPlayer()
+        {
+            parent.agent.SetDestination(parent.transform.position);
+
+            parent.transform.LookAt(parent.player);
+
+            if (!parent.alreadyAttacked)
+            {
+                parent.alreadyAttacked = true;
+                // Attack code here
+                if(parent.isRangedAttack)
+                {
+                    float yOffset = parent.projectileSpawnPoint.position.y;
+                    Projectile _projectile = Instantiate(parent.projectile, parent.projectileSpawnPoint.position, Quaternion.identity);
+                    _projectile.Fire(parent.damage, parent.player.position, yOffset);
+                }
+                
+                DelayHelper.DelayAction(parent.timeBetweenAttacks, () =>
+                {
+                    parent.alreadyAttacked = false;
+                });
+            }
+        }
+
+        private void SearchWalkPoint()
+        {
+            float randomZ = UnityEngine.Random.Range(-parent.spawnAreaHeight / 2, parent.spawnAreaHeight / 2);
+            float randomX = UnityEngine.Random.Range(-parent.spawnAreaWidth / 2, parent.spawnAreaWidth / 2);
+
+            Vector3 randomPoint = parent.spawnAreaCenter + new Vector3(randomX, 0, randomZ);
+            parent.walkPoint = new Vector3(randomPoint.x, parent.transform.position.y, randomPoint.z);
+
+            if (Physics.Raycast(parent.walkPoint, -parent.transform.up, 2f,parent. whatIsGround))
+            {
+                parent.walkPointSet = true;
+            }
+        }
+        #endregion
+
+        #region HealthModule
+        public void CheckHealthForUI()
+        {
+            if(parent.isDead)
+            {
+                parent.healthModuleCanvas.SetActive(false);
+                return;
+            }
+
+            if(parent.currentHealth < parent.maxHealth)
+            {
+                parent.healthModuleCanvas.SetActive(true);
+            }
+            else
+            {
+                parent.healthModuleCanvas.SetActive(false);
+            }
+
+            
+
+            if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
+            {
+                parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
+            }
+        }
+
+        public void TakeDamage(int amount)
+        {
+            if(parent.floatingTextPrefab)
+            {
+                Vector3 spawnPosition = parent.transform.position;
+                spawnPosition.y += 1.5f;
+                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+            }
+
+            parent.currentHealth -= amount;
+            if (parent.currentHealth <= 0 && !parent.isDead)
+            {
+                Die();
+            }
+
+            if(!parent.isDead)
+            {
+                parent.currentHealth -= amount;
+                parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
+
+                PlayHitFlash();
+                knockBack();
+
+                if (parent.currentHealth <= 0)
+                {
+                    Die();
+                }
+            }
+        }
+
+        public void Die()
+        {
+            parent.isDead = true;
+            parent.deathEffect.Play();
+            parent.pufEffect.Play();
+            PlayDeadFlash();
+            parent.trail.emitting = false;
+            parent.visual.SetActive(false);
+            parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
+
+            parent.OnDeath?.Invoke();
+            DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
+            {
+                Destroy(parent.gameObject);
+            });
+        }
+        #endregion
+
+        #region Effects Module
+        void HandleTrailConditionally(bool shouldEmit)
+        {
+            if(parent.trail.emitting != shouldEmit)
+            {
+                handleTrail();
+            }
+        }
+        public void handleTrail()
+        {
+            parent.trail.emitting = !parent.trail.emitting;
+        }
+        public void PlayHitFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.flashMaterial;
+            }
+
+            DelayHelper.DelayAction(parent.materialChangeDuration, () =>
+            {
+                if(parent.isDead) return;
+                for (int i = 0; i < parent.includedRenderers.Length; i++)
+                {
+                    parent.includedRenderers[i].material = parent.originalMaterials[i];
+                }
+            });
+        }
+
+        public void PlayDeadFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.deadMaterial;
+            }
+        }
+        public void knockBack()
+        {
+            parent.transform.DOJump(parent.transform.position, 1f, 1, 0.35f);
+        }
+        #endregion
+    }
+    #endregion
+
+    #region NoBehaviorAI
+    private class NoBehaviorAI
+    {
+        #region AIBrain
+        private Enemy parent;
+
+        public NoBehaviorAI(Enemy parent)
+        {
+            this.parent = parent;
+        }
+
+        public void Update()
+        {
+            CheckHealthForUI();
+            if(parent.isDead || parent.agent.enabled == false) 
+            return;
+        }
+        #endregion
+
+        #region HealthModule
+        private void CheckHealthForUI()
+        {
+            if(parent.isDead)
+            {
+                parent.healthModuleCanvas.SetActive(false);
+                return;
+            }
+
+            if(parent.currentHealth < parent.maxHealth)
+            {
+                parent.healthModuleCanvas.SetActive(true);
+            }
+            else
+            {
+                parent.healthModuleCanvas.SetActive(false);
+            }
+
+            
+
+            if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
+            {
+                parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
+            }
+        }
+
+        public void TakeDamage(int amount)
+            {
+                if(parent.floatingTextPrefab)
+                {
+                    Vector3 spawnPosition = parent.transform.position;
+                    spawnPosition.y += 1.5f;
+                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                }
+
+                parent.currentHealth -= amount;
+                if (parent.currentHealth <= 0 && !parent.isDead)
+                {
+                    Die();
+                }
+
+                if(!parent.isDead)
+                {
+                    parent.currentHealth -= amount;
+                    parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
+
+                    PlayHitFlash();
+                    knockBack();
+
+                    if (parent.currentHealth <= 0)
+                    {
+                        Die();
+                    }
+                }
+            }
+
+        public void Die()
+        {
+            parent.isDead = true;
+            parent.pufEffect.Play();
+            PlayDeadFlash();
+            parent.visual.SetActive(false);
+            parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
+
+            DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
+            {
+                Destroy(parent.gameObject);
+            });
+        }
+        #endregion
+
+        #region Effects Module
+        public void PlayHitFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.flashMaterial;
+            }
+
+            DelayHelper.DelayAction(parent.materialChangeDuration, () =>
+            {
+                if(parent.isDead) return;
+                for (int i = 0; i < parent.includedRenderers.Length; i++)
+                {
+                    parent.includedRenderers[i].material = parent.originalMaterials[i];
+                }
+            });
+        }
+
+        public void PlayDeadFlash()
+        {
+            foreach (var renderer in parent.includedRenderers)
+            {
+                renderer.material = parent.deadMaterial;
+            }
+        }
+        public void knockBack()
+        {
+            parent.transform.DOJump(parent.transform.position, 1f, 1, 0.35f);
+        }
+        #endregion
+    }
+    #endregion
+
+    #region UtilityForFlashModule
+    public void GetAllRenderers()
+    {
+        List<Renderer> tempIncludedRenderers = new List<Renderer>();
+        SkinnedMeshRenderer[] allSkinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        MeshRenderer[] allMeshRenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (var renderer in allSkinnedMeshRenderers)
+        {
+            if (renderer.gameObject.tag != "ignoreRenderer")
+            {
+                tempIncludedRenderers.Add(renderer);
+            }
+        }
+        foreach (var renderer in allMeshRenderers)
+        {
+            if (renderer.gameObject.tag != "ignoreRenderer")
+            {
+                tempIncludedRenderers.Add(renderer);
+            }
+        }
+        includedRenderers = tempIncludedRenderers.ToArray();
+        originalMaterials = new Material[includedRenderers.Length];
+        for (int i = 0; i < includedRenderers.Length; i++)
+        {
+            originalMaterials[i] = includedRenderers[i].material;
+        }
     }
     #endregion
 
