@@ -51,6 +51,7 @@ public class LootCollectable : MonoBehaviour
         if(GameManager.Instance.player.virtualWallet.currentCargo >= GameManager.Instance.player.virtualWallet.maxCargo)
         {
             print("Wallet is Full");
+            isCollectable = true;
         }else
         {
             Collect();
