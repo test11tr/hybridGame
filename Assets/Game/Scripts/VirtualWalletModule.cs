@@ -137,10 +137,14 @@ public class VirtualWalletModule : MonoBehaviour
         WalletModule walletModule = FindObjectOfType<WalletModule>(); // WalletModule'ü bul
     if (walletModule != null)
     {
-        walletModule.AddCoin(currentCoin);
-        walletModule.AddGem(currentGem);
-        walletModule.AddWood(currentWood);
-        walletModule.AddStone(currentStone);
+        if(currentCoin > 0)
+            walletModule.AddCoin(currentCoin);
+        if(currentGem > 0)
+            walletModule.AddGem(currentGem);
+        if(currentWood > 0)
+            walletModule.AddWood(currentWood);
+        if(currentStone > 0)
+            walletModule.AddStone(currentStone);
 
         currentCoin = 0;
         currentGem = 0;

@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using AssetKits.ParticleImage;
 
 public class WalletModule : MonoBehaviour
 {
-
+    [Header("Wallet - UI References")]
     public TMP_Text coinText;
     public TMP_Text gemText;
     public TMP_Text woodText;
     public TMP_Text stoneText;
+    
+    [Header("Wallet - Effects")]
+    public ParticleImage coinEffect;
+    public ParticleImage gemEffect;
+    public ParticleImage woodEffect;
+    public ParticleImage stoneEffect;
 
     private int coinCount;
     private int gemCount;
@@ -32,6 +39,7 @@ public class WalletModule : MonoBehaviour
     {
         coinCount += amount;
         coinText.text = coinCount.ToString();
+        coinEffect.Play();
         GameManager.Instance.saveModule.saveInfo.coinCount = coinCount;
     }
 
@@ -39,6 +47,7 @@ public class WalletModule : MonoBehaviour
     {
         gemCount += amount;
         gemText.text = gemCount.ToString();
+        gemEffect.Play();
         GameManager.Instance.saveModule.saveInfo.gemCount = gemCount;
     }
 
@@ -46,6 +55,7 @@ public class WalletModule : MonoBehaviour
     {
         woodAmount += amount;
         woodText.text = woodAmount.ToString();
+        woodEffect.Play();
         GameManager.Instance.saveModule.saveInfo.woodAmount = woodAmount;
     }
 
@@ -53,6 +63,7 @@ public class WalletModule : MonoBehaviour
     {
         stoneAmount += amount;
         stoneText.text = stoneAmount.ToString();
+        stoneEffect.Play();
         GameManager.Instance.saveModule.saveInfo.stoneAmount = stoneAmount;
     }
 }
