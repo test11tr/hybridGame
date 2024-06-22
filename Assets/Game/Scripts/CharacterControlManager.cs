@@ -91,10 +91,13 @@ public class CharacterControlManager : MonoBehaviour
     [Header("Aim Lock Module")]
     public GameObject aimLock;
 
+    [Header("Virtual Wallet Module")]
+    public VirtualWalletModule virtualWallet;
+
     [Header("Weapon References")]
     public List<GameObject> MeleeWeapons;
     public List<GameObject> RangedWeapons;
-    
+
     [Header("Debug")]
     public bool drawGizmos;
 

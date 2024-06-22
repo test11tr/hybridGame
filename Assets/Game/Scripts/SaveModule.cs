@@ -75,10 +75,17 @@ public class SaveModule : MonoBehaviour
     [Serializable]
     public class SaveInfo
     {
+        [Header("Wallet")]
         public int coinCount;
         public int gemCount;
         public int woodAmount;
         public int stoneAmount;
+        [Header("VirtualWallet")]
+        public int virtualCoin;
+        public int virtualGem;
+        public int virtualWood;
+        public int virtualStone;
+        [Header("Character")]
         public int characterCurrentHealth;
     }
 }

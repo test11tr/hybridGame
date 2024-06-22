@@ -52,13 +52,13 @@ public class LootCollectable : MonoBehaviour
         transform.DOJump(playerPos, jumpPower, 1, collectDuration).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             if(collectableType == CollectableType.Coin)
-                GameManager.Instance.wallet.AddCoin(1);
+                GameManager.Instance.player.virtualWallet.AddCoin(1);
             else if(collectableType == CollectableType.Gem)
-                GameManager.Instance.wallet.AddGem(1);
+                GameManager.Instance.player.virtualWallet.AddGem(1);
             else if(collectableType == CollectableType.Wood)
-                GameManager.Instance.wallet.AddWood(1);
+                GameManager.Instance.player.virtualWallet.AddWood(1);
             else if(collectableType == CollectableType.Stone)
-                GameManager.Instance.wallet.AddStone(1);
+                GameManager.Instance.player.virtualWallet.AddStone(1);
 
             ShowText();
             Destroy(gameObject);
