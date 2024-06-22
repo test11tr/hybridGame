@@ -752,6 +752,9 @@ MonoBehaviour:
   healthBarEase: {fileID: 3530089313789869345}
   maxHealth: 100
   healthEaseSpeed: 1.5
+  healthRegenRate: 25
+  lastRegenTime: 0
+  requiredHitsToDie: 0
   lootBag: {fileID: 7308711344428413}
   dropCount: 3
   trail: {fileID: 3430284793497970592}
@@ -787,6 +790,7 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 6690307532851547712, guid: a07bffa0eee5af64bb588beeea8a57ca, type: 3}
   lootList:
   - {fileID: 11400000, guid: 8044e0c10f1eb7b43a4871b58698a347, type: 2}
+  maxDropDistance: 1.5
 --- !u!195 &7799707335106303053
 NavMeshAgent:
   m_ObjectHideFlags: 0

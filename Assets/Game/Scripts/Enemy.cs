@@ -32,8 +32,8 @@ public class Enemy : MonoBehaviour
     public float movementSpeed;
     public float rotationSpeed;
     public float acceleration;
-    public float escapeSpeed;
-    public float escapeAcceleration;
+    public float runSpeed;
+    public float runAcceleration;
 
     [Header("Enemy Attack")]
     public int damage;
@@ -55,6 +55,8 @@ public class Enemy : MonoBehaviour
     public Image healthBarEase;
     public int maxHealth;
     public float healthEaseSpeed;
+    public float healthRegenRate; 
+    [HideInInspector] public float lastRegenTime;
     private int currentHealth;
 
     [Header("NoBehaviourAI Module")]
@@ -190,7 +192,8 @@ public class Enemy : MonoBehaviour
             CheckHealthForUI();
             if(parent.isDead || parent.agent.enabled == false) 
             return;
-            AIStateBrain();   
+            AIStateBrain();
+            RegenerateHealth();   
         }
 
         public void AIStateBrain()
@@ -217,8 +220,8 @@ public class Enemy : MonoBehaviour
             else if (parent.playerInSightRange && !parent.playerInAttackRange)
             {
                 EscapeFromPlayer();
-                parent.agent.speed = parent.escapeSpeed;
-                parent.agent.acceleration = parent.escapeAcceleration;
+                parent.agent.speed = parent.runSpeed;
+                parent.agent.acceleration = parent.runAcceleration;
                 HandleTrailConditionally(true);
                 parent.isReturningToPatrolArea = false;
             }
@@ -342,6 +345,26 @@ public class Enemy : MonoBehaviour
             if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
             {
                 parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
+            }
+        }
+
+        private void RegenerateHealth()
+        {
+            if (parent.isReturningToPatrolArea || !parent.playerInSightRange)
+            {
+                if (parent.currentHealth >= parent.maxHealth || parent.isDead) return;
+
+                if (Time.time - parent.lastRegenTime >= 1f / parent.healthRegenRate)
+                {
+                    parent.currentHealth += 1;
+                    parent.currentHealth = Mathf.Min(parent.currentHealth, parent.maxHealth); 
+                    parent.lastRegenTime = Time.time; 
+
+                    parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
+                }
+            }else
+            {
+                return;
             }
         }
 
@@ -566,7 +589,8 @@ public class Enemy : MonoBehaviour
             CheckHealthForUI();
             if(parent.isDead || parent.agent.enabled == false) 
             return;
-            AIStateBrain();   
+            AIStateBrain();
+            RegenerateHealth();   
         }
 
         public void AIStateBrain()
@@ -576,6 +600,8 @@ public class Enemy : MonoBehaviour
 
             if (!parent.playerInSightRange && !parent.isReturningToPatrolArea)
             {
+                parent.agent.speed = parent.movementSpeed;
+                parent.agent.acceleration = parent.acceleration;
                 if (!IsWithinSpawnArea())
                 {
                     parent.isReturningToPatrolArea = true;
@@ -589,6 +615,8 @@ public class Enemy : MonoBehaviour
             else if (parent.playerInSightRange && !parent.playerInAttackRange)
             {
                 ChasePlayer();
+                parent.agent.speed = parent.runSpeed;
+                parent.agent.acceleration = parent.runAcceleration;
                 parent.isReturningToPatrolArea = false;
             }
             else if (parent.playerInAttackRange && parent.playerInSightRange)
@@ -598,6 +626,8 @@ public class Enemy : MonoBehaviour
             }
             else if (parent.isReturningToPatrolArea)
             {
+                parent.agent.speed = parent.movementSpeed;
+                parent.agent.acceleration = parent.acceleration;
                 if (IsWithinSpawnArea() && !parent.agent.pathPending)
                 {
                     parent.isReturningToPatrolArea = false;
@@ -709,6 +739,26 @@ public class Enemy : MonoBehaviour
             if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
             {
                 parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
+            }
+        }
+
+        private void RegenerateHealth()
+        {
+            if (parent.isReturningToPatrolArea || !parent.playerInSightRange)
+            {
+                if (parent.currentHealth >= parent.maxHealth || parent.isDead) return;
+
+                if (Time.time - parent.lastRegenTime >= 1f / parent.healthRegenRate)
+                {
+                    parent.currentHealth += 1;
+                    parent.currentHealth = Mathf.Min(parent.currentHealth, parent.maxHealth); 
+                    parent.lastRegenTime = Time.time; 
+
+                    parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
+                }
+            }else
+            {
+                return;
             }
         }
 
@@ -821,7 +871,8 @@ public class Enemy : MonoBehaviour
             CheckHealthForUI();
             if(parent.isDead || parent.agent.enabled == false) 
             return;
-            AIStateBrain();   
+            AIStateBrain();  
+            RegenerateHealth(); 
         }
 
         public void AIStateBrain()
@@ -831,6 +882,8 @@ public class Enemy : MonoBehaviour
 
             if (!parent.playerInSightRange && !parent.isReturningToPatrolArea)
             {
+                parent.agent.speed = parent.movementSpeed;
+                parent.agent.acceleration = parent.acceleration;
                 if (!IsWithinSpawnArea())
                 {
                     parent.isReturningToPatrolArea = true;
@@ -844,6 +897,8 @@ public class Enemy : MonoBehaviour
             else if (parent.playerInSightRange && !parent.playerInAttackRange)
             {
                 ChasePlayer();
+                parent.agent.speed = parent.runSpeed;
+                parent.agent.acceleration = parent.runAcceleration;
                 parent.isReturningToPatrolArea = false;
             }
             else if (parent.playerInAttackRange && parent.playerInSightRange)
@@ -853,6 +908,8 @@ public class Enemy : MonoBehaviour
             }
             else if (parent.isReturningToPatrolArea)
             {
+                parent.agent.speed = parent.movementSpeed;
+                parent.agent.acceleration = parent.acceleration;
                 if (IsWithinSpawnArea() && !parent.agent.pathPending)
                 {
                     parent.isReturningToPatrolArea = false;
@@ -964,6 +1021,26 @@ public class Enemy : MonoBehaviour
             if(parent.healthBar.fillAmount != parent.healthBarEase.fillAmount)
             {
                 parent.healthBarEase.fillAmount = Mathf.Lerp(parent.healthBarEase.fillAmount, parent.healthBar.fillAmount, parent.healthEaseSpeed * Time.deltaTime);
+            }
+        }
+
+        private void RegenerateHealth()
+        {
+            if (parent.isReturningToPatrolArea || !parent.playerInSightRange)
+            {
+                if (parent.currentHealth >= parent.maxHealth || parent.isDead) return;
+
+                if (Time.time - parent.lastRegenTime >= 1f / parent.healthRegenRate)
+                {
+                    parent.currentHealth += 1;
+                    parent.currentHealth = Mathf.Min(parent.currentHealth, parent.maxHealth); 
+                    parent.lastRegenTime = Time.time; 
+
+                    parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
+                }
+            }else
+            {
+                return;
             }
         }
 
@@ -1077,6 +1154,7 @@ public class Enemy : MonoBehaviour
             if(parent.isDead || parent.agent.enabled == false) 
             return;
             AIStateBrain();   
+            RegenerateHealth();
         }
 
         public void AIStateBrain()
@@ -1086,6 +1164,8 @@ public class Enemy : MonoBehaviour
 
             if (!parent.playerInSightRange && !parent.isReturningToPatrolArea)
             {
+                parent.agent.speed = parent.movementSpeed;
+                parent.agent.acceleration = parent.acceleration;
                 if (!IsWithinSpawnArea())
                 {
                     parent.isReturningToPatrolArea = true;
@@ -1099,6 +1179,8 @@ public class Enemy : MonoBehaviour
             else if (parent.playerInSightRange && !parent.playerInAttackRange)
             {
                 ChasePlayer();
+                parent.agent.speed = parent.runSpeed;
+                parent.agent.acceleration = parent.runAcceleration;
                 parent.isReturningToPatrolArea = false;
             }
             else if (parent.playerInAttackRange && parent.playerInSightRange)
@@ -1108,6 +1190,8 @@ public class Enemy : MonoBehaviour
             }
             else if (parent.isReturningToPatrolArea)
             {
+                parent.agent.speed = parent.movementSpeed;
+                parent.agent.acceleration = parent.acceleration;
                 if (IsWithinSpawnArea() && !parent.agent.pathPending)
                 {
                     parent.isReturningToPatrolArea = false;
@@ -1222,6 +1306,26 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        private void RegenerateHealth()
+        {
+            if (parent.isReturningToPatrolArea || !parent.playerInSightRange)
+            {
+                if (parent.currentHealth >= parent.maxHealth || parent.isDead) return;
+
+                if (Time.time - parent.lastRegenTime >= 1f / parent.healthRegenRate)
+                {
+                    parent.currentHealth += 1;
+                    parent.currentHealth = Mathf.Min(parent.currentHealth, parent.maxHealth); 
+                    parent.lastRegenTime = Time.time; 
+
+                    parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
+                }
+            }else
+            {
+                return;
+            }
+        }
+
         public void TakeDamage(int amount)
         {
             if(parent.floatingTextPrefab)
@@ -1331,41 +1435,65 @@ public class Enemy : MonoBehaviour
         {
             if(parent.isDead) 
             return;
+            RegenerateHealth();
         }
         #endregion
 
         #region HealthModule
-        public void TakeDamage(int amount)
+        private void RegenerateHealth()
+        {
+            parent.playerInSightRange = Physics.CheckSphere(parent.transform.position, parent.sightRange, parent.whatIsPlayer);
+            if (!parent.playerInSightRange)
             {
-                /*if(parent.floatingTextPrefab)
+                if (hitCount >= parent.requiredHitsToDie || parent.isDead) return;
+
+                if (Time.time - parent.lastRegenTime >= 1f / parent.healthRegenRate)
                 {
-                    Vector3 spawnPosition = parent.transform.position;
-                    spawnPosition.y += 1.5f;
-                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
-                }*/
+                    DelayHelper.DelayAction(1f, () =>
+                    {
+                        Transform target = parent.visual.transform;
+                        target.DOScale(1, 0.35f);
+                        hitCount = 0;
+                        parent.lastRegenTime = Time.time; 
+                    });
+                }
+            }else
+            {
+                return;
+            }
+        }
 
-                parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
+        public void TakeDamage(int amount)
+        {
+            /*if(parent.floatingTextPrefab)
+            {
+                Vector3 spawnPosition = parent.transform.position;
+                spawnPosition.y += 1.5f;
+                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+            }*/
 
-                hitCount++;
+            parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
 
-                if (hitCount >= parent.requiredHitsToDie && !parent.isDead)
+            hitCount++;
+
+            if (hitCount >= parent.requiredHitsToDie && !parent.isDead)
+            {
+                Die();
+            }
+
+            if(!parent.isDead)
+            {
+                PlayHitFlash();
+                knockBack();
+                ScaleDown();
+                
+                if (hitCount >= parent.requiredHitsToDie)
                 {
                     Die();
                 }
-
-                if(!parent.isDead)
-                {
-                    PlayHitFlash();
-                    knockBack();
-                    ScaleDown();
-                    
-                    if (hitCount >= parent.requiredHitsToDie)
-                    {
-                        Die();
-                    }
-                }
             }
+        }
 
         public void Die()
         {
@@ -1413,7 +1541,7 @@ public class Enemy : MonoBehaviour
         }
         public void ScaleDown()
         {
-             Transform target = parent.visual.transform;
+            Transform target = parent.visual.transform;
             target.DOScale(target.localScale * 0.75f, 0.35f);
         }
         #endregion
