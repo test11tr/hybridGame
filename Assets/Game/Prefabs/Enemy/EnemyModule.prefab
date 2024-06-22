@@ -726,6 +726,7 @@ MonoBehaviour:
   isMeleeAttack: 0
   isRangedAttack: 1
   isBoss: 0
+  noBehaviour: 0
   agent: {fileID: 7799707335106303053}
   whatIsGround:
     serializedVersion: 2

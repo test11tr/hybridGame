@@ -7,7 +7,7 @@ public class LootBag : MonoBehaviour
 {
     public LootCollectable droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
-    float maxDropDistance = 1.5f;
+    public float maxDropDistance = 1.5f;
 
     Loot GetDroppedItem()
     {

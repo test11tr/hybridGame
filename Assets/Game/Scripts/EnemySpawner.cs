@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     public TextMeshPro cooldownText;
     public Rectangle bg;
     public Rectangle outline;
+    public bool showSpawnArea;
+    public bool showText;
 
     [Header("Debug")]
     [SerializeField]private float currentCooldownTime = 0f;
@@ -31,8 +33,17 @@ public class EnemySpawner : MonoBehaviour
         outline.Width = spawnAreaWidth;
         outline.Height = spawnAreaHeight;
 
-        bg.gameObject.SetActive(true);
-        outline.gameObject.SetActive(true);
+        if(showSpawnArea)
+        {
+            bg.gameObject.SetActive(true);
+            outline.gameObject.SetActive(true);
+        }
+        else
+        {
+            bg.gameObject.SetActive(false);
+            outline.gameObject.SetActive(false);
+        }
+
         cooldownText.gameObject.SetActive(false);
     }
 
@@ -42,13 +53,19 @@ public class EnemySpawner : MonoBehaviour
         {
             if (currentCooldownTime > 0)
             {
-                cooldownText.gameObject.SetActive(true);
-                cooldownText.text = "NEXT SPAWNS IN " + currentCooldownTime.ToString("F2") + "s";
+                if(showText)
+                {
+                    cooldownText.gameObject.SetActive(true);
+                    cooldownText.text = "NEXT SPAWNS IN " + currentCooldownTime.ToString("F2") + "s";
+                }
                 currentCooldownTime -= Time.deltaTime;
             }
             else
             {
-                cooldownText.gameObject.SetActive(false);
+                if(showText)
+                {
+                    cooldownText.gameObject.SetActive(false);
+                }
                 SpawnEnemies();
                 currentCooldownTime = spawnCooldown;
             }

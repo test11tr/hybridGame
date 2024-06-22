@@ -97,10 +97,13 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameManager.Instance.player.rb.transform;
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = movementSpeed;
-        agent.angularSpeed = rotationSpeed;
-        agent.acceleration = acceleration;
+        if(!noBehaviour)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.speed = movementSpeed;
+            agent.angularSpeed = rotationSpeed;
+            agent.acceleration = acceleration;
+        }
         currentHealth = maxHealth;
         GetAllRenderers();
 
@@ -1322,7 +1325,7 @@ public class Enemy : MonoBehaviour
         public void Update()
         {
             CheckHealthForUI();
-            if(parent.isDead || parent.agent.enabled == false) 
+            if(parent.isDead) 
             return;
         }
         #endregion
@@ -1363,6 +1366,8 @@ public class Enemy : MonoBehaviour
                     _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
                 }
 
+                parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
+
                 parent.currentHealth -= amount;
                 if (parent.currentHealth <= 0 && !parent.isDead)
                 {
@@ -1390,8 +1395,8 @@ public class Enemy : MonoBehaviour
             parent.pufEffect.Play();
             PlayDeadFlash();
             parent.visual.SetActive(false);
-            parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
 
+            parent.OnDeath?.Invoke();
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
                 Destroy(parent.gameObject);
