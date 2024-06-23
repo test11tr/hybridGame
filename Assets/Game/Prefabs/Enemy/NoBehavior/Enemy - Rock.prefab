@@ -87,12 +87,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8044e0c10f1eb7b43a4871b58698a347, type: 2}
     - target: {fileID: 4112722852153083017, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
+      propertyPath: dropCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112722852153083017, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
+      propertyPath: experienceValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112722852153083017, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
       propertyPath: healthRegenRate
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4112722852153083017, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
       propertyPath: enemyDestroyTimeOnDead
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4436721210916939201, guid: 51454526675dbd64a9edafbba4fff9db, type: 3}
       propertyPath: m_Height

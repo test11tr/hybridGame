@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public SaveModule saveModule;
     public CharacterControlManager player;
     public WalletModule wallet;
+    public ExperienceModule experienceModule;
     public DelayHelper delayHelper;
     public Camera mainCamera;
     public CinemachineVirtualCamera vcam;

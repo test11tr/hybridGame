@@ -87,5 +87,8 @@ public class SaveModule : MonoBehaviour
         public int virtualStone;
         [Header("Character")]
         public int characterCurrentHealth;
+        public int characterCurrentExperience;
+        public int characterCurrentLevel;
+        public int characterExperienceToNextLevel;
     }
 }

@@ -31,12 +31,19 @@ public class VirtualWalletModule : MonoBehaviour
     public int currentWood;
     public int currentStone;
 
+    [Header("Wallet - References")]
+    private WalletModule walletModule;
+    private SaveModule saveModule;
+
     void Start()
     {
-        currentCoin = GameManager.Instance.saveModule.saveInfo.virtualCoin;
-        currentGem = GameManager.Instance.saveModule.saveInfo.virtualGem;
-        currentWood = GameManager.Instance.saveModule.saveInfo.virtualWood;
-        currentStone = GameManager.Instance.saveModule.saveInfo.virtualStone;
+        walletModule = GameManager.Instance.wallet;
+        saveModule = GameManager.Instance.saveModule;
+        
+        currentCoin = saveModule.saveInfo.virtualCoin;
+        currentGem = saveModule.saveInfo.virtualGem;
+        currentWood = saveModule.saveInfo.virtualWood;
+        currentStone = saveModule.saveInfo.virtualStone;
         currentCargo = currentCoin + currentGem + currentWood + currentStone;
 
         uiItemsToValues.Add(coinUIItem, currentCoin);
@@ -90,50 +97,49 @@ public class VirtualWalletModule : MonoBehaviour
     {
         currentCoin += amount;
         coinText.text = currentCoin.ToString();
-        GameManager.Instance.saveModule.saveInfo.virtualCoin = currentCoin;
+        saveModule.saveInfo.virtualCoin = currentCoin;
     }
 
     public void AddGem(int amount)
     {
         currentGem += amount;
         gemText.text = currentGem.ToString();
-        GameManager.Instance.saveModule.saveInfo.virtualGem = currentGem;
+        saveModule.saveInfo.virtualGem = currentGem;
     }
 
     public void AddWood(int amount)
     {
         currentWood += amount;
         woodText.text = currentWood.ToString();
-        GameManager.Instance.saveModule.saveInfo.virtualWood = currentWood;
+        saveModule.saveInfo.virtualWood = currentWood;
     }
 
     public void AddStone(int amount)
     {
         currentStone += amount;
         stoneText.text = currentStone.ToString();
-        GameManager.Instance.saveModule.saveInfo.virtualStone = currentStone;
+        saveModule.saveInfo.virtualStone = currentStone;
     }
 
     public void TransferToWallet()
     {
-        WalletModule walletModule = FindObjectOfType<WalletModule>(); // WalletModule'ü bul
-    if (walletModule != null)
-    {
-        if(currentCoin > 0)
-            walletModule.AddCoin(currentCoin);
-        if(currentGem > 0)
-            walletModule.AddGem(currentGem);
-        if(currentWood > 0)
-            walletModule.AddWood(currentWood);
-        if(currentStone > 0)
-            walletModule.AddStone(currentStone);
+        if (walletModule != null)
+        {
+            if(currentCoin > 0)
+                walletModule.AddCoin(currentCoin);
+            if(currentGem > 0)
+                walletModule.AddGem(currentGem);
+            if(currentWood > 0)
+                walletModule.AddWood(currentWood);
+            if(currentStone > 0)
+                walletModule.AddStone(currentStone);
 
-        currentCoin = 0;
-        currentGem = 0;
-        currentWood = 0;
-        currentStone = 0;
+            currentCoin = 0;
+            currentGem = 0;
+            currentWood = 0;
+            currentStone = 0;
 
-        UpdateUI();
-    }
+            UpdateUI();
+        }
     }
 }

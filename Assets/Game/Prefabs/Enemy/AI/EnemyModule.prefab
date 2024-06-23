@@ -738,8 +738,8 @@ MonoBehaviour:
   movementSpeed: 3
   rotationSpeed: 120
   acceleration: 3
-  escapeSpeed: 0
-  escapeAcceleration: 0
+  runSpeed: 0
+  runAcceleration: 0
   damage: 1
   timeBetweenAttacks: 1
   projectile: {fileID: 5149638566504457480, guid: 6812b0ee5ff65f646b7c5b4f89cd5b18, type: 3}
@@ -755,6 +755,7 @@ MonoBehaviour:
   healthRegenRate: 25
   lastRegenTime: 0
   requiredHitsToDie: 0
+  experienceValue: 10
   lootBag: {fileID: 7308711344428413}
   dropCount: 3
   trail: {fileID: 3430284793497970592}

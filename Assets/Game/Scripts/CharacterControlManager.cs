@@ -60,6 +60,12 @@ public class CharacterControlManager : MonoBehaviour
     public float healthEaseSpeed;
     [HideInInspector] public int currentHealth;
 
+    [Header("Level / Experience Module")]
+    public int currentLevel;
+    public int currentExperience;
+    public int maxExperience;
+    public int levelExperienceMultiplier;
+
     [Header("Collector Module")]
     public GameObject currencyCollector;
 
@@ -71,6 +77,7 @@ public class CharacterControlManager : MonoBehaviour
     public floatingText floatingTextPrefab;
 
     [Header("Effects Module")]
+    public ParticleSystem levelUpEffect;
     public ParticleSystem onPowerUpEffect;
     public TrailRenderer speedUpTrail;
     public ParticleSystem dashEffect;
@@ -118,10 +125,12 @@ public class CharacterControlManager : MonoBehaviour
             EnableJoystick();
 
         loadHealth();
+        loadLevelData();
         setCombatColliders();
         GetAllRenderers();
         setAttackRangeVisualizer();
         InitializeWeaponPools();
+        GameManager.Instance.experienceModule.OnExperienceChange += HandleExperienceChange;
 
         if (isMeleeAttack)
         {
@@ -272,6 +281,56 @@ public class CharacterControlManager : MonoBehaviour
             });
         }
     }
+    #endregion
+
+    #region Level / Experience Module
+    public void loadLevelData()
+    {
+        if(GameManager.Instance.saveModule.saveInfo.characterCurrentLevel == 0 && GameManager.Instance.saveModule.saveInfo.characterCurrentExperience == 0)
+        {
+            GameManager.Instance.saveModule.saveInfo.characterCurrentLevel = 0;
+            GameManager.Instance.saveModule.saveInfo.characterCurrentExperience = 0;
+            GameManager.Instance.saveModule.saveInfo.characterExperienceToNextLevel = maxExperience;
+            GameManager.Instance.experienceModule.UpdateExperienceUI(currentExperience, currentLevel, maxExperience);
+        }
+        currentLevel = GameManager.Instance.saveModule.saveInfo.characterCurrentLevel;
+        currentExperience = GameManager.Instance.saveModule.saveInfo.characterCurrentExperience;
+        maxExperience = GameManager.Instance.saveModule.saveInfo.characterExperienceToNextLevel;
+        GameManager.Instance.experienceModule.UpdateExperienceUI(currentExperience, currentLevel, maxExperience);
+    }
+
+    public void HandleExperienceChange(int experience)
+    {
+        currentExperience += experience;
+        GameManager.Instance.saveModule.saveInfo.characterCurrentExperience = currentExperience;
+        GameManager.Instance.experienceModule.UpdateExperienceUI(currentExperience, currentLevel, maxExperience);
+
+        if(currentExperience >= maxExperience)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+
+        currentLevel++;
+        GameManager.Instance.saveModule.saveInfo.characterCurrentLevel = currentLevel;
+        currentExperience = 0;
+        GameManager.Instance.saveModule.saveInfo.characterCurrentExperience = currentExperience;
+        maxExperience = maxExperience * levelExperienceMultiplier;
+        GameManager.Instance.saveModule.saveInfo.characterExperienceToNextLevel = maxExperience;
+        GameManager.Instance.experienceModule.UpdateExperienceUI(currentExperience, currentLevel, maxExperience);
+
+        levelUpEffect.Play();
+        if(floatingTextPrefab)
+        {
+            Vector3 spawnPosition = rb.transform.position;
+            spawnPosition.y += 2f;
+            floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+            _floatingText.SetText("LEVEL UP!", Color.white, 6f);
+        }
+}
     #endregion
 
     #region Combat Module

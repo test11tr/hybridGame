@@ -62,6 +62,9 @@ public class Enemy : MonoBehaviour
     [Header("NoBehaviourAI Module")]
     public int requiredHitsToDie;
 
+    [Header("Experience Module")]
+    public int experienceValue;
+
     [Header("Loot Module")]
     public LootBag lootBag;
     public int dropCount;
@@ -408,7 +411,8 @@ public class Enemy : MonoBehaviour
             parent.trail.emitting = false;
             parent.visual.SetActive(false);
             parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
-
+            
+            GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
             parent.OnDeath?.Invoke();
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
@@ -803,6 +807,7 @@ public class Enemy : MonoBehaviour
             parent.visual.SetActive(false);
             parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
 
+            GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
             parent.OnDeath?.Invoke();
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
@@ -1085,6 +1090,7 @@ public class Enemy : MonoBehaviour
             parent.visual.SetActive(false);
             parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
 
+            GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
             parent.OnDeath?.Invoke();
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
@@ -1367,6 +1373,7 @@ public class Enemy : MonoBehaviour
             parent.visual.SetActive(false);
             parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
 
+            GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
             parent.OnDeath?.Invoke();
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
@@ -1474,6 +1481,7 @@ public class Enemy : MonoBehaviour
             }*/
 
             parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);
+            GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
 
             hitCount++;
 
@@ -1501,7 +1509,7 @@ public class Enemy : MonoBehaviour
             parent.pufEffect.Play();
             PlayDeadFlash();
             parent.visual.SetActive(false);
-
+            
             parent.OnDeath?.Invoke();
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
