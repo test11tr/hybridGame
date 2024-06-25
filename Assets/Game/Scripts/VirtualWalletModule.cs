@@ -30,6 +30,7 @@ public class VirtualWalletModule : MonoBehaviour
     public int currentGem;
     public int currentWood;
     public int currentStone;
+    string formattedMaxExperience;
 
     [Header("Wallet - References")]
     private WalletModule walletModule;
@@ -64,7 +65,7 @@ public class VirtualWalletModule : MonoBehaviour
 
     public void Update()
     {
-        currentCargoText.text = "CARGO: " + currentCargo + "/" + maxCargo;
+        currentCargoText.text = "CARGO: " + NumberFormatter.Convert(currentCargo) + "/" + NumberFormatter.Convert(maxCargo);
         currentCargo = currentCoin + currentGem + currentWood + currentStone;
         progressBar.fillAmount = (float)currentCargo / maxCargo;
 
@@ -96,28 +97,28 @@ public class VirtualWalletModule : MonoBehaviour
     public void AddCoin(int amount)
     {
         currentCoin += amount;
-        coinText.text = currentCoin.ToString();
+        coinText.text = NumberFormatter.Convert(currentCoin);
         saveModule.saveInfo.virtualCoin = currentCoin;
     }
 
     public void AddGem(int amount)
     {
         currentGem += amount;
-        gemText.text = currentGem.ToString();
+        gemText.text = NumberFormatter.Convert(currentGem);
         saveModule.saveInfo.virtualGem = currentGem;
     }
 
     public void AddWood(int amount)
     {
         currentWood += amount;
-        woodText.text = currentWood.ToString();
+        woodText.text = NumberFormatter.Convert(currentWood);
         saveModule.saveInfo.virtualWood = currentWood;
     }
 
     public void AddStone(int amount)
     {
         currentStone += amount;
-        stoneText.text = currentStone.ToString();
+        stoneText.text = NumberFormatter.Convert(currentStone);
         saveModule.saveInfo.virtualStone = currentStone;
     }
 

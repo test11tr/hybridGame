@@ -38,7 +38,7 @@ public class WalletModule : MonoBehaviour
     public void AddCoin(int amount)
     {
         coinCount += amount;
-        coinText.text = coinCount.ToString();
+        coinText.text = NumberFormatter.Convert(coinCount);
         coinEffect.Play();
         GameManager.Instance.saveModule.saveInfo.coinCount = coinCount;
     }
@@ -46,7 +46,7 @@ public class WalletModule : MonoBehaviour
     public void AddGem(int amount)
     {
         gemCount += amount;
-        gemText.text = gemCount.ToString();
+        gemText.text = NumberFormatter.Convert(gemCount);
         gemEffect.Play();
         GameManager.Instance.saveModule.saveInfo.gemCount = gemCount;
     }
@@ -54,7 +54,7 @@ public class WalletModule : MonoBehaviour
     public void AddWood(int amount)
     {
         woodAmount += amount;
-        woodText.text = woodAmount.ToString();
+        woodText.text = NumberFormatter.Convert(woodAmount);
         woodEffect.Play();
         GameManager.Instance.saveModule.saveInfo.woodAmount = woodAmount;
     }
@@ -62,7 +62,7 @@ public class WalletModule : MonoBehaviour
     public void AddStone(int amount)
     {
         stoneAmount += amount;
-        stoneText.text = stoneAmount.ToString();
+        stoneText.text = NumberFormatter.Convert(stoneAmount);
         stoneEffect.Play();
         GameManager.Instance.saveModule.saveInfo.stoneAmount = stoneAmount;
     }
