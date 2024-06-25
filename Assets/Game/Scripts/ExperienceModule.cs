@@ -30,7 +30,10 @@ public class ExperienceModule : MonoBehaviour
         _maxExperience = maxExperience;
         _currentlevel = currentlevel;
         
-        experienceText.text = currentExperience.ToString() + " / " + maxExperience.ToString();
+        string formattedCurrentExperience = NumberFormatter.Convert(currentExperience);
+        string formattedMaxExperience = NumberFormatter.Convert(maxExperience);
+        
+        experienceText.text = $"{formattedCurrentExperience} / {formattedMaxExperience}";
         levelText.text = (currentlevel+1).ToString();
         experienceBar.fillAmount = (float)currentExperience / maxExperience;
     }    
