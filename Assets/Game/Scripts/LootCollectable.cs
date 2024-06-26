@@ -60,7 +60,7 @@ public class LootCollectable : MonoBehaviour
 
     private void Collect()
     {
-        Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
+        Vector3 playerPos = GameManager.Instance.player.collectTarget.position;
         transform.DOJump(playerPos, jumpPower, 1, collectDuration).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             if(collectableType == CollectableType.Coin)

@@ -692,7 +692,7 @@ MonoBehaviour:
   floatFontSize: 5
   floatColor: {r: 1, g: 1, b: 1, a: 1}
   floatingTextPrefab: {fileID: 4309162217667454326, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}
-  collectDuration: 0.4
+  collectDuration: 0.2
   jumpPower: 5
   trail: {fileID: 4053431571650412356}
 --- !u!1 &7649413448538539584

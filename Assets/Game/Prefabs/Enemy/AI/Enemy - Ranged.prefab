@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1759109792471291235, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1759109792471291235, guid: 452bb178c42f3dc42be3b22654de6f10, type: 3}
       propertyPath: isMeleeAttack

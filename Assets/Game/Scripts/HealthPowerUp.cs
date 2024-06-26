@@ -43,7 +43,7 @@ public class HealthPowerUp : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        Vector3 playerPos = GameManager.Instance.player.rb.transform.position;
+        Vector3 playerPos = GameManager.Instance.player.collectTarget.position;
         transform.DOJump(playerPos, jumpPower, 1, collectDuration).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             GameManager.Instance.player.AddHealth(healthAmount);

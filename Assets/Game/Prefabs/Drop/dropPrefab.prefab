@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingTextPrefab: {fileID: 4309162217667454326, guid: 5a771a8c6e8fd104498e0545dbd4bbdd, type: 3}
   jumpPower: 5
-  collectDuration: 0.5
+  collectDuration: 0.2
   isCollectable: 0
 --- !u!54 &1267907486225544724
 Rigidbody:

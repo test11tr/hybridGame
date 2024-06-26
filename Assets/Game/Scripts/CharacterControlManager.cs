@@ -68,6 +68,7 @@ public class CharacterControlManager : MonoBehaviour
 
     [Header("Collector Module")]
     public GameObject currencyCollector;
+    public Transform collectTarget;
 
     [Header("Attack Range Visualizer Module")]
     public GameObject attackRangeVisualizer;
@@ -212,6 +213,13 @@ public class CharacterControlManager : MonoBehaviour
     }
     #endregion
     
+    #region MenuHandler
+    public void OpenIncrementalMenu()
+    {
+        GameManager.Instance.openIncrementalMenu();
+    }
+    #endregion
+
     #region Movement Module
     public void EnableJoystick()
     {
