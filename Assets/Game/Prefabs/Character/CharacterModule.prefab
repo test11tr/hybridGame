@@ -1253,6 +1253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7068369312478700017}
   joystick: {fileID: 0}
+  statsModule: {fileID: 7277495658100612870}
   controller: {fileID: 0}
   playerAnimator: {fileID: 0}
   inputCanvas: {fileID: 0}
@@ -1265,11 +1266,14 @@ MonoBehaviour:
   dashCooldownTime: 1
   isRangedAttack: 0
   isMeleeAttack: 1
+  isRotatingBlades: 0
   rangedAttackRange: 4
   meleeAttackRange: 2
   detectorRange: 5
   damage: 1
-  splashDamageDivideMultiplier: 2
+  criticalChance: 0
+  criticalMultiplier: 0
+  splashDamageMultiplier: 0
   attackSpeedRange: 1
   attackSpeedMelee: 1
   timeBetweenAttacksRanged: 0.25
@@ -2602,6 +2606,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4553377130562492674}
+  - {fileID: 1713170103401438948}
   - {fileID: 6336431539732910923}
   - {fileID: 5664869212625603776}
   - {fileID: 9153195343897833303}
@@ -3272,6 +3277,93 @@ MonoBehaviour:
   m_Spacing: {x: 0.5, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &8432808869839500092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1713170103401438948}
+  - component: {fileID: 7277495658100612870}
+  m_Layer: 10
+  m_Name: CharacterStatsModule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1713170103401438948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432808869839500092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 242525671834763066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7277495658100612870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432808869839500092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aebea396b0fc58f4ba196f89d4287da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerManager: {fileID: 2224891057885841334}
+  isJoytick: 1
+  movementSpeed: 5
+  rotationSpeed: 10
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldownTime: 1
+  weaponType: 0
+  rangedAttackRange: 4
+  meleeAttackRange: 2
+  detectorRange: 5
+  damage: 1
+  criticalChance: 0
+  criticalMultiplier: 2
+  splashDamageMultiplier: 0.5
+  attackSpeedRange: 1
+  attackSpeedMelee: 1
+  timeBetweenAttacksRanged: 0.25
+  maxHealth: 100
+  healthEaseSpeed: 1.5
+  maxExperience: 100
+  levelExperienceMultiplier: 5
+  movementSpeedIncreaseMultiplier: 1.25
+  movementSpeedMaxLevel: 0
+  movementSpeedCurrentLevel: 0
+  damageIncreaseMultiplier: 2
+  damageMaxLevel: 100
+  damageCurrentLevel: 0
+  criticalChanceIncreaseMultiplier: 0
+  criticalChanceMaxLevel: 0
+  criticalChanceCurrentLevel: 0
+  criticalMultiplierIncreaseMultiplier: 0
+  criticalMultiplierMaxLevel: 0
+  criticalMultiplierCurrentLevel: 0
+  AttackRangeIncreaseMultiplier: 1.25
+  AttackRangeMaxLevel: 100
+  AttackRangeCurrentLevel: 0
+  attackSpeedIncreaseMultiplier: 0
+  attackSpeedMaxLevel: 0
+  attackSpeedCurrentLevel: 0
+  healthIncreaseMultiplier: 0
+  healthMaxLevel: 0
+  healthCurrentLevel: 0
 --- !u!1 &8618690736556708317
 GameObject:
   m_ObjectHideFlags: 0

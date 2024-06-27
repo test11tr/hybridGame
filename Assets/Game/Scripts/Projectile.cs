@@ -13,10 +13,10 @@ public class Projectile : MonoBehaviour
     public GameObject impactEffect;
     public GameObject impactEffect2;
 
-    private int _bulletDamage;
+    private float _bulletDamage;
     private Vector3 _startPos;
 
-    public void Fire(int damage, Vector3 targetPosition, float yOffset)
+    public void Fire(float damage, Vector3 targetPosition, float yOffset)
     {
         _startPos = transform.position;
         _bulletDamage = damage;

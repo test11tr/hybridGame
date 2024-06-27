@@ -10,39 +10,44 @@ using Shapes;
 using DG.Tweening;
 
 public class CharacterControlManager : MonoBehaviour
-{
+{    
     public Rigidbody rb;
-    [HideInInspector] public T11Joystick joystick;
-    [HideInInspector] public CharacterController controller;
-    [HideInInspector] public Animator playerAnimator;
-    [HideInInspector] public Canvas inputCanvas;
+    public T11Joystick joystick;
+    public CharacterStatsModule statsModule;
+    public CharacterController controller;
+    public Animator playerAnimator;
+    public Canvas inputCanvas;
 
-    [Header("Movement Module")]
+    [Header("Use Character Stats Module to edit these values!")]
+    [Foldout("Movement Module", foldEverything = true, styled = true, readOnly = false)]
     public bool isJoytick;
-    public float movementSpeed;
-    public float rotationSpeed;
+    [DisplayWithoutEdit()] public float movementSpeed;
+    [DisplayWithoutEdit()] public float rotationSpeed;
 
-    [Header("Character Rotation Module")]
+    [Foldout("Character Rotation Module", foldEverything = true, styled = true, readOnly = false)]
     public FLookAnimator lookAnimator;
 
-    [Header("Dash Module")]
-    public float dashSpeed;
-    public float dashDuration;
-    public float dashCooldownTime;
+    [Foldout("Dash Module", foldEverything = true, styled = true, readOnly = false)]
+    [DisplayWithoutEdit()] public float dashSpeed;
+    [DisplayWithoutEdit()] public float dashDuration;
+    [DisplayWithoutEdit()] public float dashCooldownTime;
     bool dashCooldownComplete = true;
     bool isDashing;
 
-    [Header("Combat Module")]
-    public bool isRangedAttack;
-    public bool isMeleeAttack;
-    public int rangedAttackRange;
-    public int meleeAttackRange;
-    public int detectorRange;
-    public int damage;
-    public int splashDamageDivideMultiplier;
-    public float attackSpeedRange;
-    public float attackSpeedMelee;
-    public float timeBetweenAttacksRanged;
+    [Foldout("Combat Module", foldEverything = true, styled = true, readOnly = false)]
+    [DisplayWithoutEdit()] public bool isRangedAttack;
+    [DisplayWithoutEdit()] public bool isMeleeAttack;
+    [DisplayWithoutEdit()] public bool isRotatingBlades;
+    [DisplayWithoutEdit()] public float rangedAttackRange;
+    [DisplayWithoutEdit()] public float meleeAttackRange;
+    [DisplayWithoutEdit()] public float detectorRange;
+    [DisplayWithoutEdit()] public float damage;
+    [DisplayWithoutEdit()] public float criticalChance;
+    [DisplayWithoutEdit()] public float criticalMultiplier;
+    [DisplayWithoutEdit()] public float splashDamageMultiplier;
+    [DisplayWithoutEdit()] public float attackSpeedRange;
+    [DisplayWithoutEdit()] public float attackSpeedMelee;
+    [DisplayWithoutEdit()] public float timeBetweenAttacksRanged;
     public Projectile projectile;
     public Transform projectileSpawnPoint;
     public Collider detectorCollider;
@@ -52,32 +57,33 @@ public class CharacterControlManager : MonoBehaviour
     private bool alreadyAttacked;
     private int attackCounter = 0;
 
-    [Header("Health Module")]
+    [Foldout("Health Module", foldEverything = true, styled = true, readOnly = false)]
     public GameObject healthModuleCanvas;
     public Image healthBar;
     public Image healthBarEase;
-    public int maxHealth;
-    public float healthEaseSpeed;
-    [HideInInspector] public int currentHealth;
+    [DisplayWithoutEdit()] public float maxHealth;
+    [DisplayWithoutEdit()] public float healthEaseSpeed;
+    [DisplayWithoutEdit()] public float currentHealth;
 
-    [Header("Level / Experience Module")]
-    public int currentLevel;
-    public int currentExperience;
-    public int maxExperience;
-    public int levelExperienceMultiplier;
+    [Foldout("Level / Experience Module", foldEverything = true, styled = true, readOnly = false)]
+    [DisplayWithoutEdit()] public int currentLevel;
+    [DisplayWithoutEdit()] public int currentExperience;
+    [DisplayWithoutEdit()] public int maxExperience;
+    [DisplayWithoutEdit()] public int levelExperienceMultiplier;
 
+    [Foldout("Collector Module", foldEverything = true, styled = true, readOnly = false)]
     [Header("Collector Module")]
     public GameObject currencyCollector;
     public Transform collectTarget;
 
-    [Header("Attack Range Visualizer Module")]
+    [Foldout("Attack Range Visualizer Module", foldEverything = true, styled = true, readOnly = false)]
     public GameObject attackRangeVisualizer;
     public Disc attackRangeVisualizerDisc;
 
-    [Header("Floating Text Module")]
+    [Foldout("Floating Text Module", foldEverything = true, styled = true, readOnly = false)]
     public floatingText floatingTextPrefab;
 
-    [Header("Effects Module")]
+    [Foldout("Effects Module", foldEverything = true, styled = true, readOnly = false)]
     public ParticleSystem levelUpEffect;
     public ParticleSystem onPowerUpEffect;
     public TrailRenderer speedUpTrail;
@@ -87,7 +93,7 @@ public class CharacterControlManager : MonoBehaviour
     public ParticleSystem deathEffect;
     public ParticleSystem swordSlashEffect;
 
-    [Header("FlashModule")]
+    [Foldout("Flash Module", foldEverything = true, styled = true, readOnly = false)]
     public Renderer[] includedRenderers;
     private SkinnedMeshRenderer[] allSkinnedMeshRenderers;
     private MeshRenderer[] allMeshRenderers;
@@ -96,17 +102,17 @@ public class CharacterControlManager : MonoBehaviour
     public Material[] originalMaterials;
     public float materialChangeDuration = .2f;
 
-    [Header("Aim Lock Module")]
+    [Foldout("Aim Lock Module", foldEverything = true, styled = true, readOnly = false)]
     public GameObject aimLock;
 
-    [Header("Virtual Wallet Module")]
+    [Foldout("Virtual Wallet Module", foldEverything = true, styled = true, readOnly = false)]
     public VirtualWalletModule virtualWallet;
 
-    [Header("Weapon References")]
+    [Foldout("Weapon References", foldEverything = true, styled = true, readOnly = false)]
     public List<GameObject> MeleeWeapons;
     public List<GameObject> RangedWeapons;
 
-    [Header("Debug")]
+    [Foldout("Debug", foldEverything = true, styled = true, readOnly = false)]
     public bool drawGizmos;
 
     private bool isDead;
@@ -118,6 +124,7 @@ public class CharacterControlManager : MonoBehaviour
         controller = GetComponentInChildren<CharacterController>();
         playerAnimator = GetComponentInChildren<Animator>();
         inputCanvas = GetComponentInChildren<Canvas>();
+        statsModule = GetComponentInChildren<CharacterStatsModule>();
     }
 
     private void Start()
@@ -481,9 +488,11 @@ public class CharacterControlManager : MonoBehaviour
 
     public void FireProjectile()
     {
+        bool isCriticalHit = UnityEngine.Random.value < criticalChance;
+        float finalDamageMultiplier = isCriticalHit ? criticalMultiplier : damage;
         float yOffset = projectileSpawnPoint.position.y;
         Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
-        _projectile.Fire(damage, closestEnemy.transform.position, yOffset);
+        _projectile.Fire(finalDamageMultiplier, closestEnemy.transform.position, yOffset);
     }
 
     public void DealMeleeDamage()
@@ -491,7 +500,9 @@ public class CharacterControlManager : MonoBehaviour
         if (closestEnemy != null)
         {
             swordSlashEffect.Play();
-            closestEnemy.TakeDamage(damage);
+            bool isCriticalHit = UnityEngine.Random.value < criticalChance;
+            float finalDamageMultiplier = isCriticalHit ? criticalMultiplier : damage;
+            closestEnemy.TakeDamage(finalDamageMultiplier);
 
             foreach (Enemy enemy in detectedEnemies)
             {
@@ -503,8 +514,8 @@ public class CharacterControlManager : MonoBehaviour
                 {
                     if(enemy == closestEnemy)
                         continue;
-        
-                    enemy.TakeDamage(damage / splashDamageDivideMultiplier);
+
+                    enemy.TakeDamage(finalDamageMultiplier * splashDamageMultiplier);
                 }
             }
         }
@@ -559,7 +570,7 @@ public class CharacterControlManager : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if(!isDead)
         {
@@ -567,7 +578,7 @@ public class CharacterControlManager : MonoBehaviour
             
             currentHealth -= amount;
             GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
-            healthBar.fillAmount = (float)currentHealth / maxHealth;
+            healthBar.fillAmount = currentHealth / maxHealth;
 
             PlayHitFlash();
 

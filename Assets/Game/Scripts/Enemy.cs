@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     public float runAcceleration;
 
     [Header("Enemy Attack")]
-    public int damage;
+    public float damage;
     public float timeBetweenAttacks;
     public Projectile projectile;
     public Transform projectileSpawnPoint;
@@ -53,11 +53,11 @@ public class Enemy : MonoBehaviour
     public GameObject healthModuleCanvas;
     public Image healthBar;
     public Image healthBarEase;
-    public int maxHealth;
+    public float maxHealth;
     public float healthEaseSpeed;
     public float healthRegenRate; 
     [HideInInspector] public float lastRegenTime;
-    private int currentHealth;
+    private float currentHealth;
 
     [Header("NoBehaviourAI Module")]
     public int requiredHitsToDie;
@@ -158,7 +158,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if(isCivilian)
         {
@@ -176,6 +176,13 @@ public class Enemy : MonoBehaviour
         {
             noBehaviorAI.TakeDamage(amount);
         }
+    }
+
+    public void getSpawnerInfo(Vector3 center, float width, float height)
+    {
+        spawnAreaCenter = center;
+        spawnAreaWidth = width;
+        spawnAreaHeight = height;
     }
     #endregion
 
@@ -371,17 +378,8 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(float amount)
         {
-            if(parent.floatingTextPrefab)
-            {
-                Vector3 spawnPosition = parent.transform.position;
-                spawnPosition.y += 1.5f;
-                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
-            }
-
-            parent.currentHealth -= amount;
             if (parent.currentHealth <= 0 && !parent.isDead)
             {
                 Die();
@@ -390,6 +388,15 @@ public class Enemy : MonoBehaviour
             if(!parent.isDead)
             {
                 parent.currentHealth -= amount;
+
+                if(parent.floatingTextPrefab)
+                {
+                    Vector3 spawnPosition = parent.transform.position;
+                    spawnPosition.y += 1.5f;
+                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                }
+
                 parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
 
                 PlayHitFlash();
@@ -462,118 +469,6 @@ public class Enemy : MonoBehaviour
             parent.transform.DOJump(parent.transform.position, 1f, 1, 0.35f);
         }
         #endregion
-    }
-
-    public void getSpawnerInfo(Vector3 center, float width, float height)
-    {
-        spawnAreaCenter = center;
-        spawnAreaWidth = width;
-        spawnAreaHeight = height;
-    }
-
-    bool IsWithinSpawnArea()
-    {
-        return Vector3.Distance(transform.position, spawnAreaCenter) <= Mathf.Max(spawnAreaWidth, spawnAreaHeight) / 2;
-    }
-
-    void SetDestinationToSpawnAreaCenter()
-    {
-        agent.SetDestination(spawnAreaCenter);
-    }
-
-    private void Patrolling()
-    {
-        if (!walkPointSet)
-        {
-            SearchWalkPoint();
-        }
-        else
-        {
-            agent.SetDestination(walkPoint);
-        }
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        if (distanceToWalkPoint.magnitude < 1f)
-        {
-            walkPointSet = false;
-        }
-    }
-
-    private void ChasePlayer()
-    {
-        agent.SetDestination(player.position);
-    }
-
-    private void AttackPlayer()
-    {
-        agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
-
-        if (!alreadyAttacked)
-        {
-            alreadyAttacked = true;
-            // Attack code here
-            if(isRangedAttack)
-            {
-                float yOffset = projectileSpawnPoint.position.y;
-                Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
-                _projectile.Fire(damage, player.position, yOffset);
-            }
-            
-            DelayHelper.DelayAction(timeBetweenAttacks, () =>
-            {
-                alreadyAttacked = false;
-            });
-        }
-    }
-
-    private void EscapeFromPlayer()
-    {
-        if (!walkPointSet)
-        {
-            SearhEscapeWalkPoint();
-        }
-        else
-        {
-            agent.SetDestination(walkPoint);
-        }
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        if (distanceToWalkPoint.magnitude < 1f)
-        {
-            walkPointSet = false;
-        }
-    }
-
-    private void SearhEscapeWalkPoint()
-    {
-        float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
-        float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        agent.SetDestination(walkPoint);
-
-        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
-        }
-    }
-
-    private void SearchWalkPoint()
-    {
-        float randomZ = UnityEngine.Random.Range(-spawnAreaHeight / 2, spawnAreaHeight / 2);
-        float randomX = UnityEngine.Random.Range(-spawnAreaWidth / 2, spawnAreaWidth / 2);
-
-        Vector3 randomPoint = spawnAreaCenter + new Vector3(randomX, 0, randomZ);
-        walkPoint = new Vector3(randomPoint.x, transform.position.y, randomPoint.z);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
-        }
     }
     #endregion
 
@@ -766,17 +661,8 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(float amount)
         {
-            if(parent.floatingTextPrefab)
-            {
-                Vector3 spawnPosition = parent.transform.position;
-                spawnPosition.y += 1.5f;
-                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
-            }
-
-            parent.currentHealth -= amount;
             if (parent.currentHealth <= 0 && !parent.isDead)
             {
                 Die();
@@ -785,6 +671,15 @@ public class Enemy : MonoBehaviour
             if(!parent.isDead)
             {
                 parent.currentHealth -= amount;
+
+                if(parent.floatingTextPrefab)
+                {
+                    Vector3 spawnPosition = parent.transform.position;
+                    spawnPosition.y += 1.5f;
+                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                }
+
                 parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
 
                 PlayHitFlash();
@@ -1049,17 +944,8 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(float amount)
         {
-            if(parent.floatingTextPrefab)
-            {
-                Vector3 spawnPosition = parent.transform.position;
-                spawnPosition.y += 1.5f;
-                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
-            }
-
-            parent.currentHealth -= amount;
             if (parent.currentHealth <= 0 && !parent.isDead)
             {
                 Die();
@@ -1068,6 +954,15 @@ public class Enemy : MonoBehaviour
             if(!parent.isDead)
             {
                 parent.currentHealth -= amount;
+
+                if(parent.floatingTextPrefab)
+                {
+                    Vector3 spawnPosition = parent.transform.position;
+                    spawnPosition.y += 1.5f;
+                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                }
+
                 parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
 
                 PlayHitFlash();
@@ -1332,17 +1227,8 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(float amount)
         {
-            if(parent.floatingTextPrefab)
-            {
-                Vector3 spawnPosition = parent.transform.position;
-                spawnPosition.y += 1.5f;
-                floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
-            }
-
-            parent.currentHealth -= amount;
             if (parent.currentHealth <= 0 && !parent.isDead)
             {
                 Die();
@@ -1351,6 +1237,15 @@ public class Enemy : MonoBehaviour
             if(!parent.isDead)
             {
                 parent.currentHealth -= amount;
+
+                if(parent.floatingTextPrefab)
+                {
+                    Vector3 spawnPosition = parent.transform.position;
+                    spawnPosition.y += 1.5f;
+                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                }
+
                 parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
 
                 PlayHitFlash();
@@ -1470,7 +1365,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(float amount)
         {
             /*if(parent.floatingTextPrefab)
             {
