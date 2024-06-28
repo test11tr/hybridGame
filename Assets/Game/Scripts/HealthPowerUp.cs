@@ -5,16 +5,16 @@ using DG.Tweening;
 
 public class HealthPowerUp : MonoBehaviour
 {
-    [Header("PowerUp Settings")]
+    [Foldout("PowerUp Settings", foldEverything = true, styled = true, readOnly = false)]
     public string powerUpName;
     //public string floatText;
     //public int floatFontSize;
     //public Color floatColor;
     
-    [Header("PowerUp Specialized Settings")]
+    [Foldout("PowerUp Specialized Settings", foldEverything = true, styled = true, readOnly = false)]
     public int healthAmount;
 
-    [Header("Other Settings")]
+    [Foldout("Other Settings", foldEverything = true, styled = true, readOnly = false)]
     public floatingText floatingTextPrefab;
     public float collectDuration;
     public float jumpPower;

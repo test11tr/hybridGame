@@ -11,14 +11,14 @@ using DG.Tweening;
 
 public class CharacterControlManager : MonoBehaviour
 {    
+    [Header("Use Character Stats Module to values in this Class!")]
     public Rigidbody rb;
     public T11Joystick joystick;
     public CharacterStatsModule statsModule;
     public CharacterController controller;
     public Animator playerAnimator;
     public Canvas inputCanvas;
-
-    [Header("Use Character Stats Module to edit these values!")]
+    
     [Foldout("Movement Module", foldEverything = true, styled = true, readOnly = false)]
     public bool isJoytick;
     [DisplayWithoutEdit()] public float movementSpeed;
@@ -47,7 +47,6 @@ public class CharacterControlManager : MonoBehaviour
     [DisplayWithoutEdit()] public float splashDamageMultiplier;
     [DisplayWithoutEdit()] public float attackSpeedRange;
     [DisplayWithoutEdit()] public float attackSpeedMelee;
-    [DisplayWithoutEdit()] public float timeBetweenAttacksRanged;
     public Projectile projectile;
     public Transform projectileSpawnPoint;
     public Collider detectorCollider;
@@ -134,7 +133,6 @@ public class CharacterControlManager : MonoBehaviour
 
         loadHealth();
         loadLevelData();
-        setCombatColliders();
         GetAllRenderers();
         setAttackRangeVisualizer();
         InitializeWeaponPools();
@@ -192,10 +190,32 @@ public class CharacterControlManager : MonoBehaviour
 
     private void setAttackRangeVisualizer()
     {
+        ((SphereCollider)detectorCollider).radius = detectorRange;
         if(isRangedAttack)
+        {
+            ((SphereCollider)attackCollider).radius = rangedAttackRange;
             attackRangeVisualizerDisc.Radius = rangedAttackRange;
+        }
         else if(isMeleeAttack)
+        {
+            ((SphereCollider)attackCollider).radius = meleeAttackRange;
             attackRangeVisualizerDisc.Radius = meleeAttackRange;
+        }            
+    }
+
+    public void updateAttackRangeVisualizer()
+    {
+        ((SphereCollider)detectorCollider).radius = detectorRange;
+        if(isRangedAttack)
+        {
+            ((SphereCollider)attackCollider).radius = rangedAttackRange;
+            attackRangeVisualizerDisc.Radius = rangedAttackRange;
+        }
+        else if(isMeleeAttack)
+        {
+            ((SphereCollider)attackCollider).radius = meleeAttackRange;
+            attackRangeVisualizerDisc.Radius = meleeAttackRange;
+        }    
     }
 
     private void InitializeWeaponPools()
@@ -349,15 +369,6 @@ public class CharacterControlManager : MonoBehaviour
     #endregion
 
     #region Combat Module
-    private void setCombatColliders()
-    {
-        ((SphereCollider)detectorCollider).radius = detectorRange;
-        if(isRangedAttack)
-            ((SphereCollider)attackCollider).radius = rangedAttackRange;
-        else if(isMeleeAttack)
-            ((SphereCollider)attackCollider).radius = meleeAttackRange;
-    }
-
     public void HandleTriggerEnter(Collider other)
     {
         
@@ -447,9 +458,10 @@ public class CharacterControlManager : MonoBehaviour
                 if(isRangedAttack)
                 {
                     float timeToWait = 1;
+                    
+                    playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
                     timeToWait = GetAnimationSpeed("rangedattack1");
                     playerAnimator.SetTrigger("rangedattack1");
-                    playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
 
                     DelayHelper.DelayAction(timeToWait, () =>
                     {
@@ -462,15 +474,15 @@ public class CharacterControlManager : MonoBehaviour
                     float timeToWait = 1;
                     if(attackCounter == 0)
                     {
+                        playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
                         timeToWait = GetAnimationSpeed("meleeattack1");
                         playerAnimator.SetTrigger("meleeattack1");
-                        playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
                         attackCounter++;
                     }else
                     {
+                        playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
                         timeToWait = GetAnimationSpeed("meleeattack2");
                         playerAnimator.SetTrigger("meleeattack2");
-                        playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
                         attackCounter = 0;
                     }
                     
@@ -489,10 +501,20 @@ public class CharacterControlManager : MonoBehaviour
     public void FireProjectile()
     {
         bool isCriticalHit = UnityEngine.Random.value < criticalChance;
-        float finalDamageMultiplier = isCriticalHit ? criticalMultiplier : damage;
+        float finalDamage;
+        if (isCriticalHit)
+        {
+            finalDamage =criticalMultiplier * damage;
+            closestEnemy.TakeDamage(finalDamage, true);
+        }else
+        {
+            finalDamage = damage;
+            closestEnemy.TakeDamage(finalDamage, false);
+        }
+
         float yOffset = projectileSpawnPoint.position.y;
         Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
-        _projectile.Fire(finalDamageMultiplier, closestEnemy.transform.position, yOffset);
+        _projectile.Fire(finalDamage, closestEnemy.transform.position, yOffset);
     }
 
     public void DealMeleeDamage()
@@ -501,8 +523,17 @@ public class CharacterControlManager : MonoBehaviour
         {
             swordSlashEffect.Play();
             bool isCriticalHit = UnityEngine.Random.value < criticalChance;
-            float finalDamageMultiplier = isCriticalHit ? criticalMultiplier : damage;
-            closestEnemy.TakeDamage(finalDamageMultiplier);
+            float finalDamage;
+            if (isCriticalHit)
+            {
+                finalDamage =criticalMultiplier * damage;
+                closestEnemy.TakeDamage(finalDamage, true);
+            }else
+            {
+                finalDamage = damage;
+                closestEnemy.TakeDamage(finalDamage, false);
+            }
+            
 
             foreach (Enemy enemy in detectedEnemies)
             {
@@ -515,7 +546,10 @@ public class CharacterControlManager : MonoBehaviour
                     if(enemy == closestEnemy)
                         continue;
 
-                    enemy.TakeDamage(finalDamageMultiplier * splashDamageMultiplier);
+                    if(isCriticalHit)
+                        enemy.TakeDamage((damage * splashDamageMultiplier) * criticalMultiplier, true);
+                    else
+                        enemy.TakeDamage(damage * splashDamageMultiplier, false);
                 }
             }
         }
@@ -587,7 +621,7 @@ public class CharacterControlManager : MonoBehaviour
                 Vector3 spawnPosition = rb.transform.position;
                 spawnPosition.y += 1.5f;
                 floatingText _floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
-                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 3f);
             }
 
             if (currentHealth <= 0)

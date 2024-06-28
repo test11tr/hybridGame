@@ -6,12 +6,12 @@ using TMPro;
 
 public class ExperienceModule : MonoBehaviour
 {
-    [Header("Experience - References")]
+    [Foldout("Experience - References", foldEverything = true, styled = true, readOnly = false)]
     public TMP_Text experienceText;
     public TMP_Text levelText;
     public Image experienceBar;
-    
-    [Header("Experience - Values (Debug Puroses)")]
+
+    [Foldout("Experience - Values (Debug Puroses)", foldEverything = true, styled = true, readOnly = true)]
     public int _currentExperience;
     public int _maxExperience;
     public int _currentlevel;

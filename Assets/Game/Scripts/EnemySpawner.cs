@@ -4,7 +4,7 @@ using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Spawner Settings")]
+    [Foldout("Spawner Settings", foldEverything = true, styled = true, readOnly = false)]
     public float spawnAreaWidth = 10f;
     public float spawnAreaHeight = 10f;
     public GameObject enemyPrefab;
@@ -12,14 +12,14 @@ public class EnemySpawner : MonoBehaviour
     public bool respawnEnemies = true;
     public float spawnCooldown = 10f;
 
-    [Header("Spawner Visual")]
+    [Foldout("Spawner Visual", foldEverything = true, styled = true, readOnly = false)]
     public TextMeshPro cooldownText;
     public Rectangle bg;
     public Rectangle outline;
     public bool showSpawnArea;
     public bool showText;
 
-    [Header("Debug")]
+    [Foldout("Debug", foldEverything = true, styled = true, readOnly = false)]
     [SerializeField]private float currentCooldownTime = 0f;
     [SerializeField] private int activeEnemies = 0;
 

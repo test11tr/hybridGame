@@ -1276,7 +1276,6 @@ MonoBehaviour:
   splashDamageMultiplier: 0
   attackSpeedRange: 1
   attackSpeedMelee: 1
-  timeBetweenAttacksRanged: 0.25
   projectile: {fileID: 6408362271589990350, guid: 59a30503ce5fde74eb94905f58097405, type: 3}
   projectileSpawnPoint: {fileID: 7216461378338583589}
   detectorCollider: {fileID: 925757178619946367}
@@ -3333,37 +3332,43 @@ MonoBehaviour:
   meleeAttackRange: 2
   detectorRange: 5
   damage: 1
-  criticalChance: 0
-  criticalMultiplier: 2
-  splashDamageMultiplier: 0.5
+  criticalChance: 0.05
+  criticalMultiplier: 1.25
+  splashDamageMultiplier: 1
   attackSpeedRange: 1
   attackSpeedMelee: 1
-  timeBetweenAttacksRanged: 0.25
   maxHealth: 100
   healthEaseSpeed: 1.5
   maxExperience: 100
   levelExperienceMultiplier: 5
-  movementSpeedIncreaseMultiplier: 1.25
-  movementSpeedMaxLevel: 0
+  movementSpeedIncreaseMultiplier: 1.025
+  movementSpeedMaxLevel: 100
   movementSpeedCurrentLevel: 0
-  damageIncreaseMultiplier: 2
+  damageIncreaseMultiplier: 1.025
   damageMaxLevel: 100
   damageCurrentLevel: 0
-  criticalChanceIncreaseMultiplier: 0
-  criticalChanceMaxLevel: 0
+  criticalChanceIncreaseMultiplier: 1.05
+  criticalChanceMaxLevel: 100
   criticalChanceCurrentLevel: 0
-  criticalMultiplierIncreaseMultiplier: 0
-  criticalMultiplierMaxLevel: 0
+  criticalMultiplierIncreaseMultiplier: 1.05
+  criticalMultiplierMaxLevel: 100
   criticalMultiplierCurrentLevel: 0
-  AttackRangeIncreaseMultiplier: 1.25
+  AttackRangeIncreaseMultiplier: 1.025
   AttackRangeMaxLevel: 100
   AttackRangeCurrentLevel: 0
-  attackSpeedIncreaseMultiplier: 0
-  attackSpeedMaxLevel: 0
+  attackSpeedIncreaseMultiplier: 1.025
+  attackSpeedMaxLevel: 100
   attackSpeedCurrentLevel: 0
-  healthIncreaseMultiplier: 0
-  healthMaxLevel: 0
+  healthIncreaseMultiplier: 1.025
+  healthMaxLevel: 100
   healthCurrentLevel: 0
+  movementSpeedPercentageIncrease: 0
+  damagePercentageIncrease: 0
+  criticalChancePercentageIncrease: 0
+  criticalMultiplierPercentageIncrease: 0
+  AttackRangePercentageIncrease: 0
+  attackSpeedPercentageIncrease: 0
+  healthPercentageIncrease: 0
 --- !u!1 &8618690736556708317
 GameObject:
   m_ObjectHideFlags: 0

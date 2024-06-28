@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
                 {
                     Instantiate(impactEffect2, other.transform.position, Quaternion.identity);
                 }
-                other.GetComponent<Enemy>().TakeDamage(_bulletDamage);
+                other.GetComponent<Enemy>().TakeDamage(_bulletDamage, true);
                 Destroy(gameObject);
             }
         }else

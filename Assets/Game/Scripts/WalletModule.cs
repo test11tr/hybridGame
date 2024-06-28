@@ -6,13 +6,13 @@ using AssetKits.ParticleImage;
 
 public class WalletModule : MonoBehaviour
 {
-    [Header("Wallet - UI References")]
+    [Foldout("Wallet - UI References", foldEverything = true, styled = true, readOnly = false)]
     public TMP_Text coinText;
     public TMP_Text gemText;
     public TMP_Text woodText;
     public TMP_Text stoneText;
-    
-    [Header("Wallet - Effects")]
+ 
+    [Foldout("Wallet - Effects", foldEverything = true, styled = true, readOnly = false)]
     public ParticleImage coinEffect;
     public ParticleImage gemEffect;
     public ParticleImage woodEffect;

@@ -4,7 +4,10 @@ using System;
 
 public class DamageArea : MonoBehaviour
 {
+    [Foldout("Damage Area Visual", foldEverything = true, styled = true, readOnly = false)]
     public Shapes.Disc progressShape; 
+    
+    [Foldout("Damage Area Settings", foldEverything = true, styled = true, readOnly = false)]
     public float damageWaitTime;
     public float repetativeDamageCooldown;
     public int damageAmount;

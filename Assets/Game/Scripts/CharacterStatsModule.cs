@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,6 @@ public class CharacterStatsModule : MonoBehaviour
     public float splashDamageMultiplier;
     public float attackSpeedRange;
     public float attackSpeedMelee;
-    public float timeBetweenAttacksRanged;
 
     [Foldout("Default Health Module", foldEverything = true, styled = true, readOnly = false)]
     public float maxHealth;
@@ -51,7 +51,7 @@ public class CharacterStatsModule : MonoBehaviour
     public int movementSpeedCurrentLevel;
 
     [Foldout("Incremental Combat Module", foldEverything = true, styled = true, readOnly = false)]
-    public int damageIncreaseMultiplier;
+    public float damageIncreaseMultiplier;
     public int damageMaxLevel;
     public int damageCurrentLevel;
     public float criticalChanceIncreaseMultiplier;
@@ -67,14 +67,24 @@ public class CharacterStatsModule : MonoBehaviour
     public int attackSpeedMaxLevel;
     public int attackSpeedCurrentLevel;
 
-    [Foldout("Default Health Module", foldEverything = true, styled = true, readOnly = false)]
+    [Foldout("Incremental Health Module", foldEverything = true, styled = true, readOnly = false)]
     public float healthIncreaseMultiplier;
     public float healthMaxLevel;
     public float healthCurrentLevel;
 
+    [Foldout("Percentage Increase", foldEverything = true, styled = true, readOnly = true)]
+    public float movementSpeedPercentageIncrease;
+    public float damagePercentageIncrease;
+    public float criticalChancePercentageIncrease;
+    public float criticalMultiplierPercentageIncrease;
+    public float AttackRangePercentageIncrease;
+    public float attackSpeedPercentageIncrease;
+    public float healthPercentageIncrease;
+
     void Start()
     {
         SetPlayerManagerStats();
+        CalculatePercentageIncrease();
     }
 
     void SetPlayerManagerStats()
@@ -96,7 +106,6 @@ public class CharacterStatsModule : MonoBehaviour
             playerManager.splashDamageMultiplier = this.splashDamageMultiplier;
             playerManager.attackSpeedRange = this.attackSpeedRange;
             playerManager.attackSpeedMelee = this.attackSpeedMelee;
-            playerManager.timeBetweenAttacksRanged = this.timeBetweenAttacksRanged;
             playerManager.maxHealth = this.maxHealth;
             playerManager.healthEaseSpeed = this.healthEaseSpeed;
             playerManager.maxExperience = this.maxExperience;
@@ -149,7 +158,15 @@ public class CharacterStatsModule : MonoBehaviour
         {
             AttackRangeCurrentLevel++;
             rangedAttackRange *= AttackRangeIncreaseMultiplier;
+            meleeAttackRange *= AttackRangeIncreaseMultiplier;
             playerManager.rangedAttackRange = rangedAttackRange;
+            playerManager.meleeAttackRange = meleeAttackRange;
+            if(meleeAttackRange > detectorRange || rangedAttackRange > detectorRange)
+            {
+                detectorRange *= AttackRangeIncreaseMultiplier;
+                playerManager.detectorRange = detectorRange;
+            }
+            playerManager.updateAttackRangeVisualizer();
         }
     }
 
@@ -160,6 +177,7 @@ public class CharacterStatsModule : MonoBehaviour
             healthCurrentLevel++;
             maxHealth *= healthIncreaseMultiplier;
             playerManager.maxHealth = maxHealth;
+            playerManager.currentHealth *= healthIncreaseMultiplier;
         }
     }
 
@@ -169,7 +187,9 @@ public class CharacterStatsModule : MonoBehaviour
         {
             attackSpeedCurrentLevel++;
             attackSpeedRange *= attackSpeedIncreaseMultiplier;
+            attackSpeedMelee *= attackSpeedIncreaseMultiplier;
             playerManager.attackSpeedRange = attackSpeedRange;
+            playerManager.attackSpeedMelee = attackSpeedMelee;
         }
     }
 
@@ -190,6 +210,40 @@ public class CharacterStatsModule : MonoBehaviour
             criticalMultiplierCurrentLevel++;
             criticalMultiplier *= criticalMultiplierIncreaseMultiplier;
             playerManager.criticalMultiplier = criticalMultiplier;
+        }
+    }
+
+    float CalculatePercentageIncrease(float original, float multiplier)
+    {
+        float newNumber = original * multiplier;
+        float increase = newNumber - original;
+        float percentageIncrease = (increase / original) * 100f;
+
+        return percentageIncrease;
+    }
+
+    private void CalculatePercentageIncrease()
+    {
+        movementSpeedPercentageIncrease = CalculatePercentageIncrease(movementSpeed, movementSpeedIncreaseMultiplier);
+        damagePercentageIncrease = CalculatePercentageIncrease(damage, damageIncreaseMultiplier);
+        criticalChancePercentageIncrease = CalculatePercentageIncrease(criticalChance, criticalChanceIncreaseMultiplier);
+        criticalMultiplierPercentageIncrease = CalculatePercentageIncrease(criticalMultiplier, criticalMultiplierIncreaseMultiplier);
+        healthPercentageIncrease = CalculatePercentageIncrease(maxHealth, healthIncreaseMultiplier);
+
+        if(weaponType.Equals(WeaponType.MeleeAttack))
+        {
+            AttackRangePercentageIncrease = CalculatePercentageIncrease(meleeAttackRange, AttackRangeIncreaseMultiplier);
+            attackSpeedPercentageIncrease = CalculatePercentageIncrease(attackSpeedMelee, attackSpeedIncreaseMultiplier);
+        }
+        else if(weaponType.Equals(WeaponType.RangedAttack))
+        {
+            AttackRangePercentageIncrease = CalculatePercentageIncrease(rangedAttackRange, AttackRangeIncreaseMultiplier);
+            attackSpeedPercentageIncrease = CalculatePercentageIncrease(attackSpeedRange, attackSpeedIncreaseMultiplier);
+        }
+        else if(weaponType.Equals(WeaponType.RotatingBlades))
+        {
+            //AttackRangePercentageIncrease = CalculatePercentageIncrease(rangedAttackRange, AttackRangeIncreaseMultiplier);
+            //attackSpeedPercentageIncrease = CalculatePercentageIncrease(attackSpeedRange, attackSpeedIncreaseMultiplier);
         }
     }
 }

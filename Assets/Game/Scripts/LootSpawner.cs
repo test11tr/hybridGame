@@ -5,20 +5,21 @@ using DG.Tweening;
 
 public class LootSpawner : MonoBehaviour
 {
-    [Header("Loot Settings")]
+    [Foldout("Loot Settings", foldEverything = true, styled = true, readOnly = false)]
     public LootCollectable droppedItemPrefab;
     public Loot loot;
     
-    [Header("Spawner Settings")]
+    [Foldout("Spawner Settings", foldEverything = true, styled = true, readOnly = false)]
     public Shapes.Disc progressShape; 
     public float maxDropDistance = 3f;    
     public float waitTime;
     public float spawnWaitTime;
     public SpriteRenderer lootIcon;
 
-    private bool isPlayerInside = false;
-    private float timer = 0f;
-    private float spawnTimer = 0f;
+    [Foldout("Debug", foldEverything = true, styled = true, readOnly = true)]
+    [SerializeField] private bool isPlayerInside = false;
+    [SerializeField] private float timer = 0f;
+    [SerializeField] private float spawnTimer = 0f;
 
     void Start()
     {

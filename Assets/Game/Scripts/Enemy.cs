@@ -16,14 +16,14 @@ public class Enemy : MonoBehaviour
     private BossAI bossAI;
     private NoBehaviorAI noBehaviorAI;
 
-    [Header("Enemy Settings")]
+    [Foldout("Enemy Settings", foldEverything = true, styled = true, readOnly = false)]
     public bool isCivilian;
     public bool isMeleeAttack;
     public bool isRangedAttack;
     public bool isBoss;
     public bool noBehaviour;
 
-    [Header("Enemy Movement")]
+    [Foldout("Enemy Movement", foldEverything = true, styled = true, readOnly = false)]
     public NavMeshAgent agent;
     public LayerMask whatIsGround, whatIsPlayer;
     private Vector3 walkPoint;
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     public float runSpeed;
     public float runAcceleration;
 
-    [Header("Enemy Attack")]
+    [Foldout("Enemy Module", foldEverything = true, styled = true, readOnly = false)]
     public float damage;
     public float timeBetweenAttacks;
     public Projectile projectile;
@@ -43,13 +43,13 @@ public class Enemy : MonoBehaviour
     bool alreadyAttacked;
     public int enemyDestroyTimeOnDead;
 
-    [Header("Enemy Sight Module")]
+    [Foldout("Enemy Sight Module", foldEverything = true, styled = true, readOnly = false)]
     public float sightRange;
     public float attackRange;
     private bool playerInSightRange;
     private bool playerInAttackRange;
 
-    [Header("Health Module")]
+    [Foldout("Health Module", foldEverything = true, styled = true, readOnly = false)]
     public GameObject healthModuleCanvas;
     public Image healthBar;
     public Image healthBarEase;
@@ -59,22 +59,22 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float lastRegenTime;
     private float currentHealth;
 
-    [Header("NoBehaviourAI Module")]
+    [Foldout("NoBehaviourAI Module", foldEverything = true, styled = true, readOnly = false)]
     public int requiredHitsToDie;
 
-    [Header("Experience Module")]
+    [Foldout("Experience Module", foldEverything = true, styled = true, readOnly = false)]
     public int experienceValue;
 
-    [Header("Loot Module")]
+    [Foldout("Loot Module", foldEverything = true, styled = true, readOnly = false)]
     public LootBag lootBag;
     public int dropCount;
 
-    [Header("Effects Module")]
+    [Foldout("Effects Module", foldEverything = true, styled = true, readOnly = false)]
     public TrailRenderer trail;
     public ParticleSystem deathEffect;
     public ParticleSystem pufEffect;
 
-    [Header("FlashModule")]
+    [Foldout("Flash Module", foldEverything = true, styled = true, readOnly = false)]
     public Renderer[] includedRenderers;
     private SkinnedMeshRenderer[] allSkinnedMeshRenderers;
     private MeshRenderer[] allMeshRenderers;
@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
     public Material[] originalMaterials;
     public float materialChangeDuration = .2f;
 
-    [Header("References")]
+    [Foldout("References", foldEverything = true, styled = true, readOnly = false)]
     public Rigidbody rb;
     public Animator enemyAnimator;
     public floatingText floatingTextPrefab;
@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
     private Transform player;
     public GameObject visual;
 
-    [Header("Debug")]
+    [Foldout("Debug", foldEverything = true, styled = true, readOnly = false)]
     public bool drawGizmos;
 
     [HideInInspector] public Vector3 spawnAreaCenter;
@@ -158,23 +158,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool isCriticalHit)
     {
         if(isCivilian)
         {
-            civilianAI.TakeDamage(amount);
+            civilianAI.TakeDamage(amount, isCriticalHit);
         }else if(isMeleeAttack)
         {
-            meleeAttackAI.TakeDamage(amount);
+            meleeAttackAI.TakeDamage(amount, isCriticalHit);
         }else if(isRangedAttack)
         {
-            rangedAttackAI.TakeDamage(amount);
+            rangedAttackAI.TakeDamage(amount, isCriticalHit);
         }else if(isBoss)
         {
-            bossAI.TakeDamage(amount);
+            bossAI.TakeDamage(amount, isCriticalHit);
         }else if(noBehaviour)
         {
-            noBehaviorAI.TakeDamage(amount);
+            noBehaviorAI.TakeDamage(amount, isCriticalHit);
         }
     }
 
@@ -378,7 +378,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount, bool isCriticalHit)
         {
             if (parent.currentHealth <= 0 && !parent.isDead)
             {
@@ -391,10 +391,19 @@ public class Enemy : MonoBehaviour
 
                 if(parent.floatingTextPrefab)
                 {
-                    Vector3 spawnPosition = parent.transform.position;
-                    spawnPosition.y += 1.5f;
-                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                    if(isCriticalHit)
+                    {
+                        Vector3 spawnPosition = parent.transform.position;
+                        spawnPosition.y += 1.5f;
+                        floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                        _floatingText.SetText("-" + amount.ToString("F1") + "hp!!", new Color(1.0f, 0.749f, 0.0745f), 6f);
+                    }else
+                    {
+                        Vector3 spawnPosition = parent.transform.position;
+                        spawnPosition.y += 1.5f;
+                        floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                        _floatingText.SetText("-" + amount.ToString("F1") + "hp", Color.white, 4.5f);
+                    }
                 }
 
                 parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
@@ -661,7 +670,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount, bool isCriticalHit)
         {
             if (parent.currentHealth <= 0 && !parent.isDead)
             {
@@ -674,10 +683,19 @@ public class Enemy : MonoBehaviour
 
                 if(parent.floatingTextPrefab)
                 {
-                    Vector3 spawnPosition = parent.transform.position;
-                    spawnPosition.y += 1.5f;
-                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                    if(isCriticalHit)
+                    {
+                        Vector3 spawnPosition = parent.transform.position;
+                        spawnPosition.y += 1.5f;
+                        floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                        _floatingText.SetText("-" + amount.ToString("F1") + "hp!!", new Color(1.0f, 0.749f, 0.0745f), 6f);
+                    }else
+                    {
+                        Vector3 spawnPosition = parent.transform.position;
+                        spawnPosition.y += 1.5f;
+                        floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                        _floatingText.SetText("-" + amount.ToString("F1") + "hp", Color.white, 4.5f);
+                    }
                 }
 
                 parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
@@ -944,7 +962,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount, bool isCriticalHit)
         {
             if (parent.currentHealth <= 0 && !parent.isDead)
             {
@@ -957,10 +975,19 @@ public class Enemy : MonoBehaviour
 
                 if(parent.floatingTextPrefab)
                 {
-                    Vector3 spawnPosition = parent.transform.position;
-                    spawnPosition.y += 1.5f;
-                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                    if(isCriticalHit)
+                    {
+                        Vector3 spawnPosition = parent.transform.position;
+                        spawnPosition.y += 1.5f;
+                        floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                        _floatingText.SetText("-" + amount.ToString("F1") + "hp!!", new Color(1.0f, 0.749f, 0.0745f), 6f);
+                    }else
+                    {
+                        Vector3 spawnPosition = parent.transform.position;
+                        spawnPosition.y += 1.5f;
+                        floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                        _floatingText.SetText("-" + amount.ToString("F1") + "hp", Color.white, 4.5f);
+                    }
                 }
 
                 parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
@@ -1227,7 +1254,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount, bool isCriticalHit)
         {
             if (parent.currentHealth <= 0 && !parent.isDead)
             {
@@ -1240,10 +1267,19 @@ public class Enemy : MonoBehaviour
 
                 if(parent.floatingTextPrefab)
                 {
-                    Vector3 spawnPosition = parent.transform.position;
-                    spawnPosition.y += 1.5f;
-                    floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                    _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                    if(isCriticalHit)
+                    {
+                        Vector3 spawnPosition = parent.transform.position;
+                        spawnPosition.y += 1.5f;
+                        floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                        _floatingText.SetText("-" + amount.ToString("F1") + "hp!!", new Color(1.0f, 0.749f, 0.0745f), 6f);
+                    }else
+                    {
+                        Vector3 spawnPosition = parent.transform.position;
+                        spawnPosition.y += 1.5f;
+                        floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
+                        _floatingText.SetText("-" + amount.ToString("F1") + "hp", Color.white, 4.5f);
+                    }
                 }
 
                 parent.healthBar.fillAmount = (float)parent.currentHealth / parent.maxHealth;
@@ -1365,14 +1401,14 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount, bool isCriticalHit)
         {
             /*if(parent.floatingTextPrefab)
             {
                 Vector3 spawnPosition = parent.transform.position;
                 spawnPosition.y += 1.5f;
                 floatingText _floatingText = Instantiate(parent.floatingTextPrefab, spawnPosition, Quaternion.identity);
-                _floatingText.SetText("-" + amount.ToString() + "hp", Color.red, 6f);
+                _floatingText.SetText("-" + amount.ToString("F1") + "hp", new Color(1.0f, 0.749f, 0.0745f), 6f);
             }*/
 
             parent.lootBag.InstantiateLoot(parent.transform.position, parent.dropCount);

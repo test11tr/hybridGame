@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         Wheel
     }
 
-    [Header("Game Manager Important References")]
+    [Foldout("Game Manager Important References", foldEverything = true, styled = true, readOnly = false)]
     public static GameManager Instance;
     public SaveModule saveModule;
     public CharacterControlManager player;
@@ -25,14 +25,14 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public CinemachineVirtualCamera vcam;
 
-    [Header("Player Spawner")]
+    [Foldout("Player Spawner", foldEverything = true, styled = true, readOnly = false)]
     public Transform SpawnPoint;
-
-    [Header("Gameplay Settings")]
+    
+    [Foldout("Gameplay Settings", foldEverything = true, styled = true, readOnly = false)]
     public int targetFps;
     private bool isGamePaused;
 
-    [Header("Debug")]
+    [Foldout("Debug", foldEverything = true, styled = true, readOnly = false)]
     [SerializeField] bool drawGizmos = true;    
 
     private void Awake(){

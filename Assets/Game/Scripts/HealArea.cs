@@ -4,7 +4,10 @@ using System;
 
 public class HealArea : MonoBehaviour
 {
+    [Foldout("Heal Area Visual", foldEverything = true, styled = true, readOnly = false)]
     public Shapes.Disc progressShape; 
+
+    [Foldout("Heal Area Settings", foldEverything = true, styled = true, readOnly = false)]
     public float healWaitTime;
     public float healCooldown;
     public int healAmount;
