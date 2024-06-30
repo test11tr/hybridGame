@@ -12,22 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterModule - Test
       objectReference: {fileID: 0}
-    - target: {fileID: 2224891057885841334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: isMeleeAttack
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224891057885841334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: isRangedAttack
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224891057885841334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: attackSpeedMelee
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224891057885841334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
-      propertyPath: attackSpeedRange
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2253711700769904400, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

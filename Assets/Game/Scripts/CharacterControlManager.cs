@@ -20,7 +20,7 @@ public class CharacterControlManager : MonoBehaviour
     public Canvas inputCanvas;
     
     [Foldout("Movement Module", foldEverything = true, styled = true, readOnly = false)]
-    public bool isJoytick;
+    [DisplayWithoutEdit()] public bool isJoytick;
     [DisplayWithoutEdit()] public float movementSpeed;
     [DisplayWithoutEdit()] public float rotationSpeed;
 
@@ -134,18 +134,8 @@ public class CharacterControlManager : MonoBehaviour
         loadHealth();
         loadLevelData();
         GetAllRenderers();
-        setAttackRangeVisualizer();
         InitializeWeaponPools();
         GameManager.Instance.experienceModule.OnExperienceChange += HandleExperienceChange;
-
-        if (isMeleeAttack)
-        {
-            ActivateWeapon(MeleeWeapons, 0);
-        }
-        else if (isRangedAttack)
-        {
-            ActivateWeapon(RangedWeapons, 0);
-        }
     }
 
     void Update()
@@ -228,6 +218,19 @@ public class CharacterControlManager : MonoBehaviour
         foreach (var weapon in RangedWeapons)
         {
             weapon.SetActive(false);
+        }
+    }
+
+    public void PrepareWeapon()
+    {
+        setAttackRangeVisualizer();
+        if (isMeleeAttack)
+        {
+            ActivateWeapon(MeleeWeapons, 0);
+        }
+        else if (isRangedAttack)
+        {
+            ActivateWeapon(RangedWeapons, 0);
         }
     }
 

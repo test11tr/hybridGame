@@ -1265,7 +1265,7 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldownTime: 1
   isRangedAttack: 0
-  isMeleeAttack: 1
+  isMeleeAttack: 0
   isRotatingBlades: 0
   rangedAttackRange: 4
   meleeAttackRange: 2
@@ -3320,6 +3320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebea396b0fc58f4ba196f89d4287da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveModule: {fileID: 0}
   playerManager: {fileID: 2224891057885841334}
   isJoytick: 1
   movementSpeed: 5
@@ -3343,24 +3344,34 @@ MonoBehaviour:
   levelExperienceMultiplier: 5
   movementSpeedIncreaseMultiplier: 1.025
   movementSpeedMaxLevel: 100
-  movementSpeedCurrentLevel: 0
   damageIncreaseMultiplier: 1.025
   damageMaxLevel: 100
-  damageCurrentLevel: 0
   criticalChanceIncreaseMultiplier: 1.05
   criticalChanceMaxLevel: 100
-  criticalChanceCurrentLevel: 0
   criticalMultiplierIncreaseMultiplier: 1.05
   criticalMultiplierMaxLevel: 100
-  criticalMultiplierCurrentLevel: 0
   AttackRangeIncreaseMultiplier: 1.025
   AttackRangeMaxLevel: 100
-  AttackRangeCurrentLevel: 0
   attackSpeedIncreaseMultiplier: 1.025
   attackSpeedMaxLevel: 100
-  attackSpeedCurrentLevel: 0
   healthIncreaseMultiplier: 1.025
   healthMaxLevel: 100
+  movementSpeedCurrentValue: 0
+  movementSpeedCurrentLevel: 0
+  damageCurrentValue: 0
+  damageCurrentLevel: 0
+  criticalChanceCurrentValue: 0
+  criticalChanceCurrentLevel: 0
+  criticalMultiplierCurrentValue: 0
+  criticalMultiplierCurrentLevel: 0
+  AttackRangeCurrentValueMelee: 0
+  AttackRangeCurrentValueRange: 0
+  AttackRangeCurrentLevel: 0
+  detectorRangeValue: 0
+  attackSpeedCurrentValueMelee: 0
+  attackSpeedCurrentValueRange: 0
+  attackSpeedCurrentLevel: 0
+  healthCurrentValue: 0
   healthCurrentLevel: 0
   movementSpeedPercentageIncrease: 0
   damagePercentageIncrease: 0
