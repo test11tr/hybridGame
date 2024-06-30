@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     [Foldout("Player Spawner", foldEverything = true, styled = true, readOnly = false)]
     public Transform SpawnPoint;
     
-    [Foldout("Gameplay Settings", foldEverything = true, styled = true, readOnly = false)]
+    [Foldout("Gameplay Settings", foldEverything = true, styled = true, readOnly = true)]
     public int targetFps;
-    private bool isGamePaused;
+    [DisplayWithoutEdit()] public bool isGamePaused;
 
     [Foldout("Debug", foldEverything = true, styled = true, readOnly = false)]
     [SerializeField] bool drawGizmos = true;    

@@ -89,7 +89,13 @@ public class incrementalManagerMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        Time.timeScale = 0;
         CheckButtonsWithWallet();
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 1;
     }
 
     private void SetButtons()
