@@ -169,7 +169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -31.25}
+  m_AnchoredPosition: {x: 75, y: -50}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &231796955154741920
@@ -1473,7 +1473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -31.25}
+  m_AnchoredPosition: {x: 75, y: -50}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &743597992233142449
@@ -3266,7 +3266,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -31.25}
+  m_AnchoredPosition: {x: 75, y: -50}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1600946075177066967
@@ -4294,7 +4294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6791252041613251454
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5187,7 +5187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -31.25}
+  m_AnchoredPosition: {x: 75, y: -50}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2367825298376331620
@@ -6863,7 +6863,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -31.25}
+  m_AnchoredPosition: {x: 75, y: -50}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2605957892634436736
@@ -6881,7 +6881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4739800806457235152
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7944,7 +7944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8028458746188701375
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8819,7 +8819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1800375565548968695
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10263,6 +10263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60c26247b0ca004988e59cf7b91d2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveModule: {fileID: 0}
+  walletModule: {fileID: 0}
   statsModule: {fileID: 0}
   movementSpeedText: {fileID: 3824218059994947073}
   movementSpeedCurrentLevelText: {fileID: 9185600856419960496}
@@ -10278,6 +10280,27 @@ MonoBehaviour:
   attackSpeedCurrentLevelText: {fileID: 503346522487783853}
   healthText: {fileID: 7633659824850426350}
   healthCurrentLevelText: {fileID: 3721450728924825192}
+  movementSpeedBuyButton: {fileID: 7274614386983142579}
+  movementSpeedCurrencyIcon: {fileID: 3362523263617146594}
+  movementSpeedCostText: {fileID: 3577293338123516874}
+  damageBuyButton: {fileID: 4026731165134595914}
+  damageCurrencyIcon: {fileID: 6970689627590215337}
+  damageCostText: {fileID: 4681033881743265164}
+  attackRangeBuyButton: {fileID: 1326088429993564043}
+  attackRangeCurrencyIcon: {fileID: 5350795511559231527}
+  attackRangeCostText: {fileID: 5386007379532621357}
+  criticalChanceBuyButton: {fileID: 2112912566055109304}
+  criticalChanceCurrencyIcon: {fileID: 61310469134540067}
+  criticalChanceCostText: {fileID: 8720035010684307406}
+  criticalMultiplierBuyButton: {fileID: 796958988767076941}
+  criticalMultiplierCurrencyIcon: {fileID: 2374694953402787790}
+  criticalMultiplierCostText: {fileID: 7109840011583579983}
+  attackSpeedBuyButton: {fileID: 4233115604016111203}
+  attackSpeedCurrencyIcon: {fileID: 3939111742726555586}
+  attackSpeedCostText: {fileID: 1279133569187593743}
+  healthBuyButton: {fileID: 902369412493923628}
+  healthCurrencyIcon: {fileID: 4536106064556283426}
+  healthCostText: {fileID: 8864465826298712453}
 --- !u!114 &7277706335224933523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11458,7 +11481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -31.25}
+  m_AnchoredPosition: {x: 75, y: -50}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3965902736817052458
@@ -13891,7 +13914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8230130114053917020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14093,6 +14116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveInfo:
+    isFirstRun: 1
     coinCount: 0
     gemCount: 0
     woodAmount: 0
@@ -14101,7 +14125,25 @@ MonoBehaviour:
     virtualGem: 0
     virtualWood: 0
     virtualStone: 0
+    movementSpeedCurrentValue: 0
+    movementSpeedCurrentLevel: 0
+    damageCurrentValue: 0
+    damageCurrentLevel: 0
+    criticalChanceCurrentValue: 0
+    criticalChanceCurrentLevel: 0
+    criticalMultiplierCurrentValue: 0
+    criticalMultiplierCurrentLevel: 0
+    AttackRangeCurrentValueMelee: 0
+    AttackRangeCurrentValueRange: 0
+    AttackRangeCurrentLevel: 0
+    detectorRange: 0
+    attackSpeedCurrentValueMelee: 0
+    attackSpeedCurrentValueRange: 0
+    attackSpeedCurrentLevel: 0
+    healthCurrentValue: 0
+    healthCurrentLevel: 0
     characterCurrentHealth: 0
+    splashDamageMultiplier: 0
     characterCurrentExperience: 0
     characterCurrentLevel: 0
     characterExperienceToNextLevel: 0
@@ -17629,7 +17671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -31.25}
+  m_AnchoredPosition: {x: 75, y: -50}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6938679849921576202
@@ -20111,7 +20153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7262931308619922286
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20224,7 +20266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2193374308484415447
 RectTransform:
   m_ObjectHideFlags: 0

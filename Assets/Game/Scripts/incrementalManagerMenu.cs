@@ -5,10 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.UIElements.Experimental;
+using System.Runtime.InteropServices;
+using System;
 
 public class incrementalManagerMenu : MonoBehaviour
 {
     public SaveModule saveModule;
+    public WalletModule walletModule;
     [Foldout("Character Stats Module (Gets Automatic)", foldEverything = true, styled = true, readOnly = true)]
     public CharacterStatsModule statsModule;
     [Foldout("Text References", foldEverything = true, styled = true, readOnly = false)]
@@ -26,7 +29,43 @@ public class incrementalManagerMenu : MonoBehaviour
     public TMP_Text attackSpeedCurrentLevelText;
     public TMP_Text healthText;
     public TMP_Text healthCurrentLevelText;
-    
+    [Foldout("Button References", foldEverything = true, styled = true, readOnly = false)]
+    public Button movementSpeedBuyButton;
+    public Image movementSpeedCurrencyIcon;
+    public TMP_Text movementSpeedCostText;
+    public Button damageBuyButton;
+    public Image damageCurrencyIcon;
+    public TMP_Text damageCostText;
+    public Button attackRangeBuyButton;
+    public Image attackRangeCurrencyIcon;
+    public TMP_Text attackRangeCostText;
+    public Button criticalChanceBuyButton;
+    public Image criticalChanceCurrencyIcon;
+    public TMP_Text criticalChanceCostText;
+    public Button criticalMultiplierBuyButton;
+    public Image criticalMultiplierCurrencyIcon;
+    public TMP_Text criticalMultiplierCostText;
+    public Button attackSpeedBuyButton;
+    public Image attackSpeedCurrencyIcon;  
+    public TMP_Text attackSpeedCostText; 
+    public Button healthBuyButton;
+    public Image healthCurrencyIcon;
+    public TMP_Text healthCostText;
+    [Foldout("Currency Settings", foldEverything = true, styled = true, readOnly = false)]
+    public float movementSpeedCost;
+    public float movementSpeedCostMultiplier;
+    public float damageCost;
+    public float damageCostMultiplier;
+    public float attackRangeCost;
+    public float attackRangeCostMultiplier;
+    public float criticalChanceCost;
+    public float criticalChanceCostMultiplier;
+    public float criticalMultiplierCost;
+    public float criticalMultiplierCostMultiplier;
+    public float attackSpeedCost;
+    public float attackSpeedCostMultiplier;
+    public float healthCost;
+    public float healthCostMultiplier;
 
     void Start()
     {
@@ -34,8 +73,38 @@ public class incrementalManagerMenu : MonoBehaviour
         {
             statsModule = GameManager.Instance.player.statsModule;
         }
-        
-        saveModule = GameManager.Instance.saveModule;
+        if(walletModule == null)
+        {
+            walletModule = GameManager.Instance.wallet;
+        }
+        if(saveModule == null)
+        {
+            saveModule = GameManager.Instance.saveModule;
+        }
+
+        CheckSave();
+        SetButtons();
+        CheckButtonsWithWallet();
+    }
+
+    private void OnEnable()
+    {
+        CheckButtonsWithWallet();
+    }
+
+    private void SetButtons()
+    {
+        movementSpeedBuyButton.onClick.AddListener(IncrementMovementSpeed);
+        damageBuyButton.onClick.AddListener(IncrementDamage);
+        attackRangeBuyButton.onClick.AddListener(IncrementAttackRange);
+        criticalChanceBuyButton.onClick.AddListener(IncrementCriticalChance);
+        criticalMultiplierBuyButton.onClick.AddListener(IncrementCriticalMultiplier);
+        attackSpeedBuyButton.onClick.AddListener(IncrementAttackSpeed);
+        healthBuyButton.onClick.AddListener(IncrementHealth);
+    }
+
+    public void CheckSave()
+    {
         if (saveModule.CheckIsHaveSave())
         {
             print("Update Stats UI");
@@ -180,42 +249,82 @@ public class incrementalManagerMenu : MonoBehaviour
     public void IncrementMovementSpeed()
     {
         statsModule.IncrementMovementSpeed();
+        walletModule.DeductCurrency("coin", movementSpeedCost);
+        movementSpeedCost *= movementSpeedCostMultiplier;
         UpdateUI();
+        CheckButtonsWithWallet();
     }
 
     public void IncrementDamage()
     {
         statsModule.IncrementDamage();
+        walletModule.DeductCurrency("coin", damageCost);
+        damageCost *= damageCostMultiplier;
         UpdateUI();
+        CheckButtonsWithWallet();
     }
 
     public void IncrementAttackRange()
     {
         statsModule.IncrementAttackRange();
+        walletModule.DeductCurrency("coin", attackRangeCost);
+        attackRangeCost *= attackRangeCostMultiplier;
         UpdateUI();
+        CheckButtonsWithWallet();
     }
 
     public void IncrementHealth()
     {
         statsModule.IncrementHealth();
+        walletModule.DeductCurrency("coin", healthCost);
+        healthCost *= healthCostMultiplier;
         UpdateUI();
+        CheckButtonsWithWallet();
     }
 
     public void IncrementAttackSpeed()
     {
         statsModule.IncrementAttackSpeed();
+        walletModule.DeductCurrency("coin", attackSpeedCost);
+        attackSpeedCost *= attackSpeedCostMultiplier;
         UpdateUI();
+        CheckButtonsWithWallet();
     }
 
     public void IncrementCriticalChance()
     {
         statsModule.IncrementCriticalChance();
+        walletModule.DeductCurrency("coin", criticalChanceCost);
+        criticalChanceCost *= criticalChanceCostMultiplier;
         UpdateUI();
+        CheckButtonsWithWallet();
     }
 
     public void IncrementCriticalMultiplier()
     {
         statsModule.IncrementCriticalMultiplier();
+        walletModule.DeductCurrency("coin", criticalMultiplierCost);
+        criticalMultiplierCost *= criticalMultiplierCostMultiplier;
         UpdateUI();
+        CheckButtonsWithWallet();
+    }
+
+    public void CheckButtonsWithWallet()
+    {
+        movementSpeedBuyButton.interactable = walletModule.coinCount >= movementSpeedCost;
+        damageBuyButton.interactable = walletModule.coinCount >= damageCost;
+        attackRangeBuyButton.interactable = walletModule.coinCount >= attackRangeCost;
+        healthBuyButton.interactable = walletModule.coinCount >= healthCost;
+        attackSpeedBuyButton.interactable = walletModule.coinCount >= attackSpeedCost;
+        criticalChanceBuyButton.interactable = walletModule.coinCount >= criticalChanceCost;
+        criticalMultiplierBuyButton.interactable = walletModule.coinCount >= criticalMultiplierCost;
+
+        movementSpeedCostText.text = movementSpeedCost.ToString("F2");
+        damageCostText.text = damageCost.ToString("F2");
+        attackRangeCostText.text = attackRangeCost.ToString("F2");
+        criticalChanceCostText.text = criticalChanceCost.ToString("F2");
+        criticalMultiplierCostText.text = criticalMultiplierCost.ToString("F2");
+        attackSpeedCostText.text = attackSpeedCost.ToString("F2");
+        healthCostText.text = healthCost.ToString("F2");
     }
 }

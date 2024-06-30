@@ -18,10 +18,11 @@ public class WalletModule : MonoBehaviour
     public ParticleImage woodEffect;
     public ParticleImage stoneEffect;
 
-    private int coinCount;
-    private int gemCount;
-    private int woodAmount;
-    private int stoneAmount;
+    [Foldout("Currencies (Live)", foldEverything = true, styled = true, readOnly = true)]
+    public int coinCount;
+    public int gemCount;
+    public int woodAmount;
+    public int stoneAmount;
 
     private void Start()
     {
@@ -35,11 +36,67 @@ public class WalletModule : MonoBehaviour
         stoneText.text = stoneAmount.ToString();
     }
 
+    public bool CanAfford(string type, float price)
+    {
+        if(type == "coin")
+        {
+            return coinCount >= price;
+        }
+        else if(type == "gem")
+        {
+            return gemCount >= price;
+        }
+        else if(type == "wood")
+        {
+            return woodAmount >= price;
+        }
+        else if(type == "stone")
+        {
+            return stoneAmount >= price;
+        }
+        else
+        {
+            print("Invalid type, please use coin, gem, wood or stone as type or customize script.");
+            return false;
+        }
+    }
+
+    public void DeductCurrency(string type, float amount)
+    {
+        if(type == "coin")
+        {
+            RemoveCoin((int)amount);
+        }
+        else if(type == "gem")
+        {
+            RemoveGem((int)amount);
+        }
+        else if(type == "wood")
+        {
+            RemoveWood((int)amount);
+        }
+        else if(type == "stone")
+        {
+            RemoveStone((int)amount);
+        }
+        else
+        {
+            print("Invalid type, please use coin, gem, wood or stone as type or customize script.");
+        }
+    }
+
     public void AddCoin(int amount)
     {
         coinCount += amount;
         coinText.text = NumberFormatter.Convert(coinCount);
         coinEffect.Play();
+        GameManager.Instance.saveModule.saveInfo.coinCount = coinCount;
+    }
+
+    public void RemoveCoin(int amount)
+    {
+        coinCount -= amount;
+        coinText.text = NumberFormatter.Convert(coinCount);
         GameManager.Instance.saveModule.saveInfo.coinCount = coinCount;
     }
 
@@ -51,11 +108,25 @@ public class WalletModule : MonoBehaviour
         GameManager.Instance.saveModule.saveInfo.gemCount = gemCount;
     }
 
+    public void RemoveGem(int amount)
+    {
+        gemCount -= amount;
+        gemText.text = NumberFormatter.Convert(gemCount);
+        GameManager.Instance.saveModule.saveInfo.gemCount = gemCount;
+    }
+
     public void AddWood(int amount)
     {
         woodAmount += amount;
         woodText.text = NumberFormatter.Convert(woodAmount);
         woodEffect.Play();
+        GameManager.Instance.saveModule.saveInfo.woodAmount = woodAmount;
+    }
+
+    public void RemoveWood(int amount)
+    {
+        woodAmount -= amount;
+        woodText.text = NumberFormatter.Convert(woodAmount);
         GameManager.Instance.saveModule.saveInfo.woodAmount = woodAmount;
     }
 
@@ -66,4 +137,13 @@ public class WalletModule : MonoBehaviour
         stoneEffect.Play();
         GameManager.Instance.saveModule.saveInfo.stoneAmount = stoneAmount;
     }
+
+    public void RemoveStone(int amount)
+    {
+        stoneAmount -= amount;
+        stoneText.text = NumberFormatter.Convert(stoneAmount);
+        GameManager.Instance.saveModule.saveInfo.stoneAmount = stoneAmount;
+    }
+
+    
 }
