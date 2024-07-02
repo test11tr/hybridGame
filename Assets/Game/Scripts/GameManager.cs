@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public WalletModule wallet;
     public ExperienceModule experienceModule;
     public DelayHelper delayHelper;
+    public SoundModule soundModule;
+    public CameraShakeModule cameraShakeModule;
     public incrementalManagerMenu incrementelMenuManager;
     public incrementalManagerWheel incrementelWheelManager;
     public IncrementalMenuType incrementalMenuType;

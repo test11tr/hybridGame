@@ -615,6 +615,7 @@ public class CharacterControlManager : MonoBehaviour
             
             currentHealth -= amount;
             GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
+            GameManager.Instance.cameraShakeModule.ShakeCamera(2f, 1f, 0.25f);
             healthBar.fillAmount = currentHealth / maxHealth;
 
             PlayHitFlash();
@@ -640,7 +641,7 @@ public class CharacterControlManager : MonoBehaviour
         {
             currentHealth += amount;
             GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
-            
+            GameManager.Instance.cameraShakeModule.ShakeCamera(2f, 1f, 0.25f);
             healthBar.fillAmount = (float)currentHealth / maxHealth;
             
             if(floatingTextPrefab)
@@ -699,6 +700,11 @@ public class CharacterControlManager : MonoBehaviour
             {
                 renderer.material = deadMaterial;
             }
+        }
+
+        public void knockBack()
+        {
+            transform.DOJump(transform.position, 2f, 1, 0.35f);
         }
     #endregion
 
