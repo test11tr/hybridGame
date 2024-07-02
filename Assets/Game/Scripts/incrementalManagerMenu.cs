@@ -127,45 +127,45 @@ public class incrementalManagerMenu : MonoBehaviour
     {
         if (statsModule.movementSpeedCurrentValue != 0)
         {
-            movementSpeedText.text = "Current: " + statsModule.movementSpeedCurrentValue.ToString("F1") + "<style=green> +" + statsModule.movementSpeedPercentageIncrease.ToString("F1") + "</style>";
+            movementSpeedText.text = "Current: " + statsModule.movementSpeedCurrentValue.ToString("F1") + "<style=green> +%" + statsModule.movementSpeedPercentageIncrease.ToString("F1") + "</style>";
             movementSpeedCurrentLevelText.text = "Level: " + statsModule.movementSpeedCurrentLevel + " / " + statsModule.movementSpeedMaxLevel;
         }
         else
         {
-            movementSpeedText.text = "Current: " + statsModule.movementSpeed.ToString("F1") + "<style=green> +" + statsModule.movementSpeedPercentageIncrease.ToString("F1") + "</style>";
+            movementSpeedText.text = "Current: " + statsModule.movementSpeed.ToString("F1") + "<style=green> +%" + statsModule.movementSpeedPercentageIncrease.ToString("F1") + "</style>";
             movementSpeedCurrentLevelText.text = "Level: " + statsModule.movementSpeedCurrentLevel + " / " + statsModule.movementSpeedMaxLevel;
         }
 
         if (statsModule.damageCurrentValue != 0)
         {
-            damageText.text = "Current: " + statsModule.damageCurrentValue.ToString("F1") + "<style=green> +" + statsModule.damagePercentageIncrease.ToString("F1") + "</style>";
+            damageText.text = "Current: " + statsModule.damageCurrentValue.ToString("F1") + "<style=green> +%" + statsModule.damagePercentageIncrease.ToString("F1") + "</style>";
             damageCurrentLevelText.text = "Level: " + statsModule.damageCurrentLevel + " / " + statsModule.damageMaxLevel;
         }
         else
         {
-            damageText.text = "Current: " + statsModule.damage.ToString("F1") + "<style=green> +" + statsModule.damagePercentageIncrease.ToString("F1") + "</style>";
+            damageText.text = "Current: " + statsModule.damage.ToString("F1") + "<style=green> +%" + statsModule.damagePercentageIncrease.ToString("F1") + "</style>";
             damageCurrentLevelText.text = "Level: " + statsModule.damageCurrentLevel + " / " + statsModule.damageMaxLevel;
         }
 
         if (statsModule.criticalChanceCurrentValue != 0)
         {
-            criticalChanceText.text = "Current: " + statsModule.criticalChanceCurrentValue.ToString("F2") + "<style=green> +" + statsModule.criticalChancePercentageIncrease.ToString("F1") + "</style>";     
+            criticalChanceText.text = "Current: " + statsModule.criticalChanceCurrentValue.ToString("F2") + "<style=green> +%" + statsModule.criticalChancePercentageIncrease.ToString("F1") + "</style>";     
             criticalChanceCurrentLevelText.text = "Level: " + statsModule.criticalChanceCurrentLevel + " / " + statsModule.criticalChanceMaxLevel;
         }
         else
         {
-            criticalChanceText.text = "Current: " + statsModule.criticalChance.ToString("F2") + "<style=green> +" + statsModule.criticalChancePercentageIncrease.ToString("F1") + "</style>";     
+            criticalChanceText.text = "Current: " + statsModule.criticalChance.ToString("F2") + "<style=green> +%" + statsModule.criticalChancePercentageIncrease.ToString("F1") + "</style>";     
             criticalChanceCurrentLevelText.text = "Level: " + statsModule.criticalChanceCurrentLevel + " / " + statsModule.criticalChanceMaxLevel;
         }
 
         if (statsModule.criticalMultiplierCurrentValue != 0)
         {
-            criticalMultiplierText.text = "Current:  Damage x " + statsModule.criticalMultiplierCurrentValue.ToString("F1") + "<style=green> +" + statsModule.criticalMultiplierPercentageIncrease.ToString("F1") + "</style>";  
+            criticalMultiplierText.text = "Current:  Dmg x " + statsModule.criticalMultiplierCurrentValue.ToString("F1") + "<style=green> +%" + statsModule.criticalMultiplierPercentageIncrease.ToString("F1") + "</style>";  
             criticalMultiplierCurrentLevelText.text = "Level: " + statsModule.criticalMultiplierCurrentLevel + " / " + statsModule.criticalMultiplierMaxLevel; 
         }
         else
         {
-            criticalMultiplierText.text = "Current:  Damage x " + statsModule.criticalMultiplier.ToString("F1") + "<style=green> +" + statsModule.criticalMultiplierPercentageIncrease.ToString("F1") + "</style>";  
+            criticalMultiplierText.text = "Current:  Dmg x " + statsModule.criticalMultiplier.ToString("F1") + "<style=green> +%" + statsModule.criticalMultiplierPercentageIncrease.ToString("F1") + "</style>";  
             criticalMultiplierCurrentLevelText.text = "Level: " + statsModule.criticalMultiplierCurrentLevel + " / " + statsModule.criticalMultiplierMaxLevel; 
         }
 
@@ -173,23 +173,23 @@ public class incrementalManagerMenu : MonoBehaviour
         {
             if(statsModule.AttackRangeCurrentValueMelee != 0)
             {
-                attackRangeText.text = "Current: " + statsModule.AttackRangeCurrentValueMelee.ToString("F1") + "<style=green> +" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
+                attackRangeText.text = "Current: " + statsModule.AttackRangeCurrentValueMelee.ToString("F1") + "<style=green> +%" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
                 attackRangeCurrentLevelText.text = "Level: " + statsModule.AttackRangeCurrentLevel + " / " + statsModule.AttackRangeMaxLevel;  
             }
             else
             {
-                attackRangeText.text = "Current: " + statsModule.meleeAttackRange.ToString("F1") + "<style=green> +" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
+                attackRangeText.text = "Current: " + statsModule.meleeAttackRange.ToString("F1") + "<style=green> +%" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
                 attackRangeCurrentLevelText.text = "Level: " + statsModule.AttackRangeCurrentLevel + " / " + statsModule.AttackRangeMaxLevel;  
             }
 
             if(statsModule.attackSpeedCurrentValueMelee != 0)
             {
-                attackSpeedText.text = "Current: " + statsModule.attackSpeedCurrentValueMelee.ToString("F1") + "<style=green> +" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
+                attackSpeedText.text = "Current: " + statsModule.attackSpeedCurrentValueMelee.ToString("F1") + "<style=green> +%" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
                 attackSpeedCurrentLevelText.text = "Level: " + statsModule.attackSpeedCurrentLevel + " / " + statsModule.attackSpeedMaxLevel;
             }
             else
             {
-                attackSpeedText.text = "Current: " + statsModule.attackSpeedMelee.ToString("F1") + "<style=green> +" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
+                attackSpeedText.text = "Current: " + statsModule.attackSpeedMelee.ToString("F1") + "<style=green> +%" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
                 attackSpeedCurrentLevelText.text = "Level: " + statsModule.attackSpeedCurrentLevel + " / " + statsModule.attackSpeedMaxLevel;
             }
         }
@@ -197,23 +197,23 @@ public class incrementalManagerMenu : MonoBehaviour
         {
             if(statsModule.AttackRangeCurrentValueRange != 0)
             {
-                attackRangeText.text = "Current: " + statsModule.attackSpeedCurrentValueRange.ToString("F1") + "<style=green> +" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
+                attackRangeText.text = "Current: " + statsModule.attackSpeedCurrentValueRange.ToString("F1") + "<style=green> +%" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
                 attackRangeCurrentLevelText.text = "Level: " + statsModule.AttackRangeCurrentLevel + " / " + statsModule.AttackRangeMaxLevel;  
             }
             else
             {
-                attackRangeText.text = "Current: " + statsModule.rangedAttackRange.ToString("F1") + "<style=green> +" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
+                attackRangeText.text = "Current: " + statsModule.rangedAttackRange.ToString("F1") + "<style=green> +%" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
                 attackRangeCurrentLevelText.text = "Level: " + statsModule.AttackRangeCurrentLevel + " / " + statsModule.AttackRangeMaxLevel;  
             }
 
             if(statsModule.attackSpeedCurrentValueRange != 0)
             {
-                attackSpeedText.text = "Current: " + statsModule.attackSpeedCurrentValueRange.ToString("F1") + "<style=green> +" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
+                attackSpeedText.text = "Current: " + statsModule.attackSpeedCurrentValueRange.ToString("F1") + "<style=green> +%" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
                 attackSpeedCurrentLevelText.text = "Level: " + statsModule.attackSpeedCurrentLevel + " / " + statsModule.attackSpeedMaxLevel;
             }
             else
             {
-                attackSpeedText.text = "Current: " + statsModule.attackSpeedRange.ToString("F1") + "<style=green> +" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
+                attackSpeedText.text = "Current: " + statsModule.attackSpeedRange.ToString("F1") + "<style=green> +%" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
                 attackSpeedCurrentLevelText.text = "Level: " + statsModule.attackSpeedCurrentLevel + " / " + statsModule.attackSpeedMaxLevel;
             }
         }
@@ -224,31 +224,31 @@ public class incrementalManagerMenu : MonoBehaviour
 
         if (statsModule.healthCurrentValue != 0)
         {
-            healthText.text = "Current: " + statsModule.healthCurrentValue.ToString("F1") + "<style=green> +" + statsModule.healthIncreaseMultiplier.ToString("F1") + "</style>";     
+            healthText.text = "Current: " + statsModule.healthCurrentValue.ToString("F1") + "<style=green> +%" + statsModule.healthIncreaseMultiplier.ToString("F1") + "</style>";     
             healthCurrentLevelText.text = "Level: " + statsModule.healthCurrentLevel + " / " + statsModule.healthMaxLevel;
         }
         else
         {
-            healthText.text = "Current Max Health: " + statsModule.maxHealth.ToString("F1") + "<style=green> +" + statsModule.healthIncreaseMultiplier.ToString("F1") + "</style>";     
+            healthText.text = "Current Max Health: " + statsModule.maxHealth.ToString("F1") + "<style=green> +%" + statsModule.healthIncreaseMultiplier.ToString("F1") + "</style>";     
             healthCurrentLevelText.text = "Level: " + statsModule.healthCurrentLevel + " / " + statsModule.healthMaxLevel;
         }
     }
 
     public void SetDefaultUI()
     {
-        movementSpeedText.text = "Current: " + statsModule.movementSpeed.ToString("F1") + "<style=green> +" + statsModule.movementSpeedPercentageIncrease.ToString("F1") + "</style>";
+        movementSpeedText.text = "Current: " + statsModule.movementSpeed.ToString("F1") + "<style=green> +%" + statsModule.movementSpeedPercentageIncrease.ToString("F1") + "</style>";
         movementSpeedCurrentLevelText.text = "Level: " + statsModule.movementSpeedCurrentLevel + " / " + statsModule.movementSpeedMaxLevel;
-        damageText.text = "Current: " + statsModule.damage.ToString("F1") + "<style=green> +" + statsModule.damagePercentageIncrease.ToString("F1") + "</style>";
+        damageText.text = "Current: " + statsModule.damage.ToString("F1") + "<style=green> +%" + statsModule.damagePercentageIncrease.ToString("F1") + "</style>";
         damageCurrentLevelText.text = "Level: " + statsModule.damageCurrentLevel + " / " + statsModule.damageMaxLevel;
-        attackRangeText.text = "Current: " + statsModule.rangedAttackRange.ToString("F1") + "<style=green> +" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
+        attackRangeText.text = "Current: " + statsModule.rangedAttackRange.ToString("F1") + "<style=green> +%" + statsModule.AttackRangePercentageIncrease.ToString("F1") + "</style>";   
         attackRangeCurrentLevelText.text = "Level: " + statsModule.AttackRangeCurrentLevel + " / " + statsModule.AttackRangeMaxLevel;  
-        criticalChanceText.text = "Current: " + statsModule.criticalChance.ToString("F2") + "<style=green> +" + statsModule.criticalChancePercentageIncrease.ToString("F1") + "</style>";     
+        criticalChanceText.text = "Current: " + statsModule.criticalChance.ToString("F2") + "<style=green> +%" + statsModule.criticalChancePercentageIncrease.ToString("F1") + "</style>";     
         criticalChanceCurrentLevelText.text = "Level: " + statsModule.criticalChanceCurrentLevel + " / " + statsModule.criticalChanceMaxLevel;
-        criticalMultiplierText.text = "Current:  Damage x " + statsModule.criticalMultiplier.ToString("F1") + "<style=green> +" + statsModule.criticalMultiplierPercentageIncrease.ToString("F1") + "</style>";  
+        criticalMultiplierText.text = "Current:  Dmg x " + statsModule.criticalMultiplier.ToString("F1") + "<style=green> +%" + statsModule.criticalMultiplierPercentageIncrease.ToString("F1") + "</style>";  
         criticalMultiplierCurrentLevelText.text = "Level: " + statsModule.criticalMultiplierCurrentLevel + " / " + statsModule.criticalMultiplierMaxLevel; 
-        attackSpeedText.text = "Current: " + statsModule.attackSpeedRange.ToString("F1") + "<style=green> +" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
+        attackSpeedText.text = "Current: " + statsModule.attackSpeedRange.ToString("F1") + "<style=green> +%" + statsModule.attackSpeedPercentageIncrease.ToString("F1") + "</style>";       
         attackSpeedCurrentLevelText.text = "Level: " + statsModule.attackSpeedCurrentLevel + " / " + statsModule.attackSpeedMaxLevel;
-        healthText.text = "Current Max Health: " + statsModule.maxHealth.ToString("F1") + "<style=green> +" + statsModule.healthIncreaseMultiplier.ToString("F1") + "</style>";     
+        healthText.text = "Current Max Health: " + statsModule.maxHealth.ToString("F1") + "<style=green> +%" + statsModule.healthIncreaseMultiplier.ToString("F1") + "</style>";     
         healthCurrentLevelText.text = "Level: " + statsModule.healthCurrentLevel + " / " + statsModule.healthMaxLevel;
     }
 

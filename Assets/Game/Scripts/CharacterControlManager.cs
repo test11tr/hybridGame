@@ -641,7 +641,6 @@ public class CharacterControlManager : MonoBehaviour
         {
             currentHealth += amount;
             GameManager.Instance.saveModule.saveInfo.characterCurrentHealth = currentHealth;
-            GameManager.Instance.cameraShakeModule.ShakeCamera(2f, 1f, 0.25f);
             healthBar.fillAmount = (float)currentHealth / maxHealth;
             
             if(floatingTextPrefab)

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     [Foldout("Player Spawner", foldEverything = true, styled = true, readOnly = false)]
     public Transform SpawnPoint;
     
-    [Foldout("Gameplay Settings", foldEverything = true, styled = true, readOnly = true)]
+    [Foldout("Gameplay Settings", foldEverything = true, styled = true, readOnly = false)]
     public int targetFps;
     [DisplayWithoutEdit()] public bool isGamePaused;
 

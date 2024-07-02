@@ -17,6 +17,7 @@ TagManager:
   - ignoreRenderer
   - EnemyStatic
   - Base
+  - Damagable
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - AttackCollider
   - Enemy
   - Projectile
-  - 
+  - cloth
   - 
   - 
   - 

@@ -139,6 +139,11 @@ public class VirtualWalletModule : MonoBehaviour
             currentGem = 0;
             currentWood = 0;
             currentStone = 0;
+            
+            saveModule.saveInfo.virtualCoin = currentCoin;
+            saveModule.saveInfo.virtualGem = currentGem;
+            saveModule.saveInfo.virtualWood = currentWood;
+            saveModule.saveInfo.virtualStone = currentStone;
 
             UpdateUI();
         }

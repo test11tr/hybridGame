@@ -2457,6 +2457,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5241477887251904515, guid: 8f34187b32331444baad17d2304b1206, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2224891057885841334, guid: 421c07a112f58824a89b559d183bdf31, type: 3}
     - target: {fileID: 8425594653839039919, guid: 8f34187b32331444baad17d2304b1206, type: 3}
       propertyPath: m_Name
       value: GameManager
