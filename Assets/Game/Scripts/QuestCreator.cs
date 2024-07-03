@@ -39,4 +39,23 @@ public class QuestCreator : MonoBehaviour
         quest.questType = CharacterLevelQuest.QuestType.Level;
         questManager.quests.Add(quest);
     }
+
+    public void CreateKillQuest()
+    {
+        KillQuest quest = new GameObject("Quest").AddComponent<KillQuest>();
+        quest.transform.SetParent(questManager.questContainer.transform);
+        quest.Title = "Enter Title";
+        quest.Description = "Enter Description";
+        quest.RequiredAmount = 1;
+        quest.questEnemyType = KillQuest.QuestEnemyType.Civilian;
+        CinemachineVirtualCamera hotspotCamera = new GameObject("Hotspot Camera").AddComponent<CinemachineVirtualCamera>();
+        hotspotCamera.transform.SetParent(quest.transform);
+        hotspotCamera.gameObject.SetActive(true);
+        hotspotCamera.Priority = 1;
+        hotspotCamera.transform.position = new Vector3(0, 20, -20);
+        hotspotCamera.transform.rotation = Quaternion.Euler(40, 0, 0);
+        hotspotCamera.m_Lens.FieldOfView = 50;
+        quest.hotspotCamera = hotspotCamera;
+        questManager.quests.Add(quest);
+    }
 }

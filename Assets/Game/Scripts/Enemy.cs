@@ -58,6 +58,10 @@ public class Enemy : MonoBehaviour
     public float healthRegenRate; 
     [HideInInspector] public float lastRegenTime;
     private float currentHealth;
+    public static event Action<int> OnCivilianDead;
+    public static event Action<int> OnRangedDead;
+    public static event Action<int> OnMeleeDead;
+    public static event Action<int> OnBossDead;
 
     [Foldout("NoBehaviourAI Module", foldEverything = true, styled = true, readOnly = false)]
     public int requiredHitsToDie;
@@ -430,6 +434,7 @@ public class Enemy : MonoBehaviour
             
             GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
             parent.OnDeath?.Invoke();
+            OnCivilianDead?.Invoke(1);
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
                 Destroy(parent.gameObject);
@@ -722,6 +727,7 @@ public class Enemy : MonoBehaviour
 
             GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
             parent.OnDeath?.Invoke();
+            OnMeleeDead?.Invoke(1);
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
                 Destroy(parent.gameObject);
@@ -1014,6 +1020,7 @@ public class Enemy : MonoBehaviour
 
             GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
             parent.OnDeath?.Invoke();
+            OnRangedDead?.Invoke(1);
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
                 Destroy(parent.gameObject);
@@ -1306,6 +1313,7 @@ public class Enemy : MonoBehaviour
 
             GameManager.Instance.experienceModule.AddExperience(parent.experienceValue);
             parent.OnDeath?.Invoke();
+            OnBossDead?.Invoke(1);
             DelayHelper.DelayAction(parent.enemyDestroyTimeOnDead, () =>
             {
                 Destroy(parent.gameObject);

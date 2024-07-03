@@ -17,22 +17,17 @@ public class QuestCreatorEditor : Editor
         {
             QuestCreator.CreateCharacterLevelQuest();
         }
-        if (GUILayout.Button("Create Explore Quest")) 
+        if (GUILayout.Button("--Create Explore Quest")) 
         {
             //QuestCreator.CreateExploreQuest();
         }
-        if (GUILayout.Button("Create Build Quest")) 
+        if (GUILayout.Button("--Create Build Quest")) 
         {
             //QuestCreator.CreateExploreQuest();
         }
-        if (GUILayout.Button("Create Fight Quest")) 
+        if (GUILayout.Button("Create Kill Quest")) 
         {
-            //QuestCreator.CreateCollectQuest();
+            QuestCreator.CreateKillQuest();
         }
-        if (GUILayout.Button("Create Boss Quest")) 
-        {
-            //QuestCreator.CreateCollectQuest();
-        }
-        
     }
 }

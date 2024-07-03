@@ -5,49 +5,49 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CollectQuest : Quest 
+public class KillQuest : Quest 
 {
-    public enum QuestItemType
+    public enum QuestEnemyType
     {
-        Coin,
-        Gem,
-        Wood,
-        Stone
+        Civilian,
+        Ranged,
+        Melee,
+        Boss
     }
 
     public int RequiredAmount = 5;
     public int CurrentAmount = 0;
-    public QuestItemType questItemType;
+    public QuestEnemyType questEnemyType;
     public bool hasHotspot;
     public CinemachineVirtualCamera hotspotCamera;
 
     private void EnableWalletListener()
     {
-        if(questItemType == QuestItemType.Coin)
-            WalletModule.OnCoinCurrencyChanged += CheckCurrency;
-        else if(questItemType == QuestItemType.Gem)
-            WalletModule.OnGemCurrencyChanged += CheckCurrency;
-        else if(questItemType == QuestItemType.Wood)
-            WalletModule.OnWoodCurrencyChanged += CheckCurrency;
-        else if(questItemType == QuestItemType.Stone)
-            WalletModule.OnStoneCurrencyChanged += CheckCurrency;
+        if(questEnemyType == QuestEnemyType.Civilian)
+            Enemy.OnCivilianDead += CheckGoal;
+        else if(questEnemyType == QuestEnemyType.Ranged)
+            Enemy.OnRangedDead += CheckGoal;
+        else if(questEnemyType == QuestEnemyType.Melee)
+            Enemy.OnMeleeDead += CheckGoal;
+        else if(questEnemyType == QuestEnemyType.Boss)
+            Enemy.OnBossDead += CheckGoal;
     }
 
     private void DisableWalletListener()
     {
-        if(questItemType == QuestItemType.Coin)
-            WalletModule.OnCoinCurrencyChanged -= CheckCurrency;
-        else if(questItemType == QuestItemType.Gem)
-            WalletModule.OnGemCurrencyChanged -= CheckCurrency;
-        else if(questItemType == QuestItemType.Wood)
-            WalletModule.OnWoodCurrencyChanged -= CheckCurrency;
-        else if(questItemType == QuestItemType.Stone)
-            WalletModule.OnStoneCurrencyChanged -= CheckCurrency;
+        if(questEnemyType == QuestEnemyType.Civilian)
+            Enemy.OnCivilianDead -= CheckGoal;
+        else if(questEnemyType == QuestEnemyType.Ranged)
+            Enemy.OnRangedDead -= CheckGoal;
+        else if(questEnemyType == QuestEnemyType.Melee)
+            Enemy.OnMeleeDead -= CheckGoal;
+        else if(questEnemyType == QuestEnemyType.Boss)
+            Enemy.OnBossDead -= CheckGoal;
     }
 
     public override void StartQuest() {
         base.StartQuest();
-        Debug.Log($"{Title}: {Description}. Collect {RequiredAmount} {questItemType}.");
+        Debug.Log($"{Title}: {Description}. Kill {RequiredAmount} {questEnemyType}.");
         SetButtonListener();
         EnableWalletListener();
         UpdateUI();
@@ -71,9 +71,9 @@ public class CollectQuest : Quest
         GameManager.Instance.questManager.questSlot.SetActive(true);
     }
 
-    private void CheckCurrency(int newAmount)
+    private void CheckGoal(int newAmount)
     {
-        CurrentAmount = CurrentAmount + newAmount;
+        CurrentAmount += newAmount;
         UpdateUI();
         if (CurrentAmount >= RequiredAmount && !IsCompleted)
         {
