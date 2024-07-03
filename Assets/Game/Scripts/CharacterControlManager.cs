@@ -69,6 +69,8 @@ public class CharacterControlManager : MonoBehaviour
     [DisplayWithoutEdit()] public int currentExperience;
     [DisplayWithoutEdit()] public int maxExperience;
     [DisplayWithoutEdit()] public int levelExperienceMultiplier;
+    public static event Action<int> OnEXPChange;
+    public static event Action<int> OnLevelChange;
 
     [Foldout("Collector Module", foldEverything = true, styled = true, readOnly = false)]
     [Header("Collector Module")]
@@ -339,6 +341,7 @@ public class CharacterControlManager : MonoBehaviour
 
     public void HandleExperienceChange(int experience)
     {
+        OnEXPChange?.Invoke(experience);
         currentExperience += experience;
         GameManager.Instance.saveModule.saveInfo.characterCurrentExperience = currentExperience;
         GameManager.Instance.experienceModule.UpdateExperienceUI(currentExperience, currentLevel, maxExperience);
@@ -351,8 +354,8 @@ public class CharacterControlManager : MonoBehaviour
 
     private void LevelUp()
     {
-
         currentLevel++;
+        OnLevelChange?.Invoke(currentLevel);
         GameManager.Instance.saveModule.saveInfo.characterCurrentLevel = currentLevel;
         currentExperience = 0;
         GameManager.Instance.saveModule.saveInfo.characterCurrentExperience = currentExperience;

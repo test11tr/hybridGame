@@ -4,6 +4,9 @@ using UnityEngine.UI;
 using TMPro;
 
 public class QuestManager : MonoBehaviour {
+
+    [Foldout("Quests", foldEverything = true, styled = true, readOnly = false)]
+    public GameObject questContainer;
     public List<Quest> quests = new List<Quest>();
 
     [Foldout("Quest UI", foldEverything = true, styled = true, readOnly = false)]
@@ -14,15 +17,12 @@ public class QuestManager : MonoBehaviour {
     public Image progressBar;
     public TMP_Text progressText;
     public GameObject completeTick;
+    public Image magnifyingGlass;
 
     void Start() {
         StartNextQuest();
     }
-
-    public void AddQuest(Quest quest) {
-        quests.Add(quest);
-    }
-
+    
     public void StartNextQuest() {
         foreach (var quest in quests) {
             if (!quest.IsCompleted) {

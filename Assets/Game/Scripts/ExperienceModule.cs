@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ExperienceModule : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class ExperienceModule : MonoBehaviour
 
     public delegate void ExperienceChangeHandler(int experience);
     public event ExperienceChangeHandler OnExperienceChange;
-
+    
     public void AddExperience(int experience)
     {
         OnExperienceChange?.Invoke(experience);
