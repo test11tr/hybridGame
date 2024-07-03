@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using AssetKits.ParticleImage;
+using System;
 
 public class WalletModule : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class WalletModule : MonoBehaviour
     public int gemCount;
     public int woodAmount;
     public int stoneAmount;
+
+    public static event Action<int> OnCoinCurrencyChanged;
+    public static event Action<int> OnGemCurrencyChanged;
+    public static event Action<int> OnWoodCurrencyChanged;
+    public static event Action<int> OnStoneCurrencyChanged;
 
     private void Start()
     {
@@ -87,63 +93,77 @@ public class WalletModule : MonoBehaviour
 
     public void AddCoin(int amount)
     {
+        int previousAmount = coinCount;
         coinCount += amount;
         coinText.text = NumberFormatter.Convert(coinCount);
         coinEffect.Play();
         GameManager.Instance.saveModule.saveInfo.coinCount = coinCount;
+        OnCoinCurrencyChanged?.Invoke(coinCount - previousAmount);
     }
 
     public void RemoveCoin(int amount)
     {
+        int previousAmount = coinCount;
         coinCount -= amount;
         coinText.text = NumberFormatter.Convert(coinCount);
         GameManager.Instance.saveModule.saveInfo.coinCount = coinCount;
+        OnCoinCurrencyChanged?.Invoke(coinCount - previousAmount);
     }
 
     public void AddGem(int amount)
     {
+        int previousAmount = gemCount;
         gemCount += amount;
         gemText.text = NumberFormatter.Convert(gemCount);
         gemEffect.Play();
         GameManager.Instance.saveModule.saveInfo.gemCount = gemCount;
+        OnGemCurrencyChanged?.Invoke(gemCount - previousAmount);
     }
 
     public void RemoveGem(int amount)
     {
+        int previousAmount = gemCount;
         gemCount -= amount;
         gemText.text = NumberFormatter.Convert(gemCount);
         GameManager.Instance.saveModule.saveInfo.gemCount = gemCount;
+        OnGemCurrencyChanged?.Invoke(gemCount - previousAmount);
     }
 
     public void AddWood(int amount)
     {
+        int previousAmount = woodAmount;
         woodAmount += amount;
         woodText.text = NumberFormatter.Convert(woodAmount);
         woodEffect.Play();
         GameManager.Instance.saveModule.saveInfo.woodAmount = woodAmount;
+        OnWoodCurrencyChanged?.Invoke(woodAmount - previousAmount);
     }
 
     public void RemoveWood(int amount)
     {
+        int previousAmount = woodAmount;
         woodAmount -= amount;
         woodText.text = NumberFormatter.Convert(woodAmount);
         GameManager.Instance.saveModule.saveInfo.woodAmount = woodAmount;
+        OnWoodCurrencyChanged?.Invoke(woodAmount - previousAmount);
     }
 
     public void AddStone(int amount)
     {
+        int previousAmount = stoneAmount;
         stoneAmount += amount;
         stoneText.text = NumberFormatter.Convert(stoneAmount);
         stoneEffect.Play();
         GameManager.Instance.saveModule.saveInfo.stoneAmount = stoneAmount;
+        OnStoneCurrencyChanged?.Invoke(stoneAmount - previousAmount);
     }
 
     public void RemoveStone(int amount)
     {
+        int previousAmount = stoneAmount;
         stoneAmount -= amount;
         stoneText.text = NumberFormatter.Convert(stoneAmount);
         GameManager.Instance.saveModule.saveInfo.stoneAmount = stoneAmount;
+        OnStoneCurrencyChanged?.Invoke(stoneAmount - previousAmount);
     }
-
-    
 }

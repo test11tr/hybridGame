@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public CameraShakeModule cameraShakeModule;
     public incrementalManagerMenu incrementelMenuManager;
     public incrementalManagerWheel incrementelWheelManager;
+    public QuestManager questManager;
     public IncrementalMenuType incrementalMenuType;
     public Camera mainCamera;
     public CinemachineVirtualCamera vcam;

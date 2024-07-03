@@ -8,7 +8,6 @@ public class BaseBuilding : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            print("here");
             CharacterControlManager player = GameManager.Instance.player;
             if(player.virtualWallet != null)
             {
