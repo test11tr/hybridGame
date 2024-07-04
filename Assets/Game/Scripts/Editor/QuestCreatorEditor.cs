@@ -19,11 +19,11 @@ public class QuestCreatorEditor : Editor
         }
         if (GUILayout.Button("--Create Explore Quest")) 
         {
-            //QuestCreator.CreateExploreQuest();
+            //QuestCreator.CreateUnlockAreaQuest();
         }
-        if (GUILayout.Button("--Create Build Quest")) 
+        if (GUILayout.Button("Create Character Upgrade Quest")) 
         {
-            //QuestCreator.CreateExploreQuest();
+            QuestCreator.CreateUpgradeQuest();
         }
         if (GUILayout.Button("Create Kill Quest")) 
         {

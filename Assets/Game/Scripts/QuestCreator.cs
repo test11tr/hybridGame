@@ -58,4 +58,14 @@ public class QuestCreator : MonoBehaviour
         quest.hotspotCamera = hotspotCamera;
         questManager.quests.Add(quest);
     }
+
+    public void CreateUpgradeQuest()
+    {
+        UpgradeQuest quest = new GameObject("Quest").AddComponent<UpgradeQuest>();
+        quest.transform.SetParent(questManager.questContainer.transform);
+        quest.Title = "Enter Title";
+        quest.Description = "Enter Description";
+        quest.RequiredAmount = 1;
+        questManager.quests.Add(quest);
+    }
 }
