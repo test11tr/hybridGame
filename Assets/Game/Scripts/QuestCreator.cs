@@ -68,4 +68,48 @@ public class QuestCreator : MonoBehaviour
         quest.RequiredAmount = 1;
         questManager.quests.Add(quest);
     }
+
+    public void CreateExploreQuest()
+    {
+        ExploreQuest quest = new GameObject("Quest").AddComponent<ExploreQuest>();
+        quest.transform.SetParent(questManager.questContainer.transform);
+        quest.Title = "Enter Title";
+        quest.Description = "Enter Description";
+        quest.RequiredAmount = 1;
+        quest.hasHotspot = false;
+        CinemachineVirtualCamera hotspotCamera = new GameObject("Hotspot Camera").AddComponent<CinemachineVirtualCamera>();
+        hotspotCamera.transform.SetParent(quest.transform);
+        hotspotCamera.gameObject.SetActive(true);
+        hotspotCamera.Priority = 1;
+        hotspotCamera.transform.position = new Vector3(0, 20, -20);
+        hotspotCamera.transform.rotation = Quaternion.Euler(40, 0, 0);
+        hotspotCamera.m_Lens.FieldOfView = 50;
+        quest.hotspotCamera = hotspotCamera;
+        BoxCollider hotspotCollider = new GameObject("Hotspot Collider").AddComponent<BoxCollider>();
+        hotspotCollider.transform.SetParent(quest.transform);
+        hotspotCollider.gameObject.SetActive(true);
+        hotspotCollider.size = new Vector3(1, 1, 1);
+        hotspotCollider.isTrigger = true;
+        quest.hotspotCollider = hotspotCollider;
+        questManager.quests.Add(quest);
+    }
+
+    public void CreateUnlockQuest()
+    {
+        UnlockQuest quest = new GameObject("Quest").AddComponent<UnlockQuest>();
+        quest.transform.SetParent(questManager.questContainer.transform);
+        quest.Title = "Enter Title";
+        quest.Description = "Enter Description";
+        quest.RequiredAmount = 1;
+        quest.questType = UnlockQuest.QuestType.CriticalDamage;
+        CinemachineVirtualCamera hotspotCamera = new GameObject("Hotspot Camera").AddComponent<CinemachineVirtualCamera>();
+        hotspotCamera.transform.SetParent(quest.transform);
+        hotspotCamera.gameObject.SetActive(true);
+        hotspotCamera.Priority = 1;
+        hotspotCamera.transform.position = new Vector3(0, 20, -20);
+        hotspotCamera.transform.rotation = Quaternion.Euler(40, 0, 0);
+        hotspotCamera.m_Lens.FieldOfView = 50;
+        quest.hotspotCamera = hotspotCamera;
+        questManager.quests.Add(quest);
+    }
 }

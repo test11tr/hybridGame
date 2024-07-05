@@ -21,8 +21,6 @@ public class UpgradeQuest : Quest
     public int RequiredAmount = 5;
     public int CurrentAmount = 0;
     public QuestIncrementalType questIncrementalType;
-    public bool hasHotspot;
-    public CinemachineVirtualCamera hotspotCamera;
 
     private void EnableWalletListener()
     {
@@ -63,6 +61,7 @@ public class UpgradeQuest : Quest
     public override void StartQuest() {
         base.StartQuest();
         Debug.Log($"{Title}: {Description}. Buy {RequiredAmount} {questIncrementalType}.");
+        GameManager.Instance.questManager.magnifyingGlass.gameObject.SetActive(false);
         SetButtonListener();
         EnableWalletListener();
         UpdateUI();
@@ -70,11 +69,6 @@ public class UpgradeQuest : Quest
 
     private void SetButtonListener()
     {
-        if(hasHotspot)
-        {
-            GameManager.Instance.questManager.magnifyingGlass.gameObject.SetActive(true);
-            GameManager.Instance.questManager.questButton.onClick.AddListener(MoveToHotspot);
-        }
     }
 
     public void UpdateUI() {
@@ -102,13 +96,5 @@ public class UpgradeQuest : Quest
     public override void CompleteQuest() {
         base.CompleteQuest();
         DisableWalletListener();
-    }
-
-    public void MoveToHotspot()
-    {
-        hotspotCamera.Priority = 11;
-        DelayHelper.DelayAction(3.5f, () => {
-            hotspotCamera.Priority = 1;
-        });
     }
 }

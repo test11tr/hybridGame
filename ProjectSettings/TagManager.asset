@@ -18,6 +18,7 @@ TagManager:
   - EnemyStatic
   - Base
   - Damagable
+  - questManager
   layers:
   - Default
   - TransparentFX
