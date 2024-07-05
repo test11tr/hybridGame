@@ -33,6 +33,7 @@ public class UnlockQuest : Quest
     public QuestType questType;
     public bool hasHotspot;
     public CinemachineVirtualCamera hotspotCamera;
+    public UnlockableArea unlockableArea;
 
     private void EnableWalletListener()
     {
@@ -116,6 +117,13 @@ public class UnlockQuest : Quest
         SetButtonListener();
         EnableWalletListener();
         UpdateUI();
+
+        hotspotCamera.Priority = 11;
+        unlockableArea.showUI();
+        DelayHelper.DelayAction(3.5f, () => {
+            hotspotCamera.Priority = 1;
+            unlockableArea.closeUI();
+        });
     }
 
     private void SetButtonListener()
@@ -134,28 +142,36 @@ public class UnlockQuest : Quest
         GameManager.Instance.questManager.progressText.text = $"{CurrentAmount}/{RequiredAmount}";
         GameManager.Instance.questManager.completeTick.SetActive(false);
         GameManager.Instance.questManager.questSlot.SetActive(true);
+        unlockableArea.questDescriptionText.text = Description;
+        unlockableArea.progressBar.fillAmount = (float)CurrentAmount / RequiredAmount;
+        unlockableArea.progressText.text = $"{CurrentAmount}/{RequiredAmount}";
     }
 
     private void CheckGoal(int newAmount)
     {
-        CurrentAmount = CurrentAmount + newAmount;
+        CurrentAmount += newAmount;
         UpdateUI();
         if (CurrentAmount >= RequiredAmount && !IsCompleted)
         {
-            hotspotCamera.Priority = 11;
-            DelayHelper.DelayAction(3.5f, () => {
-                hotspotCamera.Priority = 1;
-                GameManager.Instance.questManager.questBg.color = new Color(0.62f, 0.91f, 0.33f);
-                GameManager.Instance.questManager.questButton.onClick.RemoveAllListeners();
-                GameManager.Instance.questManager.questButton.onClick.AddListener(CompleteQuest);
-                GameManager.Instance.questManager.completeTick.SetActive(true);
-            });
+            GameManager.Instance.questManager.questBg.color = new Color(0.62f, 0.91f, 0.33f);
+            GameManager.Instance.questManager.completeTick.SetActive(true);
+            CompleteQuest();
         }
     }
 
     public override void CompleteQuest() {
-        base.CompleteQuest();
-        DisableWalletListener();
+        hotspotCamera.Priority = 11;
+        unlockableArea.showUI();
+        DelayHelper.DelayAction(1.5f, () => {
+            unlockableArea.unlockArea();
+        });
+        DelayHelper.DelayAction(3f, () => {
+            unlockableArea.closeUI();
+            hotspotCamera.Priority = 1;
+            base.CompleteQuest();
+            DisableWalletListener();
+        });
+       
     }
 
     public void MoveToHotspot()

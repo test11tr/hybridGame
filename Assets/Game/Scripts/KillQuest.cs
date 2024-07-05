@@ -92,7 +92,7 @@ public class KillQuest : Quest
     public void MoveToHotspot()
     {
         hotspotCamera.Priority = 11;
-        DelayHelper.DelayAction(3.5f, () => {
+        DelayHelper.DelayAction(2.5f, () => {
             hotspotCamera.Priority = 1;
         });
     }

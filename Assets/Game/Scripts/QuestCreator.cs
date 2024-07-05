@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
+using Unity.VisualScripting;
 
 public class QuestCreator : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class QuestCreator : MonoBehaviour
     
     public void CreateCollectQuest()
     {
-        CollectQuest quest = new GameObject("Quest").AddComponent<CollectQuest>();
+        CollectQuest quest = new GameObject("Quest - Collect Quest").AddComponent<CollectQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
         quest.Title = "Enter Title";
         quest.Description = "Enter Description";
@@ -31,7 +32,7 @@ public class QuestCreator : MonoBehaviour
 
     public void CreateCharacterLevelQuest()
     {
-        CharacterLevelQuest quest = new GameObject("Quest").AddComponent<CharacterLevelQuest>();
+        CharacterLevelQuest quest = new GameObject("Quest - Level/EXP Quest").AddComponent<CharacterLevelQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
         quest.Title = "Enter Title";
         quest.Description = "Enter Description";
@@ -42,7 +43,7 @@ public class QuestCreator : MonoBehaviour
 
     public void CreateKillQuest()
     {
-        KillQuest quest = new GameObject("Quest").AddComponent<KillQuest>();
+        KillQuest quest = new GameObject("Quest - Kill Quest").AddComponent<KillQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
         quest.Title = "Enter Title";
         quest.Description = "Enter Description";
@@ -61,42 +62,17 @@ public class QuestCreator : MonoBehaviour
 
     public void CreateUpgradeQuest()
     {
-        UpgradeQuest quest = new GameObject("Quest").AddComponent<UpgradeQuest>();
+        UpgradeQuest quest = new GameObject("Quest - Upgrade Quest").AddComponent<UpgradeQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
         quest.Title = "Enter Title";
         quest.Description = "Enter Description";
         quest.RequiredAmount = 1;
-        questManager.quests.Add(quest);
-    }
-
-    public void CreateExploreQuest()
-    {
-        ExploreQuest quest = new GameObject("Quest").AddComponent<ExploreQuest>();
-        quest.transform.SetParent(questManager.questContainer.transform);
-        quest.Title = "Enter Title";
-        quest.Description = "Enter Description";
-        quest.RequiredAmount = 1;
-        quest.hasHotspot = false;
-        CinemachineVirtualCamera hotspotCamera = new GameObject("Hotspot Camera").AddComponent<CinemachineVirtualCamera>();
-        hotspotCamera.transform.SetParent(quest.transform);
-        hotspotCamera.gameObject.SetActive(true);
-        hotspotCamera.Priority = 1;
-        hotspotCamera.transform.position = new Vector3(0, 20, -20);
-        hotspotCamera.transform.rotation = Quaternion.Euler(40, 0, 0);
-        hotspotCamera.m_Lens.FieldOfView = 50;
-        quest.hotspotCamera = hotspotCamera;
-        BoxCollider hotspotCollider = new GameObject("Hotspot Collider").AddComponent<BoxCollider>();
-        hotspotCollider.transform.SetParent(quest.transform);
-        hotspotCollider.gameObject.SetActive(true);
-        hotspotCollider.size = new Vector3(1, 1, 1);
-        hotspotCollider.isTrigger = true;
-        quest.hotspotCollider = hotspotCollider;
         questManager.quests.Add(quest);
     }
 
     public void CreateUnlockQuest()
     {
-        UnlockQuest quest = new GameObject("Quest").AddComponent<UnlockQuest>();
+        UnlockQuest quest = new GameObject("Quest - Unlock Area Quest").AddComponent<UnlockQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
         quest.Title = "Enter Title";
         quest.Description = "Enter Description";

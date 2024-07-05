@@ -25,10 +25,6 @@ public class QuestCreatorEditor : Editor
         {
             QuestCreator.CreateKillQuest();
         }
-        if (GUILayout.Button("Create Explore Quest")) 
-        {
-            QuestCreator.CreateExploreQuest();
-        }
         if (GUILayout.Button("Create Unlock Quest")) 
         {
             QuestCreator.CreateUnlockQuest();
