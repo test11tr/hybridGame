@@ -20,15 +20,19 @@ public class QuestManager : MonoBehaviour {
     public Image magnifyingGlass;
 
     void Start() {
-        StartNextQuest();
+        GetQuests();
+        LoadQuests();
     }
     
-    public void StartNextQuest() {
+    public void LoadQuests() {
         foreach (var quest in quests) {
             if (!quest.IsCompleted) {
                 quest.gameObject.SetActive(true);
                 quest.StartQuest();
                 break;
+            }else
+            {
+                quest.gameObject.SetActive(false);
             }
         }
     }
@@ -36,6 +40,31 @@ public class QuestManager : MonoBehaviour {
     public void CompleteQuest(Quest quest) {
         Debug.Log($"Completed Quest: {quest.Title}");
         quest.gameObject.SetActive(false);
-        StartNextQuest();
+        LoadQuests();
+        SaveQuests();
+    }
+
+    public void SaveQuests() {
+        GameManager.Instance.saveModule.saveInfo.quests = new List<Quest>(quests);
+        GameManager.Instance.saveModule.saveData();
+    }
+
+    public void GetQuests() {
+        var savedQuests = GameManager.Instance.saveModule.saveInfo.quests;
+        if (savedQuests != null && savedQuests.Count > 0) {
+            if (quests.Count > savedQuests.Count) {
+                var loadedQuestIDs = new List<int>();
+                foreach (var quest in savedQuests) {
+                    loadedQuestIDs.Add(quest.ID);
+                }
+                foreach (var quest in quests) {
+                    if (!loadedQuestIDs.Contains(quest.ID)) {
+                        savedQuests.Add(quest);
+                    }
+                }
+                quests = new List<Quest>(savedQuests);
+            }
+        }
+        SaveQuests();
     }
 }

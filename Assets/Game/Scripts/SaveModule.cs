@@ -140,5 +140,7 @@ public class SaveModule : MonoBehaviour
         public int characterCurrentExperience;
         public int characterCurrentLevel;
         public int characterExperienceToNextLevel;
+        [Header("Quests")]
+        public List<Quest> quests;
     }
 }

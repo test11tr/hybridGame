@@ -29,14 +29,16 @@ public class QuestCreatorEditor : Editor
         {
             QuestCreator.CreateUnlockQuest();
         }
-        if (GUILayout.Button("Save Quests!")) {
+        if (GUILayout.Button("Save Quests & Update IDs!")) {
             GameObject gameManagerObject = GameObject.Find("GameManager");
+            QuestCreator.setIDs();
             if (PrefabUtility.IsPartOfPrefabInstance(gameManagerObject))
             {
                 GameObject prefabSource = PrefabUtility.GetCorrespondingObjectFromSource(gameManagerObject) as GameObject;
                 if (prefabSource != null)
                 {
                     PrefabUtility.ApplyPrefabInstance(gameManagerObject, InteractionMode.UserAction);
+                    Debug.Log("Saved Quests & Updated IDs!");
                 }
                 else
                 {

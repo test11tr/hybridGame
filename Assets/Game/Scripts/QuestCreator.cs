@@ -88,4 +88,12 @@ public class QuestCreator : MonoBehaviour
         quest.hotspotCamera = hotspotCamera;
         questManager.quests.Add(quest);
     }
+
+    public void setIDs()
+    {
+        for (int i = 0; i < questManager.quests.Count; i++)
+        {
+            questManager.quests[i].ID = i;
+        }
+    }
 }

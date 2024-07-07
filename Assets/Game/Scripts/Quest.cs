@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
-public abstract class Quest : MonoBehaviour {
+[Serializable]
+public class Quest : MonoBehaviour {
+    public int ID;
     public string Title;
     public string Description;
     public bool IsCompleted { get; protected set; }
