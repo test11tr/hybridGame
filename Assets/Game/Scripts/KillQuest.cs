@@ -47,7 +47,7 @@ public class KillQuest : Quest
 
     public override void StartQuest() {
         base.StartQuest();
-        Debug.Log($"{Title}: {Description}. Kill {RequiredAmount} {questEnemyType}.");
+        Debug.Log($"Quest: {Description}. Kill {RequiredAmount} {questEnemyType}.");
         SetButtonListener();
         EnableWalletListener();
         UpdateUI();

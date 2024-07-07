@@ -60,7 +60,7 @@ public class UpgradeQuest : Quest
 
     public override void StartQuest() {
         base.StartQuest();
-        Debug.Log($"{Title}: {Description}. Buy {RequiredAmount} {questIncrementalType}.");
+        Debug.Log($"Quest: {Description}. Buy {RequiredAmount} {questIncrementalType}.");
         GameManager.Instance.questManager.magnifyingGlass.gameObject.SetActive(false);
         SetButtonListener();
         EnableWalletListener();

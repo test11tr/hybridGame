@@ -113,7 +113,7 @@ public class UnlockQuest : Quest
 
     public override void StartQuest() {
         base.StartQuest();
-        Debug.Log($"{Title}: {Description}. Do {RequiredAmount} {questType}.");
+        Debug.Log($"Quest: {Description}. Do {RequiredAmount} {questType}.");
         SetButtonListener();
         EnableWalletListener();
         UpdateUI();

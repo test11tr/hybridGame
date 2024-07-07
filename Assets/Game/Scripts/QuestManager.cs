@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class QuestManager : MonoBehaviour {
 
@@ -38,15 +39,13 @@ public class QuestManager : MonoBehaviour {
     }
 
     public void CompleteQuest(Quest quest) {
-        Debug.Log($"Completed Quest: {quest.Title}");
+        Debug.Log($"Completed Quest: {quest.Description}");
         quest.gameObject.SetActive(false);
         LoadQuests();
-        SaveQuests();
     }
 
-    public void SaveQuests() {
+    public void CreateQuestsList() {
         GameManager.Instance.saveModule.saveInfo.quests = new List<Quest>(quests);
-        GameManager.Instance.saveModule.saveData();
     }
 
     public void GetQuests() {
@@ -65,6 +64,25 @@ public class QuestManager : MonoBehaviour {
                 quests = new List<Quest>(savedQuests);
             }
         }
-        SaveQuests();
+
+        var savedQuestInfos = GameManager.Instance.saveModule.saveInfo.questInfos;
+        if (savedQuestInfos != null && savedQuestInfos.Count > 0)
+        {
+            foreach (var quest in quests)
+            {
+                var questInfo = savedQuestInfos.FirstOrDefault(qi => qi.questID == quest.ID);
+                if (questInfo != null)
+                {
+                    quest.IsCompleted = questInfo.isComplete;
+                    quest.gameObject.SetActive(!quest.IsCompleted);
+                    if (!quest.IsCompleted)
+                    {
+                        quest.StartQuest();
+                    }
+                }
+            }
+        }
+
+        CreateQuestsList();
     }
 }

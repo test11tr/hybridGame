@@ -14,7 +14,6 @@ public class QuestCreator : MonoBehaviour
     {
         CollectQuest quest = new GameObject("Quest - Collect Quest").AddComponent<CollectQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
-        quest.Title = "Enter Title";
         quest.Description = "Enter Description";
         quest.RequiredAmount = 1;
         quest.questItemType = CollectQuest.QuestItemType.Coin;
@@ -34,7 +33,6 @@ public class QuestCreator : MonoBehaviour
     {
         CharacterLevelQuest quest = new GameObject("Quest - Level/EXP Quest").AddComponent<CharacterLevelQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
-        quest.Title = "Enter Title";
         quest.Description = "Enter Description";
         quest.RequiredAmount = 1;
         quest.questType = CharacterLevelQuest.QuestType.Level;
@@ -45,7 +43,6 @@ public class QuestCreator : MonoBehaviour
     {
         KillQuest quest = new GameObject("Quest - Kill Quest").AddComponent<KillQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
-        quest.Title = "Enter Title";
         quest.Description = "Enter Description";
         quest.RequiredAmount = 1;
         quest.questEnemyType = KillQuest.QuestEnemyType.Civilian;
@@ -64,7 +61,6 @@ public class QuestCreator : MonoBehaviour
     {
         UpgradeQuest quest = new GameObject("Quest - Upgrade Quest").AddComponent<UpgradeQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
-        quest.Title = "Enter Title";
         quest.Description = "Enter Description";
         quest.RequiredAmount = 1;
         questManager.quests.Add(quest);
@@ -74,7 +70,6 @@ public class QuestCreator : MonoBehaviour
     {
         UnlockQuest quest = new GameObject("Quest - Unlock Area Quest").AddComponent<UnlockQuest>();
         quest.transform.SetParent(questManager.questContainer.transform);
-        quest.Title = "Enter Title";
         quest.Description = "Enter Description";
         quest.RequiredAmount = 1;
         quest.questType = UnlockQuest.QuestType.CriticalDamage;

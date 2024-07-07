@@ -35,6 +35,7 @@ public class SaveModule : MonoBehaviour
 
     public void saveData()
     {
+        updateQuestInfosFromQuests();
         var jsonData = JsonUtility.ToJson(saveInfo);
         var dataPath = Application.persistentDataPath + "/saveData.json";
         System.IO.File.WriteAllText(dataPath, jsonData);
@@ -101,6 +102,21 @@ public class SaveModule : MonoBehaviour
         }
     }
 
+    private void updateQuestInfosFromQuests()
+    {
+        if (saveInfo.quests == null || saveInfo.quests.Count == 0)
+        {
+            return;
+        }   
+        
+        saveInfo.questInfos.Clear();
+        foreach (var quest in GameManager.Instance.questManager.quests)
+        {
+            var questInfo = new QuestInfo { questID = quest.ID, questName = quest.Description, isComplete = quest.IsCompleted };
+            saveInfo.questInfos.Add(questInfo);
+        }
+    }
+
     [Serializable]
     public class SaveInfo
     {
@@ -142,5 +158,14 @@ public class SaveModule : MonoBehaviour
         public int characterExperienceToNextLevel;
         [Header("Quests")]
         public List<Quest> quests;
+        public List<QuestInfo> questInfos;
+    }
+
+    [Serializable]
+    public class QuestInfo
+    {
+        public int questID;
+        public string questName;
+        public bool isComplete;
     }
 }

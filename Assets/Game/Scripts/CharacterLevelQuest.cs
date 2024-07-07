@@ -35,7 +35,7 @@ public class CharacterLevelQuest : Quest
 
     public override void StartQuest() {
         base.StartQuest();
-        Debug.Log($"{Title}: {Description}. Collect {RequiredAmount} {questType}.");
+        Debug.Log($"Quest: {Description}. Collect {RequiredAmount} {questType}.");
         GameManager.Instance.questManager.magnifyingGlass.gameObject.SetActive(false);
         EnableWalletListener();
         UpdateUI();

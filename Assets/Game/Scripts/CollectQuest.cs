@@ -47,7 +47,7 @@ public class CollectQuest : Quest
 
     public override void StartQuest() {
         base.StartQuest();
-        Debug.Log($"{Title}: {Description}. Collect {RequiredAmount} {questItemType}.");
+        Debug.Log($"Quest: {Description}. Collect {RequiredAmount} {questItemType}.");
         SetButtonListener();
         EnableWalletListener();
         UpdateUI();
