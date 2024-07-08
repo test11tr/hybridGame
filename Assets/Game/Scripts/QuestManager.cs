@@ -42,6 +42,7 @@ public class QuestManager : MonoBehaviour {
         Debug.Log($"Completed Quest: {quest.Description}");
         quest.gameObject.SetActive(false);
         LoadQuests();
+        UpdateQuestInfoList();
     }
 
     public void CreateQuestsList() {
@@ -84,5 +85,10 @@ public class QuestManager : MonoBehaviour {
         }
 
         CreateQuestsList();
+        UpdateQuestInfoList();
+    }
+
+    public void UpdateQuestInfoList() {
+        GameManager.Instance.saveModule.updateQuestInfosFromQuests();
     }
 }

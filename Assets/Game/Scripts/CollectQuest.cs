@@ -75,6 +75,7 @@ public class CollectQuest : Quest
     {
         CurrentAmount = CurrentAmount + newAmount;
         UpdateUI();
+        GameManager.Instance.saveModule.updateQuestInfosFromQuests();
         if (CurrentAmount >= RequiredAmount && !IsCompleted)
         {
             GameManager.Instance.questManager.questBg.color = new Color(0.62f, 0.91f, 0.33f);

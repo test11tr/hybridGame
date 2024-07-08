@@ -135,7 +135,8 @@ public class UnlockQuest : Quest
         }
     }
 
-    public void UpdateUI() {
+    public void UpdateUI() 
+    {
         GameManager.Instance.questManager.questBg.color = new Color32(34, 34, 34, 178);
         GameManager.Instance.questManager.questDescriptionText.text = Description;
         GameManager.Instance.questManager.progressBar.fillAmount = (float)CurrentAmount / RequiredAmount;
@@ -151,6 +152,7 @@ public class UnlockQuest : Quest
     {
         CurrentAmount += newAmount;
         UpdateUI();
+        GameManager.Instance.saveModule.updateQuestInfosFromQuests();
         if (CurrentAmount >= RequiredAmount && !IsCompleted)
         {
             GameManager.Instance.questManager.questBg.color = new Color(0.62f, 0.91f, 0.33f);
