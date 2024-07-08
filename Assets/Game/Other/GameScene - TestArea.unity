@@ -417,6 +417,78 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ae25edefce76324e8398cec448cc411, type: 3}
+--- !u!1001 &332598420
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4946404500572969601, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: areaName
+      value: Area2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279591596126405710, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_Name
+      value: UnlockableArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998227429074759518, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+--- !u!114 &332598421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4946404500572969601, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+  m_PrefabInstance: {fileID: 332598420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935fae40600a42a47a384ee149b27cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &333412776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,6 +2499,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3516038274556188993, guid: 8f34187b32331444baad17d2304b1206, type: 3}
+      propertyPath: unlockableArea
+      value: 
+      objectReference: {fileID: 332598421}
     - target: {fileID: 4420306630791021183, guid: 8f34187b32331444baad17d2304b1206, type: 3}
       propertyPath: unlockableArea
       value: 
@@ -2850,6 +2926,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4946404500572969601, guid: 1551850218887fe42a255923d8b6928f, type: 3}
+      propertyPath: areaName
+      value: Area1
+      objectReference: {fileID: 0}
     - target: {fileID: 8279591596126405710, guid: 1551850218887fe42a255923d8b6928f, type: 3}
       propertyPath: m_Name
       value: UnlockableArea
@@ -2988,3 +3068,4 @@ SceneRoots:
   - {fileID: 2863703102710802341}
   - {fileID: 2077448603}
   - {fileID: 8156362728324425601}
+  - {fileID: 332598420}

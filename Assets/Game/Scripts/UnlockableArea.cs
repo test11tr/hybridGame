@@ -7,6 +7,7 @@ using TMPro;
 
 public class UnlockableArea : MonoBehaviour
 {
+    public string areaName;
     [DisplayWithoutEdit()] public bool isLocked = true;
     public GameObject popupUI;
     public GameObject Gate;
@@ -19,6 +20,13 @@ public class UnlockableArea : MonoBehaviour
     private void Start()
     {
         popupUI.SetActive(false);
+        bool isAreaUnlocked = GameManager.Instance.saveModule.CheckIfAreaUnlocked(areaName);
+        if (isAreaUnlocked)
+        {
+            isLocked = false;
+            Gate.SetActive(false);
+            collider.enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,5 +66,6 @@ public class UnlockableArea : MonoBehaviour
         Gate.SetActive(false);
         popupUI.SetActive(false);
         collider.enabled = false;
+        GameManager.Instance.saveModule.UpdateUnlockedAreas(areaName, true);
     }
 }

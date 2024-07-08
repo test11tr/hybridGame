@@ -15,6 +15,7 @@ public class SaveModule : MonoBehaviour
     void Start()
     {
         StartCoroutine(AutoSaveCoroutine());
+        ManageUnlockedAreas();
     }
 
     public SaveInfo saveInfo;
@@ -119,6 +120,48 @@ public class SaveModule : MonoBehaviour
         }
     }
 
+    public void UpdateUnlockedAreas(string areaName, bool isUnlocked)
+    {
+        if (saveInfo.unlockedAreas == null)
+            saveInfo.unlockedAreas = new List<UnlockedArea>();
+
+        var existingArea = saveInfo.unlockedAreas.Find(area => area.areaName == areaName);
+        if (existingArea != null)
+        {
+            existingArea.isUnlocked = isUnlocked;
+        }
+        else
+        {
+            saveInfo.unlockedAreas.Add(new UnlockedArea { areaName = areaName, isUnlocked = isUnlocked });
+        }
+
+        saveData();
+    }
+
+    private void ManageUnlockedAreas()
+    {
+        if (saveInfo.unlockedAreas != null)
+        {
+            foreach (var unlockedArea in saveInfo.unlockedAreas)
+            {
+            }
+        }
+    }
+
+    public bool CheckIfAreaUnlocked(string areaName)
+    {
+        if (saveInfo.unlockedAreas == null) return false;
+
+        foreach (var area in saveInfo.unlockedAreas)
+        {
+            if (area.areaName == areaName && area.isUnlocked)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     [Serializable]
     public class SaveInfo
     {
@@ -161,6 +204,7 @@ public class SaveModule : MonoBehaviour
         [Header("Quests")]
         public List<Quest> quests;
         public List<QuestInfo> questInfos;
+        public List<UnlockedArea> unlockedAreas;
     }
 
     [Serializable]
@@ -171,5 +215,12 @@ public class SaveModule : MonoBehaviour
         public bool isComplete;
         public int currentAmount;
         public int requiredAmount;
+    }
+
+    [Serializable]
+    public class UnlockedArea
+    {
+        public string areaName;
+        public bool isUnlocked;
     }
 }
