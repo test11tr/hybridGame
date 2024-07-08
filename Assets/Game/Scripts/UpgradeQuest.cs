@@ -19,8 +19,6 @@ public class UpgradeQuest : Quest
     }
 
     [Foldout("Quest Details", foldEverything = true, styled = true, readOnly = false)]
-    public int RequiredAmount = 5;
-    public int CurrentAmount = 0;
     public QuestIncrementalType questIncrementalType;
 
     private void EnableWalletListener()
@@ -70,6 +68,7 @@ public class UpgradeQuest : Quest
 
     private void SetButtonListener()
     {
+        GameManager.Instance.questManager.questButton.onClick.RemoveAllListeners();
     }
 
     public void UpdateUI() {

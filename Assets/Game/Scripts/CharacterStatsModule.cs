@@ -222,7 +222,7 @@ public class CharacterStatsModule : MonoBehaviour
             playerManager.movementSpeed = movementSpeed;
             movementSpeedCurrentValue = movementSpeed;
             SaveMovementSpeed();
-            OnMoveSpeedBuy?.Invoke(movementSpeedCurrentLevel);
+            OnMoveSpeedBuy?.Invoke(1);
         }
     }
 
@@ -235,7 +235,7 @@ public class CharacterStatsModule : MonoBehaviour
             playerManager.damage = damage;
             damageCurrentValue = damage;
             SaveDamage();
-            OnDamageBuy?.Invoke(damageCurrentLevel);
+            OnDamageBuy?.Invoke(1);
         }
     }
 
@@ -258,7 +258,7 @@ public class CharacterStatsModule : MonoBehaviour
             AttackRangeCurrentValueRange = rangedAttackRange;
             detectorRangeValue = detectorRange;
             SaveAttackRange();
-            OnAttackRangeBuy?.Invoke(AttackRangeCurrentLevel);
+            OnAttackRangeBuy?.Invoke(1);
         }
     }
 
@@ -272,7 +272,7 @@ public class CharacterStatsModule : MonoBehaviour
             playerManager.currentHealth *= healthIncreaseMultiplier;
             healthCurrentValue = maxHealth;
             SaveHealth();
-            OnHealthBuy?.Invoke((int)healthCurrentLevel);
+            OnHealthBuy?.Invoke(1);
         }
     }
 
@@ -288,7 +288,7 @@ public class CharacterStatsModule : MonoBehaviour
             attackSpeedCurrentValueMelee = attackSpeedMelee;
             attackSpeedCurrentValueRange = attackSpeedRange;
             SaveAttackSpeed();
-            OnAttackSpeedBuy?.Invoke(attackSpeedCurrentLevel);
+            OnAttackSpeedBuy?.Invoke(1);
         }
     }
 
@@ -301,7 +301,7 @@ public class CharacterStatsModule : MonoBehaviour
             playerManager.criticalChance = criticalChance;
             criticalChanceCurrentValue = criticalChance;
             SaveCriticalChance();
-            OnCriticalChanceBuy?.Invoke((int)criticalChanceCurrentLevel);
+            OnCriticalChanceBuy?.Invoke(1);
         }
     }
 
@@ -314,7 +314,7 @@ public class CharacterStatsModule : MonoBehaviour
             playerManager.criticalMultiplier = criticalMultiplier;
             criticalMultiplierCurrentValue = criticalMultiplier;
             SaveCriticalMultiplier();
-            OnCriticalDamageBuy?.Invoke((int)criticalMultiplierCurrentLevel);
+            OnCriticalDamageBuy?.Invoke(1);
         }
     }
     #endregion

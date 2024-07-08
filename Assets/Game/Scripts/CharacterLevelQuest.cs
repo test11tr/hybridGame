@@ -14,8 +14,6 @@ public class CharacterLevelQuest : Quest
     }
 
     [Foldout("Quest Details", foldEverything = true, styled = true, readOnly = false)]
-    public int RequiredAmount = 5;
-    public int CurrentAmount = 0;
     public QuestType questType;
 
     private void EnableWalletListener()
@@ -38,8 +36,14 @@ public class CharacterLevelQuest : Quest
         base.StartQuest();
         Debug.Log($"Quest: {Description}. Collect {RequiredAmount} {questType}.");
         GameManager.Instance.questManager.magnifyingGlass.gameObject.SetActive(false);
+        SetButtonListener();
         EnableWalletListener();
         UpdateUI();
+    }
+
+    private void SetButtonListener()
+    {
+        GameManager.Instance.questManager.questButton.onClick.RemoveAllListeners();
     }
 
     public void UpdateUI() {

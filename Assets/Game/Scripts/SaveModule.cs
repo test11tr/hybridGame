@@ -114,7 +114,7 @@ public class SaveModule : MonoBehaviour
         saveInfo.questInfos.Clear();
         foreach (var quest in GameManager.Instance.questManager.quests)
         {
-            var questInfo = new QuestInfo { questID = quest.ID, questName = quest.Description, isComplete = quest.IsCompleted };
+            var questInfo = new QuestInfo { questID = quest.ID, questName = quest.Description, isComplete = quest.IsCompleted, currentAmount = quest.CurrentAmount, requiredAmount = quest.RequiredAmount};
             saveInfo.questInfos.Add(questInfo);
         }
     }
@@ -169,5 +169,7 @@ public class SaveModule : MonoBehaviour
         public int questID;
         public string questName;
         public bool isComplete;
+        public int currentAmount;
+        public int requiredAmount;
     }
 }

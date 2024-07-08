@@ -29,8 +29,6 @@ public class UnlockQuest : Quest
     }
 
     [Foldout("Quest Details", foldEverything = true, styled = true, readOnly = false)]
-    public int RequiredAmount = 5;
-    public int CurrentAmount = 0;
     public QuestType questType;
     public bool hasHotspot;
     public CinemachineVirtualCamera hotspotCamera;
@@ -129,6 +127,7 @@ public class UnlockQuest : Quest
 
     private void SetButtonListener()
     {
+        GameManager.Instance.questManager.questButton.onClick.RemoveAllListeners();
         if(hasHotspot)
         {
             GameManager.Instance.questManager.magnifyingGlass.gameObject.SetActive(true);

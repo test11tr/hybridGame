@@ -13321,14 +13321,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 5
   Description: Kill 3 Enemy
+  RequiredAmount: 3
+  CurrentAmount: 0
   IsCompleted: 0
+  IsActive: 0
   multiReward: 0
   rewardType1: 1
   rewardType2: 0
   rewardAmount1: 50
   rewardAmount2: 0
-  RequiredAmount: 3
-  CurrentAmount: 0
   questEnemyType: 1
   hasHotspot: 1
   hotspotCamera: {fileID: 3135674653293383597}
@@ -14074,15 +14075,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 1
-  Description: Kill 3 Civilian
+  Description: Kill 5 Civilian
+  RequiredAmount: 5
+  CurrentAmount: 0
   IsCompleted: 0
+  IsActive: 0
   multiReward: 0
   rewardType1: 0
   rewardType2: 0
   rewardAmount1: 15
   rewardAmount2: 0
-  RequiredAmount: 3
-  CurrentAmount: 0
   questEnemyType: 0
   hasHotspot: 1
   hotspotCamera: {fileID: 7287685852961755436}
@@ -17740,14 +17742,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   Description: Sell 10 Wood
+  RequiredAmount: 10
+  CurrentAmount: 0
   IsCompleted: 0
+  IsActive: 0
   multiReward: 0
   rewardType1: 1
   rewardType2: 0
   rewardAmount1: 20
   rewardAmount2: 0
-  RequiredAmount: 10
-  CurrentAmount: 0
   questItemType: 2
   hasHotspot: 1
   hotspotCamera: {fileID: 8110271883793288387}
@@ -21367,14 +21370,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 4
   Description: Buy 2 Damage Upgrade
+  RequiredAmount: 2
+  CurrentAmount: 0
   IsCompleted: 0
+  IsActive: 0
   multiReward: 0
   rewardType1: 2
   rewardType2: 0
   rewardAmount1: 3
   rewardAmount2: 0
-  RequiredAmount: 2
-  CurrentAmount: 0
   questIncrementalType: 1
 --- !u!1 &7180519472232199715
 GameObject:
@@ -21462,15 +21466,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 6
   Description: 'Kill 5 Enemy to Unlock Area '
+  RequiredAmount: 5
+  CurrentAmount: 0
   IsCompleted: 0
+  IsActive: 0
   multiReward: 0
   rewardType1: 5
   rewardType2: 0
   rewardAmount1: 0
   rewardAmount2: 0
-  RequiredAmount: 5
-  CurrentAmount: 0
-  questType: 14
+  questType: 5
   hasHotspot: 1
   hotspotCamera: {fileID: 3924136840060069750}
   unlockableArea: {fileID: 0}
@@ -22268,14 +22273,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Description: Get 25 EXP
+  RequiredAmount: 25
+  CurrentAmount: 0
   IsCompleted: 0
+  IsActive: 0
   multiReward: 0
   rewardType1: 0
   rewardType2: 0
   rewardAmount1: 10
   rewardAmount2: 0
-  RequiredAmount: 25
-  CurrentAmount: 0
   questType: 1
 --- !u!1 &7556244499968533110
 GameObject:
@@ -25859,14 +25865,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   Description: Level Up Your Character!
+  RequiredAmount: 1
+  CurrentAmount: 0
   IsCompleted: 0
+  IsActive: 0
   multiReward: 0
   rewardType1: 0
   rewardType2: 0
   rewardAmount1: 50
   rewardAmount2: 0
-  RequiredAmount: 1
-  CurrentAmount: 0
   questType: 0
 --- !u!1 &8945540172338505472
 GameObject:

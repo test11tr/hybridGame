@@ -16,10 +16,12 @@ public class Quest : MonoBehaviour {
         unlockAreaCurrency
     }   
 
-    public int ID;
+    [DisplayWithoutEdit()] public int ID;
     public string Description;
-    public bool IsCompleted;
-    public bool IsActive;
+    public int RequiredAmount;
+    public int CurrentAmount;
+    [DisplayWithoutEdit()] public bool IsCompleted;
+    [DisplayWithoutEdit()] public bool IsActive;
     public bool multiReward;
     public RewardType rewardType1;
     public RewardType rewardType2;
