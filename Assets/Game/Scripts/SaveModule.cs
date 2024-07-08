@@ -104,14 +104,11 @@ public class SaveModule : MonoBehaviour
 
     public void updateQuestInfosFromQuests()
     {
-        // saveInfo veya saveInfo.questInfos null kontrolü
         if (saveInfo == null) saveInfo = new SaveInfo();
         if (saveInfo.questInfos == null) saveInfo.questInfos = new List<QuestInfo>();
 
-        // GameManager.Instance.questManager.quests null kontrolü
         if (GameManager.Instance.questManager.quests == null) return;
 
-        // Eğer herhangi bir quest yoksa, işlemi durdur.
         if (saveInfo.quests == null || saveInfo.quests.Count == 0) return;
 
         saveInfo.questInfos.Clear();
@@ -120,29 +117,6 @@ public class SaveModule : MonoBehaviour
             var questInfo = new QuestInfo { questID = quest.ID, questName = quest.Description, isComplete = quest.IsCompleted };
             saveInfo.questInfos.Add(questInfo);
         }
-
-        /*if (saveInfo.quests == null || saveInfo.quests.Count == 0)
-        {
-            return;
-        }   
-        
-        if(saveInfo.questInfos == null)
-        {
-            foreach (var quest in GameManager.Instance.questManager.quests)
-            {
-                var questInfo = new QuestInfo { questID = quest.ID, questName = quest.Description, isComplete = quest.IsCompleted };
-                saveInfo.questInfos.Add(questInfo);
-            }
-        }
-        else
-        {
-            saveInfo.questInfos.Clear();
-            foreach (var quest in GameManager.Instance.questManager.quests)
-            {
-                var questInfo = new QuestInfo { questID = quest.ID, questName = quest.Description, isComplete = quest.IsCompleted };
-                saveInfo.questInfos.Add(questInfo);
-            }
-        }*/
     }
 
     [Serializable]

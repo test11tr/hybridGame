@@ -15,6 +15,7 @@ public class KillQuest : Quest
         Boss
     }
 
+    [Foldout("Quest Details", foldEverything = true, styled = true, readOnly = false)]
     public int RequiredAmount = 5;
     public int CurrentAmount = 0;
     public QuestEnemyType questEnemyType;
@@ -69,6 +70,24 @@ public class KillQuest : Quest
         GameManager.Instance.questManager.progressText.text = $"{CurrentAmount}/{RequiredAmount}";
         GameManager.Instance.questManager.completeTick.SetActive(false);
         GameManager.Instance.questManager.questSlot.SetActive(true);
+
+        if(multiReward)
+        {
+            GameManager.Instance.questManager.SingleRewardSlot.SetActive(false);
+            GameManager.Instance.questManager.MultiRewardSlot.SetActive(true);
+            GameManager.Instance.questManager.multiRewardIcon1.sprite = GetRewardIcon(rewardType1);
+            GameManager.Instance.questManager.multiRewardText1.text = GetRewardText(rewardType1, rewardAmount1);
+            GameManager.Instance.questManager.multiRewardIcon2.sprite = GetRewardIcon(rewardType2);
+            GameManager.Instance.questManager.multiRewardText2.text = GetRewardText(rewardType2, rewardAmount2);
+        }
+        else
+        {
+            GameManager.Instance.questManager.MultiRewardSlot.SetActive(false);
+            GameManager.Instance.questManager.SingleRewardSlot.SetActive(true);
+            GameManager.Instance.questManager.singleRewardIcon.sprite = GetRewardIcon(rewardType1);
+            GameManager.Instance.questManager.singleRewardText.text = GetRewardText(rewardType1, rewardAmount1);
+        }
+
     }
 
     private void CheckGoal(int newAmount)
@@ -87,6 +106,7 @@ public class KillQuest : Quest
 
     public override void CompleteQuest() {
         base.CompleteQuest();
+        GiveRewards(multiReward, rewardType1, rewardType2, rewardAmount1, rewardAmount2);
         DisableWalletListener();
     }
 

@@ -19,6 +19,22 @@ public class QuestManager : MonoBehaviour {
     public TMP_Text progressText;
     public GameObject completeTick;
     public Image magnifyingGlass;
+    public GameObject SingleRewardSlot;
+    public Image singleRewardIcon;
+    public TMP_Text singleRewardText;
+    public GameObject MultiRewardSlot;
+    public Image multiRewardIcon1;
+    public TMP_Text multiRewardText1;
+    public Image multiRewardIcon2;
+    public TMP_Text multiRewardText2;
+    
+    [Foldout("Reward Currencies", foldEverything = true, styled = true, readOnly = false)]
+    public Loot coinCurrency;
+    public Loot expCurrency;
+    public Loot gemCurrency;
+    public Loot woodCurrency;
+    public Loot stoneCurrency;
+    public Loot unlockAreaCurrency;
 
     void Start() {
         GetQuests();
@@ -40,7 +56,19 @@ public class QuestManager : MonoBehaviour {
 
     public void CompleteQuest(Quest quest) {
         Debug.Log($"Completed Quest: {quest.Description}");
+        quest.IsCompleted = true;
+        quest.IsActive = false;
         quest.gameObject.SetActive(false);
+
+        Quest nextQuest = quests.FirstOrDefault(q => !q.IsCompleted);
+        if (nextQuest != null) {
+            nextQuest.IsActive = true;
+            nextQuest.gameObject.SetActive(true);
+        }else
+        {
+            Debug.Log("All Quests Completed");
+        }
+
         LoadQuests();
         UpdateQuestInfoList();
     }
@@ -51,6 +79,7 @@ public class QuestManager : MonoBehaviour {
 
     public void GetQuests() {
         var savedQuests = GameManager.Instance.saveModule.saveInfo.quests;
+        bool foundActiveQuest = false;
         if (savedQuests != null && savedQuests.Count > 0) {
             if (quests.Count > savedQuests.Count) {
                 var loadedQuestIDs = new List<int>();
@@ -81,6 +110,20 @@ public class QuestManager : MonoBehaviour {
                         quest.StartQuest();
                     }
                 }
+            }
+        }
+
+        foreach (var quest in quests) {
+        quest.IsActive = false;
+        quest.gameObject.SetActive(false);
+        }
+
+        // Activate the first incomplete quest
+        foreach (var quest in quests) {
+            if (!quest.IsCompleted && !foundActiveQuest) {
+                quest.IsActive = true;
+                quest.gameObject.SetActive(true);
+                foundActiveQuest = true;
             }
         }
 

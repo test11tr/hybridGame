@@ -29,6 +29,7 @@ public class QuestCreatorEditor : Editor
         {
             QuestCreator.CreateUnlockQuest();
         }
+        GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Save Quests & Update IDs!")) {
             GameObject gameManagerObject = GameObject.Find("GameManager");
             QuestCreator.setIDs();
