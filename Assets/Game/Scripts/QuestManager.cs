@@ -100,17 +100,24 @@ public class QuestManager : MonoBehaviour {
         {
             foreach (var quest in quests)
             {
-                var questInfo = savedQuestInfos.FirstOrDefault(qi => qi.questID == quest.ID);
+                var questInfo = savedQuestInfos?.FirstOrDefault(qi => qi.questID == quest.ID);
                 if (questInfo != null)
                 {
                     quest.IsCompleted = questInfo.isComplete;
                     quest.CurrentAmount = questInfo.currentAmount;
                     quest.RequiredAmount = questInfo.requiredAmount;
-                    quest.gameObject.SetActive(!quest.IsCompleted);
-                    if (!quest.IsCompleted)
-                    {
-                        quest.StartQuest();
-                    }
+                }else
+                {
+                    quest.IsCompleted = false;
+                }
+
+                if (!quest.IsCompleted && !foundActiveQuest) {
+                    quest.IsActive = true;
+                    quest.gameObject.SetActive(true);
+                    foundActiveQuest = true;
+                } else {
+                    quest.IsActive = false;
+                    quest.gameObject.SetActive(false);
                 }
             }
         }
