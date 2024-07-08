@@ -600,13 +600,7 @@ public class Enemy : MonoBehaviour
             {
                 parent.alreadyAttacked = true;
                 // Attack code here
-                if(parent.isRangedAttack)
-                {
-                    float yOffset = parent.projectileSpawnPoint.position.y;
-                    Projectile _projectile = Instantiate(parent.projectile, parent.projectileSpawnPoint.position, Quaternion.identity);
-                    _projectile.Fire(parent.damage, parent.player.position, yOffset);
-                }
-                
+                GameManager.Instance.player.TakeDamage(parent.damage);            
                 DelayHelper.DelayAction(parent.timeBetweenAttacks, () =>
                 {
                     parent.alreadyAttacked = false;
@@ -892,13 +886,10 @@ public class Enemy : MonoBehaviour
             if (!parent.alreadyAttacked)
             {
                 parent.alreadyAttacked = true;
-                // Attack code here
-                if(parent.isRangedAttack)
-                {
-                    float yOffset = parent.projectileSpawnPoint.position.y;
-                    Projectile _projectile = Instantiate(parent.projectile, parent.projectileSpawnPoint.position, Quaternion.identity);
-                    _projectile.Fire(parent.damage, parent.player.position, yOffset);
-                }
+                // Attack code here                
+                float yOffset = parent.projectileSpawnPoint.position.y;
+                Projectile _projectile = Instantiate(parent.projectile, parent.projectileSpawnPoint.position, Quaternion.identity);
+                _projectile.Fire(parent.damage, parent.player.position, yOffset);
                 
                 DelayHelper.DelayAction(parent.timeBetweenAttacks, () =>
                 {
