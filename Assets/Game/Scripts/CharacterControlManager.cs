@@ -21,6 +21,7 @@ public class CharacterControlManager : MonoBehaviour
     
     [Foldout("Movement Module", foldEverything = true, styled = true, readOnly = false)]
     [DisplayWithoutEdit()] public bool isJoytick;
+    [DisplayWithoutEdit()] public bool isReleaseToAttack;
     [DisplayWithoutEdit()] public float movementSpeed;
     [DisplayWithoutEdit()] public float rotationSpeed;
 
@@ -478,59 +479,74 @@ public class CharacterControlManager : MonoBehaviour
         if (closestEnemy != null && Vector3.Distance(rb.position, closestEnemy.transform.position) <= attackCollider.bounds.extents.x)
         {
             lookAnimator.ObjectToFollow = closestEnemy.lookTarget;
-            if (!alreadyAttacked) //&& joystick.Horizontal == 0 && joystick.Vertical == 0)
+            if(isReleaseToAttack)
             {
-                alreadyAttacked = true;
-                
-                if(isRangedAttack)
+                if(joystick.Horizontal == 0 && joystick.Vertical == 0)
                 {
-                    float timeToWait = 1;
-                    
-                    if(RangedAttackWeapon == 0)
-                    {
-                        playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
-                        timeToWait = GetAnimationSpeed("rangedattack1");
-                        playerAnimator.SetTrigger("rangedattack1");
-                    }
-                    else if(RangedAttackWeapon == 1)
-                    {
-                        playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
-                        timeToWait = GetAnimationSpeed("rangedattack2");
-                        playerAnimator.SetTrigger("rangedattack2");
-                    }
-
-                    DelayHelper.DelayAction(timeToWait, () =>
-                    {
-                        alreadyAttacked = false;
-                    });
+                    PerformAttack();
                 }
-
-                if(isMeleeAttack)
-                {
-                    float timeToWait = 1;
-                    if(attackCounter == 0)
-                    {
-                        playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
-                        timeToWait = GetAnimationSpeed("meleeattack1");
-                        playerAnimator.SetTrigger("meleeattack1");
-                        attackCounter++;
-                    }else
-                    {
-                        playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
-                        timeToWait = GetAnimationSpeed("meleeattack2");
-                        playerAnimator.SetTrigger("meleeattack2");
-                        attackCounter = 0;
-                    }
-                    
-                    DelayHelper.DelayAction(timeToWait, () =>
-                    {
-                        alreadyAttacked = false;
-                    });       
-                }
+            }else
+            {
+                PerformAttack();
             }
+            
         }else
         {
             lookAnimator.ObjectToFollow = null;
+        }
+    }
+
+    public void PerformAttack()
+    {
+        if (!alreadyAttacked)
+        {
+            alreadyAttacked = true;
+            
+            if(isRangedAttack)
+            {
+                float timeToWait = 1;
+                
+                if(RangedAttackWeapon == 0)
+                {
+                    playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
+                    timeToWait = GetAnimationSpeed("rangedattack1");
+                    playerAnimator.SetTrigger("rangedattack1");
+                }
+                else if(RangedAttackWeapon == 1)
+                {
+                    playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
+                    timeToWait = GetAnimationSpeed("rangedattack2");
+                    playerAnimator.SetTrigger("rangedattack2");
+                }
+
+                DelayHelper.DelayAction(timeToWait, () =>
+                {
+                    alreadyAttacked = false;
+                });
+            }
+
+            if(isMeleeAttack)
+            {
+                float timeToWait = 1;
+                if(attackCounter == 0)
+                {
+                    playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
+                    timeToWait = GetAnimationSpeed("meleeattack1");
+                    playerAnimator.SetTrigger("meleeattack1");
+                    attackCounter++;
+                }else
+                {
+                    playerAnimator.SetFloat("attackSpeed", attackSpeedMelee);
+                    timeToWait = GetAnimationSpeed("meleeattack2");
+                    playerAnimator.SetTrigger("meleeattack2");
+                    attackCounter = 0;
+                }
+                
+                DelayHelper.DelayAction(timeToWait, () =>
+                {
+                    alreadyAttacked = false;
+                });       
+            }
         }
     }
 

@@ -18,6 +18,7 @@ public class CharacterStatsModule : MonoBehaviour
 
     [Foldout("Default Movement Module", foldEverything = true, styled = true, readOnly = false)]
     public bool isJoytick;
+    public bool isReleaseToAttack;
     public float movementSpeed;
     public float rotationSpeed;
 
@@ -127,6 +128,7 @@ public class CharacterStatsModule : MonoBehaviour
         {
             print("Set Default Player Manager Stats");
             playerManager.isJoytick = this.isJoytick;
+            playerManager.isReleaseToAttack = this.isReleaseToAttack;
             playerManager.movementSpeed = this.movementSpeed;
             playerManager.rotationSpeed = this.rotationSpeed;
             playerManager.dashSpeed = this.dashSpeed;
@@ -172,6 +174,7 @@ public class CharacterStatsModule : MonoBehaviour
         if (playerManager != null)
         {
             playerManager.isJoytick = this.isJoytick;
+            playerManager.isReleaseToAttack = this.isReleaseToAttack;
             playerManager.movementSpeed = movementSpeedCurrentValue;
             playerManager.rotationSpeed = this.rotationSpeed;
             playerManager.dashSpeed = this.dashSpeed;

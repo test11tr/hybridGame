@@ -1258,6 +1258,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 0}
   inputCanvas: {fileID: 0}
   isJoytick: 1
+  isReleaseToAttack: 0
   movementSpeed: 5
   rotationSpeed: 10
   lookAnimator: {fileID: 3310703897414952034}
@@ -3334,14 +3335,15 @@ MonoBehaviour:
   saveModule: {fileID: 0}
   playerManager: {fileID: 2224891057885841334}
   isJoytick: 1
+  isReleaseToAttack: 0
   movementSpeed: 5
   rotationSpeed: 10
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldownTime: 1
-  weaponType: 1
+  weaponType: 0
   rangedAttackRange: 5
-  rangedAttackWeapon: 1
+  rangedAttackWeapon: 0
   meleeAttackRange: 2.5
   detectorRange: 5
   damage: 1
