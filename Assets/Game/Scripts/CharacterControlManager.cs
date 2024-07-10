@@ -115,7 +115,6 @@ public class CharacterControlManager : MonoBehaviour
     public List<GameObject> RangedWeaponsStaff;
     public Projectile staffProjectile;
     public List<GameObject> RangedWeaponsBow;
-    public List<GameObject> RangedWeaponsArrows;
     public List<GameObject> RangedWeaponsQuivers;
     public Projectile bowProjectile;
 
