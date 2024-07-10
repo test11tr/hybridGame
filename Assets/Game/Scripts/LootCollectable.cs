@@ -73,6 +73,7 @@ public class LootCollectable : MonoBehaviour
                 GameManager.Instance.player.virtualWallet.AddStone(1);
 
             ShowText();
+            GameManager.Instance.soundModule.PlaySound("dropCollect");
             Destroy(gameObject);
         });
     }

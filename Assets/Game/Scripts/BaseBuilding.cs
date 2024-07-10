@@ -9,9 +9,10 @@ public class BaseBuilding : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CharacterControlManager player = GameManager.Instance.player;
-            if(player.virtualWallet != null)
+            if(player.virtualWallet.currentCargo > 0)
             {
                 player.virtualWallet.TransferToWallet();
+                GameManager.Instance.soundModule.PlaySound("lotsOfCoin");
             }
         }
     }

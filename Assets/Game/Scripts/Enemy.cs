@@ -598,7 +598,8 @@ public class Enemy : MonoBehaviour
             {
                 parent.alreadyAttacked = true;
                 // Attack code here
-                GameManager.Instance.player.TakeDamage(parent.damage);            
+                GameManager.Instance.player.TakeDamage(parent.damage);          
+                GameManager.Instance.soundModule.PlaySound("hitCharacter");  
                 DelayHelper.DelayAction(parent.timeBetweenAttacks, () =>
                 {
                     parent.alreadyAttacked = false;

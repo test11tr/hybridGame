@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
         vcam.Follow = player.rb.transform;
     }
 
+    public void Start(){
+        GameManager.Instance.soundModule.PlayMusic("mainMusic");
+    }
+
     public void openIncrementalMenu(){
         if(incrementalMenuType == IncrementalMenuType.Menu){
             incrementelMenuManager.gameObject.SetActive(true);

@@ -137,7 +137,7 @@ public class CharacterControlManager : MonoBehaviour
     private void Start()
     {
         if(isJoytick)
-            EnableJoystick();
+            EnableJoystick();    
 
         loadHealth();
         loadLevelData();
@@ -319,6 +319,7 @@ public class CharacterControlManager : MonoBehaviour
             dashEffect.Play();
             Vector3 dashDirection = rb.transform.forward;
             rb.velocity = dashDirection * dashSpeed;
+            GameManager.Instance.soundModule.PlaySound("dash");
 
             for (int i = 0; i < dashTrailEffects.Length; i++)
             {
@@ -386,6 +387,7 @@ public class CharacterControlManager : MonoBehaviour
         GameManager.Instance.experienceModule.UpdateExperienceUI(currentExperience, currentLevel, maxExperience);
 
         levelUpEffect.Play();
+        GameManager.Instance.soundModule.PlaySound("levelUp");
         if(floatingTextPrefab)
         {
             Vector3 spawnPosition = rb.transform.position;
@@ -584,7 +586,6 @@ public class CharacterControlManager : MonoBehaviour
                 closestEnemy.TakeDamage(finalDamage, false);
             }
             
-
             foreach (Enemy enemy in detectedEnemies)
             {
                 if (enemy == null)
@@ -602,6 +603,7 @@ public class CharacterControlManager : MonoBehaviour
                         enemy.TakeDamage(damage * splashDamageMultiplier, false);
                 }
             }
+            GameManager.Instance.soundModule.PlaySound("hitMob");
         }
     }
 

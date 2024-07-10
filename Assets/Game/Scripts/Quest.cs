@@ -35,6 +35,7 @@ public class Quest : MonoBehaviour {
     public virtual void CompleteQuest() {
         IsCompleted = true;
         GameManager.Instance.questManager.CompleteQuest(this);
+        GameManager.Instance.soundModule.PlaySound("success");
     }
 
     public void GiveRewards(bool multiReward, RewardType rewardType1, RewardType rewardType2, int rewardAmount1, int rewardAmount2)

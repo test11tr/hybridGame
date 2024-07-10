@@ -254,6 +254,7 @@ public class incrementalManagerMenu : MonoBehaviour
 
     public void IncrementMovementSpeed()
     {
+        GameManager.Instance.soundModule.PlaySound("success");
         statsModule.IncrementMovementSpeed();
         walletModule.DeductCurrency("coin", movementSpeedCost);
         movementSpeedCost *= movementSpeedCostMultiplier;
@@ -263,6 +264,7 @@ public class incrementalManagerMenu : MonoBehaviour
 
     public void IncrementDamage()
     {
+        GameManager.Instance.soundModule.PlaySound("success");
         statsModule.IncrementDamage();
         walletModule.DeductCurrency("coin", damageCost);
         damageCost *= damageCostMultiplier;
@@ -272,6 +274,7 @@ public class incrementalManagerMenu : MonoBehaviour
 
     public void IncrementAttackRange()
     {
+        GameManager.Instance.soundModule.PlaySound("success");
         statsModule.IncrementAttackRange();
         walletModule.DeductCurrency("coin", attackRangeCost);
         attackRangeCost *= attackRangeCostMultiplier;
@@ -281,6 +284,7 @@ public class incrementalManagerMenu : MonoBehaviour
 
     public void IncrementHealth()
     {
+        GameManager.Instance.soundModule.PlaySound("success");
         statsModule.IncrementHealth();
         walletModule.DeductCurrency("coin", healthCost);
         healthCost *= healthCostMultiplier;
@@ -290,6 +294,7 @@ public class incrementalManagerMenu : MonoBehaviour
 
     public void IncrementAttackSpeed()
     {
+        GameManager.Instance.soundModule.PlaySound("success");
         statsModule.IncrementAttackSpeed();
         walletModule.DeductCurrency("coin", attackSpeedCost);
         attackSpeedCost *= attackSpeedCostMultiplier;
@@ -299,6 +304,7 @@ public class incrementalManagerMenu : MonoBehaviour
 
     public void IncrementCriticalChance()
     {
+        GameManager.Instance.soundModule.PlaySound("success");
         statsModule.IncrementCriticalChance();
         walletModule.DeductCurrency("coin", criticalChanceCost);
         criticalChanceCost *= criticalChanceCostMultiplier;
@@ -308,6 +314,7 @@ public class incrementalManagerMenu : MonoBehaviour
 
     public void IncrementCriticalMultiplier()
     {
+        GameManager.Instance.soundModule.PlaySound("success");
         statsModule.IncrementCriticalMultiplier();
         walletModule.DeductCurrency("coin", criticalMultiplierCost);
         criticalMultiplierCost *= criticalMultiplierCostMultiplier;

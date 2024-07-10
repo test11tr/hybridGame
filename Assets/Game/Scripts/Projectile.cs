@@ -44,6 +44,7 @@ public class Projectile : MonoBehaviour
                     other.GetComponent<Enemy>().TakeDamage(_bulletDamage, true);
                 else
                     other.GetComponent<Enemy>().TakeDamage(_bulletDamage, false);
+                GameManager.Instance.soundModule.PlaySound("hitMob");
                 Destroy(gameObject);
             }
         }else
@@ -56,6 +57,7 @@ public class Projectile : MonoBehaviour
                     Instantiate(impactEffect2, other.transform.position, Quaternion.identity);
                 }
                 GameManager.Instance.player.TakeDamage(_bulletDamage);
+                GameManager.Instance.soundModule.PlaySound("hitCharacter");
                 Destroy(gameObject);
             }
         }

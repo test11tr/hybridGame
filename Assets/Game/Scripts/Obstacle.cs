@@ -23,7 +23,7 @@ public class Obstacle : MonoBehaviour
             isUsing = true;
             GameManager.Instance.player.TakeDamage(obstacleDamage);
             GameManager.Instance.player.knockBack();
-            
+            GameManager.Instance.soundModule.PlaySound("hitCharacter");
             GameManager.Instance.cameraShakeModule.ShakeCamera(shakeIntensity, shakeFrequency, shakeDuration);
             DelayHelper.DelayAction(hitDelay, () => isUsing = false);
         }

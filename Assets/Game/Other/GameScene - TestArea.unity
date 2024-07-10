@@ -2656,6 +2656,18 @@ PrefabInstance:
       propertyPath: unlockableArea
       value: 
       objectReference: {fileID: 1837186069}
+    - target: {fileID: 6105544568851927628, guid: 8f34187b32331444baad17d2304b1206, type: 3}
+      propertyPath: sounds.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6105544568851927628, guid: 8f34187b32331444baad17d2304b1206, type: 3}
+      propertyPath: sounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b27d04c933540b43950d9465e12d1a4, type: 3}
+    - target: {fileID: 6105544568851927628, guid: 8f34187b32331444baad17d2304b1206, type: 3}
+      propertyPath: sounds.Array.data[8].name
+      value: mainMusic
+      objectReference: {fileID: 0}
     - target: {fileID: 8425594653839039919, guid: 8f34187b32331444baad17d2304b1206, type: 3}
       propertyPath: m_Name
       value: GameManager

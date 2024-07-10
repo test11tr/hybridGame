@@ -184,6 +184,7 @@ public class UnlockQuest : Quest
         unlockableArea.showUI();
         DelayHelper.DelayAction(1.5f, () => {
             unlockableArea.unlockArea();
+            GameManager.Instance.soundModule.PlaySound("unlockingArea");
         });
         DelayHelper.DelayAction(3f, () => {
             unlockableArea.closeUI();
