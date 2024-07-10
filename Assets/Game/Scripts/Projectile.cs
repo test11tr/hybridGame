@@ -14,15 +14,18 @@ public class Projectile : MonoBehaviour
     public GameObject impactEffect2;
 
     private float _bulletDamage;
+    private bool _isCriticalHit;
     private Vector3 _startPos;
 
-    public void Fire(float damage, Vector3 targetPosition, float yOffset)
+    public void Fire(float damage, Vector3 targetPosition, float yOffset, bool isCriticalHit)
     {
         _startPos = transform.position;
         _bulletDamage = damage;
+        _isCriticalHit = isCriticalHit;
         targetPosition.y += yOffset;
         Vector3 directionToTarget = (targetPosition - transform.position).normalized;
         rb.AddForce(directionToTarget * bulletSpeed, ForceMode.Impulse);
+        transform.LookAt(targetPosition);
         Destroy(gameObject, bulletMaxLifeTime);
     }
 
@@ -37,7 +40,10 @@ public class Projectile : MonoBehaviour
                 {
                     Instantiate(impactEffect2, other.transform.position, Quaternion.identity);
                 }
-                other.GetComponent<Enemy>().TakeDamage(_bulletDamage, true);
+                if(_isCriticalHit)
+                    other.GetComponent<Enemy>().TakeDamage(_bulletDamage, true);
+                else
+                    other.GetComponent<Enemy>().TakeDamage(_bulletDamage, false);
                 Destroy(gameObject);
             }
         }else

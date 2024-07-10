@@ -29,6 +29,7 @@ public class CharacterStatsModule : MonoBehaviour
     [Foldout("Default Combat Module", foldEverything = true, styled = true, readOnly = false)]
     public WeaponType weaponType;
     public float rangedAttackRange;
+    public int rangedAttackWeapon; // 0 = Staff, 1 = Bow
     public float meleeAttackRange;
     public float detectorRange;
     public float damage;
@@ -109,12 +110,12 @@ public class CharacterStatsModule : MonoBehaviour
         {
             LoadCharacterStats();
             SetPlayerManagerStats();
-            playerManager.PrepareWeapon();
+            playerManager.PrepareWeapon(rangedAttackWeapon);
         }
         else
         {
             SetDefaultPlayerManagerStats();
-            playerManager.PrepareWeapon();
+            playerManager.PrepareWeapon(rangedAttackWeapon);
             Debug.Log("No save data found! Setting default values.");
         }
         CalculatePercentageIncrease();

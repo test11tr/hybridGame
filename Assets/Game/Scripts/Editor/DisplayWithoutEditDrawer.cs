@@ -42,6 +42,14 @@ public class DisplayWithoutEditDrawer : PropertyDrawer {
             case SerializedPropertyType.LayerMask:
                 break;
             case SerializedPropertyType.ObjectReference:
+                if (property.objectReferenceValue != null)
+                {
+                    EditorGUI.LabelField(position, label, new GUIContent(property.objectReferenceValue.name));
+                }
+                else
+                {
+                    EditorGUI.LabelField(position, label, new GUIContent("None (Object)"));
+                }
                 break;
             case SerializedPropertyType.Quaternion:
                 break;

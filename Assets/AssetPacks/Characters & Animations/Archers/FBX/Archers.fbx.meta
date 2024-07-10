@@ -1,0 +1,3734 @@
+fileFormatVersion: 2
+guid: 0f77ab73e01ff384c90bac54bb62e65e
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: ArcherCopper
+  - first:
+      1: 100002
+    second: ArcherGold
+  - first:
+      1: 100004
+    second: ArcherIron
+  - first:
+      1: 100006
+    second: //RootNode
+  - first:
+      1: 100008
+    second: ArcherSilver
+  - first:
+      1: 100010
+    second: Armature
+  - first:
+      1: 100012
+    second: Arrow
+  - first:
+      1: 100014
+    second: ArrowCopper
+  - first:
+      1: 100016
+    second: ArrowGold
+  - first:
+      1: 100018
+    second: ArrowIron
+  - first:
+      1: 100020
+    second: ArrowSilver
+  - first:
+      1: 100022
+    second: Bow
+  - first:
+      1: 100024
+    second: Bow 1
+  - first:
+      1: 100026
+    second: BowCopper
+  - first:
+      1: 100028
+    second: BowGold
+  - first:
+      1: 100030
+    second: BowIron
+  - first:
+      1: 100032
+    second: BowSilver
+  - first:
+      1: 100034
+    second: Chest
+  - first:
+      1: 100036
+    second: Cloak.L
+  - first:
+      1: 100038
+    second: Cloak.R
+  - first:
+      1: 100040
+    second: Cloak2.L
+  - first:
+      1: 100042
+    second: Cloak2.R
+  - first:
+      1: 100044
+    second: Control
+  - first:
+      1: 100046
+    second: Elbow.L
+  - first:
+      1: 100048
+    second: Elbow.R
+  - first:
+      1: 100050
+    second: Fingers1.L
+  - first:
+      1: 100052
+    second: Fingers1.R
+  - first:
+      1: 100054
+    second: Fingers2.L
+  - first:
+      1: 100056
+    second: Fingers2.R
+  - first:
+      1: 100058
+    second: Foot.L
+  - first:
+      1: 100060
+    second: Foot.R
+  - first:
+      1: 100062
+    second: FootIK.L
+  - first:
+      1: 100064
+    second: FootIK.R
+  - first:
+      1: 100066
+    second: FrontCloak
+  - first:
+      1: 100068
+    second: Hand.L
+  - first:
+      1: 100070
+    second: Hand.R
+  - first:
+      1: 100072
+    second: HandIK.L
+  - first:
+      1: 100074
+    second: HandIK.R
+  - first:
+      1: 100076
+    second: Head
+  - first:
+      1: 100078
+    second: Hips
+  - first:
+      1: 100080
+    second: Knee.L
+  - first:
+      1: 100082
+    second: Knee.R
+  - first:
+      1: 100084
+    second: LowerArm.L
+  - first:
+      1: 100086
+    second: LowerArm.R
+  - first:
+      1: 100088
+    second: LowerBow1
+  - first:
+      1: 100090
+    second: LowerBow2
+  - first:
+      1: 100092
+    second: LowerBowIK
+  - first:
+      1: 100094
+    second: LowerBowLimit
+  - first:
+      1: 100096
+    second: LowerLeg.L
+  - first:
+      1: 100098
+    second: LowerLeg.R
+  - first:
+      1: 100100
+    second: Neck
+  - first:
+      1: 100102
+    second: Quiver
+  - first:
+      1: 100104
+    second: QuiverCopper
+  - first:
+      1: 100106
+    second: QuiverGold
+  - first:
+      1: 100108
+    second: QuiverIron
+  - first:
+      1: 100110
+    second: QuiverSilver
+  - first:
+      1: 100112
+    second: Sideflap.L
+  - first:
+      1: 100114
+    second: Sideflap.R
+  - first:
+      1: 100116
+    second: Spine
+  - first:
+      1: 100118
+    second: String
+  - first:
+      1: 100120
+    second: Thumb1.L
+  - first:
+      1: 100122
+    second: Thumb1.R
+  - first:
+      1: 100124
+    second: Thumb2.L
+  - first:
+      1: 100126
+    second: Thumb2.R
+  - first:
+      1: 100128
+    second: Toes.L
+  - first:
+      1: 100130
+    second: Toes.R
+  - first:
+      1: 100132
+    second: UpperArm.L
+  - first:
+      1: 100134
+    second: UpperArm.R
+  - first:
+      1: 100136
+    second: UpperBow1
+  - first:
+      1: 100138
+    second: UpperBow2
+  - first:
+      1: 100140
+    second: UpperBowIK
+  - first:
+      1: 100142
+    second: UpperBowLimit
+  - first:
+      1: 100144
+    second: UpperLeg.L
+  - first:
+      1: 100146
+    second: UpperLeg.R
+  - first:
+      4: 400000
+    second: ArcherCopper
+  - first:
+      4: 400002
+    second: ArcherGold
+  - first:
+      4: 400004
+    second: ArcherIron
+  - first:
+      4: 400006
+    second: //RootNode
+  - first:
+      4: 400008
+    second: ArcherSilver
+  - first:
+      4: 400010
+    second: Armature
+  - first:
+      4: 400012
+    second: Arrow
+  - first:
+      4: 400014
+    second: ArrowCopper
+  - first:
+      4: 400016
+    second: ArrowGold
+  - first:
+      4: 400018
+    second: ArrowIron
+  - first:
+      4: 400020
+    second: ArrowSilver
+  - first:
+      4: 400022
+    second: Bow
+  - first:
+      4: 400024
+    second: Bow 1
+  - first:
+      4: 400026
+    second: BowCopper
+  - first:
+      4: 400028
+    second: BowGold
+  - first:
+      4: 400030
+    second: BowIron
+  - first:
+      4: 400032
+    second: BowSilver
+  - first:
+      4: 400034
+    second: Chest
+  - first:
+      4: 400036
+    second: Cloak.L
+  - first:
+      4: 400038
+    second: Cloak.R
+  - first:
+      4: 400040
+    second: Cloak2.L
+  - first:
+      4: 400042
+    second: Cloak2.R
+  - first:
+      4: 400044
+    second: Control
+  - first:
+      4: 400046
+    second: Elbow.L
+  - first:
+      4: 400048
+    second: Elbow.R
+  - first:
+      4: 400050
+    second: Fingers1.L
+  - first:
+      4: 400052
+    second: Fingers1.R
+  - first:
+      4: 400054
+    second: Fingers2.L
+  - first:
+      4: 400056
+    second: Fingers2.R
+  - first:
+      4: 400058
+    second: Foot.L
+  - first:
+      4: 400060
+    second: Foot.R
+  - first:
+      4: 400062
+    second: FootIK.L
+  - first:
+      4: 400064
+    second: FootIK.R
+  - first:
+      4: 400066
+    second: FrontCloak
+  - first:
+      4: 400068
+    second: Hand.L
+  - first:
+      4: 400070
+    second: Hand.R
+  - first:
+      4: 400072
+    second: HandIK.L
+  - first:
+      4: 400074
+    second: HandIK.R
+  - first:
+      4: 400076
+    second: Head
+  - first:
+      4: 400078
+    second: Hips
+  - first:
+      4: 400080
+    second: Knee.L
+  - first:
+      4: 400082
+    second: Knee.R
+  - first:
+      4: 400084
+    second: LowerArm.L
+  - first:
+      4: 400086
+    second: LowerArm.R
+  - first:
+      4: 400088
+    second: LowerBow1
+  - first:
+      4: 400090
+    second: LowerBow2
+  - first:
+      4: 400092
+    second: LowerBowIK
+  - first:
+      4: 400094
+    second: LowerBowLimit
+  - first:
+      4: 400096
+    second: LowerLeg.L
+  - first:
+      4: 400098
+    second: LowerLeg.R
+  - first:
+      4: 400100
+    second: Neck
+  - first:
+      4: 400102
+    second: Quiver
+  - first:
+      4: 400104
+    second: QuiverCopper
+  - first:
+      4: 400106
+    second: QuiverGold
+  - first:
+      4: 400108
+    second: QuiverIron
+  - first:
+      4: 400110
+    second: QuiverSilver
+  - first:
+      4: 400112
+    second: Sideflap.L
+  - first:
+      4: 400114
+    second: Sideflap.R
+  - first:
+      4: 400116
+    second: Spine
+  - first:
+      4: 400118
+    second: String
+  - first:
+      4: 400120
+    second: Thumb1.L
+  - first:
+      4: 400122
+    second: Thumb1.R
+  - first:
+      4: 400124
+    second: Thumb2.L
+  - first:
+      4: 400126
+    second: Thumb2.R
+  - first:
+      4: 400128
+    second: Toes.L
+  - first:
+      4: 400130
+    second: Toes.R
+  - first:
+      4: 400132
+    second: UpperArm.L
+  - first:
+      4: 400134
+    second: UpperArm.R
+  - first:
+      4: 400136
+    second: UpperBow1
+  - first:
+      4: 400138
+    second: UpperBow2
+  - first:
+      4: 400140
+    second: UpperBowIK
+  - first:
+      4: 400142
+    second: UpperBowLimit
+  - first:
+      4: 400144
+    second: UpperLeg.L
+  - first:
+      4: 400146
+    second: UpperLeg.R
+  - first:
+      23: 2300000
+    second: Arrow
+  - first:
+      23: 2300002
+    second: ArrowCopper
+  - first:
+      23: 2300004
+    second: ArrowGold
+  - first:
+      23: 2300006
+    second: ArrowIron
+  - first:
+      23: 2300008
+    second: ArrowSilver
+  - first:
+      23: 2300010
+    second: Quiver
+  - first:
+      23: 2300012
+    second: QuiverCopper
+  - first:
+      23: 2300014
+    second: QuiverGold
+  - first:
+      23: 2300016
+    second: QuiverIron
+  - first:
+      23: 2300018
+    second: QuiverSilver
+  - first:
+      33: 3300000
+    second: Arrow
+  - first:
+      33: 3300002
+    second: ArrowCopper
+  - first:
+      33: 3300004
+    second: ArrowGold
+  - first:
+      33: 3300006
+    second: ArrowIron
+  - first:
+      33: 3300008
+    second: ArrowSilver
+  - first:
+      33: 3300010
+    second: Quiver
+  - first:
+      33: 3300012
+    second: QuiverCopper
+  - first:
+      33: 3300014
+    second: QuiverGold
+  - first:
+      33: 3300016
+    second: QuiverIron
+  - first:
+      33: 3300018
+    second: QuiverSilver
+  - first:
+      43: 4300000
+    second: Arrow
+  - first:
+      43: 4300002
+    second: ArrowSilver
+  - first:
+      43: 4300004
+    second: ArrowGold
+  - first:
+      43: 4300006
+    second: QuiverCopper
+  - first:
+      43: 4300008
+    second: ArrowIron
+  - first:
+      43: 4300010
+    second: ArrowCopper
+  - first:
+      43: 4300012
+    second: QuiverSilver
+  - first:
+      43: 4300014
+    second: QuiverIron
+  - first:
+      43: 4300016
+    second: QuiverGold
+  - first:
+      43: 4300018
+    second: Quiver
+  - first:
+      43: 4300020
+    second: ArcherIron
+  - first:
+      43: 4300022
+    second: ArcherSilver
+  - first:
+      43: 4300024
+    second: ArcherGold
+  - first:
+      43: 4300026
+    second: BowSilver
+  - first:
+      43: 4300028
+    second: BowIron
+  - first:
+      43: 4300030
+    second: BowGold
+  - first:
+      43: 4300032
+    second: BowCopper
+  - first:
+      43: 4300034
+    second: ArcherCopper
+  - first:
+      74: 7400000
+    second: AttackStraight
+  - first:
+      74: 7400002
+    second: Idle
+  - first:
+      74: 7400004
+    second: Walk
+  - first:
+      74: 7400006
+    second: Jump
+  - first:
+      74: 7400008
+    second: JumpStart
+  - first:
+      74: 7400010
+    second: Falling
+  - first:
+      74: 7400012
+    second: Landing
+  - first:
+      74: 7400014
+    second: AttackAngled
+  - first:
+      74: 7400016
+    second: Hit
+  - first:
+      74: 7400018
+    second: Death1
+  - first:
+      74: 7400020
+    second: Death2
+  - first:
+      74: 7400022
+    second: AimStraight
+  - first:
+      74: 7400024
+    second: FireStraight
+  - first:
+      74: 7400026
+    second: AimAngled
+  - first:
+      74: 7400028
+    second: FireAngled
+  - first:
+      74: 7400030
+    second: Run
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: ArcherCopper
+  - first:
+      137: 13700002
+    second: ArcherGold
+  - first:
+      137: 13700004
+    second: ArcherIron
+  - first:
+      137: 13700006
+    second: ArcherSilver
+  - first:
+      137: 13700008
+    second: BowCopper
+  - first:
+      137: 13700010
+    second: BowGold
+  - first:
+      137: 13700012
+    second: BowIron
+  - first:
+      137: 13700014
+    second: BowSilver
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Scene
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 90
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Scene
+      internalID: 0
+      firstFrame: 35
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump
+      takeName: Scene
+      internalID: 0
+      firstFrame: 65
+      lastFrame: 87
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: JumpStart
+      takeName: Scene
+      internalID: 0
+      firstFrame: 65
+      lastFrame: 71
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Falling
+      takeName: Scene
+      internalID: 0
+      firstFrame: 91
+      lastFrame: 92
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Landing
+      takeName: Scene
+      internalID: 0
+      firstFrame: 81
+      lastFrame: 87
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: AttackStraight
+      takeName: Scene
+      internalID: 0
+      firstFrame: 100
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: AttackAngled
+      takeName: Scene
+      internalID: 0
+      firstFrame: 140
+      lastFrame: 185
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hit
+      takeName: Scene
+      internalID: 0
+      firstFrame: 185
+      lastFrame: 193
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death1
+      takeName: Scene
+      internalID: 0
+      firstFrame: 195
+      lastFrame: 208
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death2
+      takeName: Scene
+      internalID: 0
+      firstFrame: 215
+      lastFrame: 228
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: AimStraight
+      takeName: Scene
+      internalID: 0
+      firstFrame: 100
+      lastFrame: 124
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: FireStraight
+      takeName: Scene
+      internalID: 0
+      firstFrame: 124
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: AimAngled
+      takeName: Scene
+      internalID: 0
+      firstFrame: 145
+      lastFrame: 169
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: FireAngled
+      takeName: Scene
+      internalID: 0
+      firstFrame: 169
+      lastFrame: 185
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Scene
+      internalID: 0
+      firstFrame: 240
+      lastFrame: 256
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArcherCopper
+        weight: 1
+      - path: ArcherGold
+        weight: 1
+      - path: ArcherIron
+        weight: 1
+      - path: ArcherSilver
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Control
+        weight: 1
+      - path: Armature/Control/Elbow.L
+        weight: 1
+      - path: Armature/Control/Elbow.R
+        weight: 1
+      - path: Armature/Control/FootIK.L
+        weight: 1
+      - path: Armature/Control/FootIK.R
+        weight: 1
+      - path: Armature/Control/Hips
+        weight: 1
+      - path: Armature/Control/Hips/FrontCloak
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.L
+        weight: 1
+      - path: Armature/Control/Hips/Sideflap.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.L/Cloak2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Cloak.R/Cloak2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/HandIK.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/Quiver
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBow1/LowerBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/LowerBowLimit/LowerBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/String
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBow1/UpperBow2
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Bow/Bow
+          1/UpperBowLimit/UpperBowIK
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Fingers1.L/Fingers2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.L/LowerArm.L/Hand.L/Thumb1.L/Thumb2.L
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Fingers1.R/Fingers2.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R
+        weight: 1
+      - path: Armature/Control/Hips/Spine/Chest/UpperArm.R/LowerArm.R/Hand.R/Thumb1.R/Thumb2.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Control/Hips/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Control/Knee.L
+        weight: 1
+      - path: Armature/Control/Knee.R
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: ArrowCopper
+        weight: 1
+      - path: ArrowGold
+        weight: 1
+      - path: ArrowIron
+        weight: 1
+      - path: ArrowSilver
+        weight: 1
+      - path: BowCopper
+        weight: 1
+      - path: BowGold
+        weight: 1
+      - path: BowIron
+        weight: 1
+      - path: BowSilver
+        weight: 1
+      - path: QuiverCopper
+        weight: 1
+      - path: QuiverGold
+        weight: 1
+      - path: QuiverIron
+        weight: 1
+      - path: QuiverSilver
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0001
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.0001
+    rootMotionBoneName: Control
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

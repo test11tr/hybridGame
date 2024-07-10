@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8429454951795531094, guid: 53f936b3139146f498070a93b6f2c3d6, type: 3}
       propertyPath: m_Name
-      value: CharacterProjectile - Lv1
+      value: CharacterProjectile - Staff
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

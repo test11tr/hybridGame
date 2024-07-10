@@ -38,6 +38,7 @@ public class CharacterControlManager : MonoBehaviour
     [DisplayWithoutEdit()] public bool isRangedAttack;
     [DisplayWithoutEdit()] public bool isMeleeAttack;
     [DisplayWithoutEdit()] public bool isRotatingBlades;
+    [DisplayWithoutEdit()] public int RangedAttackWeapon; // 0 = Bow, 1 = Staff
     [DisplayWithoutEdit()] public float rangedAttackRange;
     [DisplayWithoutEdit()] public float meleeAttackRange;
     [DisplayWithoutEdit()] public float detectorRange;
@@ -47,7 +48,7 @@ public class CharacterControlManager : MonoBehaviour
     [DisplayWithoutEdit()] public float splashDamageMultiplier;
     [DisplayWithoutEdit()] public float attackSpeedRange;
     [DisplayWithoutEdit()] public float attackSpeedMelee;
-    public Projectile projectile;
+    [DisplayWithoutEdit()] public Projectile projectile;
     public Transform projectileSpawnPoint;
     public Collider detectorCollider;
     public Collider attackCollider;
@@ -111,7 +112,12 @@ public class CharacterControlManager : MonoBehaviour
 
     [Foldout("Weapon References", foldEverything = true, styled = true, readOnly = false)]
     public List<GameObject> MeleeWeapons;
-    public List<GameObject> RangedWeapons;
+    public List<GameObject> RangedWeaponsStaff;
+    public Projectile staffProjectile;
+    public List<GameObject> RangedWeaponsBow;
+    public List<GameObject> RangedWeaponsArrows;
+    public List<GameObject> RangedWeaponsQuivers;
+    public Projectile bowProjectile;
 
     [Foldout("Debug", foldEverything = true, styled = true, readOnly = false)]
     public bool drawGizmos;
@@ -217,14 +223,20 @@ public class CharacterControlManager : MonoBehaviour
             weapon.SetActive(false);
         }
 
-        foreach (var weapon in RangedWeapons)
+        foreach (var weapon in RangedWeaponsStaff)
+        {
+            weapon.SetActive(false);
+        }
+
+        foreach (var weapon in RangedWeaponsBow)
         {
             weapon.SetActive(false);
         }
     }
 
-    public void PrepareWeapon()
+    public void PrepareWeapon(int rangedAttackWeapon)
     {
+        RangedAttackWeapon = rangedAttackWeapon;
         setAttackRangeVisualizer();
         if (isMeleeAttack)
         {
@@ -232,7 +244,17 @@ public class CharacterControlManager : MonoBehaviour
         }
         else if (isRangedAttack)
         {
-            ActivateWeapon(RangedWeapons, 0);
+            if(rangedAttackWeapon == 0)
+            {
+                ActivateWeapon(RangedWeaponsStaff, 0);
+                projectile = staffProjectile;
+            }
+            else if(rangedAttackWeapon == 1)
+            {
+                ActivateWeapon(RangedWeaponsBow, 0);
+                ActivateWeapon(RangedWeaponsQuivers, 0);
+                projectile = bowProjectile;
+            }
         }
     }
 
@@ -465,9 +487,18 @@ public class CharacterControlManager : MonoBehaviour
                 {
                     float timeToWait = 1;
                     
-                    playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
-                    timeToWait = GetAnimationSpeed("rangedattack1");
-                    playerAnimator.SetTrigger("rangedattack1");
+                    if(RangedAttackWeapon == 0)
+                    {
+                        playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
+                        timeToWait = GetAnimationSpeed("rangedattack1");
+                        playerAnimator.SetTrigger("rangedattack1");
+                    }
+                    else if(RangedAttackWeapon == 1)
+                    {
+                        playerAnimator.SetFloat("attackSpeed", attackSpeedRange);
+                        timeToWait = GetAnimationSpeed("rangedattack2");
+                        playerAnimator.SetTrigger("rangedattack2");
+                    }
 
                     DelayHelper.DelayAction(timeToWait, () =>
                     {
@@ -511,16 +542,14 @@ public class CharacterControlManager : MonoBehaviour
         if (isCriticalHit)
         {
             finalDamage =criticalMultiplier * damage;
-            closestEnemy.TakeDamage(finalDamage, true);
         }else
         {
             finalDamage = damage;
-            closestEnemy.TakeDamage(finalDamage, false);
         }
 
         float yOffset = projectileSpawnPoint.position.y;
         Projectile _projectile = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
-        _projectile.Fire(finalDamage, closestEnemy.transform.position, yOffset);
+        _projectile.Fire(finalDamage, closestEnemy.transform.position, yOffset, isCriticalHit);
     }
 
     public void DealMeleeDamage()

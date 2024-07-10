@@ -1267,6 +1267,7 @@ MonoBehaviour:
   isRangedAttack: 0
   isMeleeAttack: 0
   isRotatingBlades: 0
+  RangedAttackWeapon: 0
   rangedAttackRange: 4
   meleeAttackRange: 2
   detectorRange: 5
@@ -1329,11 +1330,16 @@ MonoBehaviour:
   - {fileID: 4455972232181157052}
   - {fileID: 4466950154406469206}
   - {fileID: 410843853078177688}
-  RangedWeapons:
+  RangedWeaponsStaff:
   - {fileID: 9031658066194321151}
   - {fileID: 1835393149090113528}
   - {fileID: 4850050370134662341}
   - {fileID: 5825942265691698113}
+  staffProjectile: {fileID: 6408362271589990350, guid: 59a30503ce5fde74eb94905f58097405, type: 3}
+  RangedWeaponsBow: []
+  RangedWeaponsArrows: []
+  RangedWeaponsQuivers: []
+  bowProjectile: {fileID: 6408362271589990350, guid: 9a4fbbaa1082a0e40bc504903e755284, type: 3}
   drawGizmos: 1
 --- !u!1 &1915217369847709940
 GameObject:
@@ -3330,6 +3336,7 @@ MonoBehaviour:
   dashCooldownTime: 1
   weaponType: 0
   rangedAttackRange: 4
+  rangedAttackWeapon: 0
   meleeAttackRange: 2
   detectorRange: 5
   damage: 1

@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using DG.Tweening;
-using Unity.VisualScripting;
-using System.Runtime.InteropServices;
 
 public class Enemy : MonoBehaviour
 {
@@ -889,7 +887,7 @@ public class Enemy : MonoBehaviour
                 // Attack code here                
                 float yOffset = parent.projectileSpawnPoint.position.y;
                 Projectile _projectile = Instantiate(parent.projectile, parent.projectileSpawnPoint.position, Quaternion.identity);
-                _projectile.Fire(parent.damage, parent.player.position, yOffset);
+                _projectile.Fire(parent.damage, parent.player.position, yOffset, false);
                 
                 DelayHelper.DelayAction(parent.timeBetweenAttacks, () =>
                 {
@@ -1181,7 +1179,7 @@ public class Enemy : MonoBehaviour
                 {
                     float yOffset = parent.projectileSpawnPoint.position.y;
                     Projectile _projectile = Instantiate(parent.projectile, parent.projectileSpawnPoint.position, Quaternion.identity);
-                    _projectile.Fire(parent.damage, parent.player.position, yOffset);
+                    _projectile.Fire(parent.damage, parent.player.position, yOffset, false);
                 }
                 
                 DelayHelper.DelayAction(parent.timeBetweenAttacks, () =>

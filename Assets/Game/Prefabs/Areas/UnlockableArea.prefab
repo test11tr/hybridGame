@@ -170,7 +170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Kill 2 Enemies to Unlock Area
+  m_text: Wait for Unlock Quest!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e21d9fa883341484f8393b51730ca170, type: 2}
   m_sharedMaterial: {fileID: -4918373443893110478, guid: e21d9fa883341484f8393b51730ca170, type: 2}
@@ -421,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7006211933397315208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1337,6 +1337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935fae40600a42a47a384ee149b27cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaName: Area2
   isLocked: 1
   popupUI: {fileID: 5275247601951546822}
   Gate: {fileID: 231913179982658193}

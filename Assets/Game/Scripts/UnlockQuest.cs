@@ -144,6 +144,7 @@ public class UnlockQuest : Quest
         GameManager.Instance.questManager.completeTick.SetActive(false);
         GameManager.Instance.questManager.questSlot.SetActive(true);
         unlockableArea.questDescriptionText.text = Description;
+        unlockableArea.progressBar.gameObject.SetActive(true);
         unlockableArea.progressBar.fillAmount = (float)CurrentAmount / RequiredAmount;
         unlockableArea.progressText.text = $"{CurrentAmount}/{RequiredAmount}";
 

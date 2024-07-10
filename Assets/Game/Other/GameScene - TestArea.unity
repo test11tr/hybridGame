@@ -425,10 +425,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4946404500572969601, guid: 1551850218887fe42a255923d8b6928f, type: 3}
-      propertyPath: areaName
-      value: Area2
-      objectReference: {fileID: 0}
     - target: {fileID: 8279591596126405710, guid: 1551850218887fe42a255923d8b6928f, type: 3}
       propertyPath: m_Name
       value: UnlockableArea
@@ -3103,10 +3099,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4946404500572969601, guid: 1551850218887fe42a255923d8b6928f, type: 3}
-      propertyPath: areaName
-      value: Area1
-      objectReference: {fileID: 0}
     - target: {fileID: 8279591596126405710, guid: 1551850218887fe42a255923d8b6928f, type: 3}
       propertyPath: m_Name
       value: UnlockableArea
