@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public CameraShakeModule cameraShakeModule;
     public incrementalManagerMenu incrementelMenuManager;
     public incrementalManagerWheel incrementelWheelManager;
+    public weaponSelectManager weaponSelectManager;
     public QuestManager questManager;
     public IncrementalMenuType incrementalMenuType;
     public Camera mainCamera;
@@ -68,6 +69,14 @@ public class GameManager : MonoBehaviour
         }else{
             incrementelWheelManager.gameObject.SetActive(false);
         }
+    }
+
+    public void openWeaponMenu(){
+        weaponSelectManager.gameObject.SetActive(true);
+    }
+
+    public void closeWeaponMenu(){
+        weaponSelectManager.gameObject.SetActive(false);
     }
 
     public void SetTrue (GameObject target)

@@ -238,15 +238,18 @@ public class CharacterControlManager : MonoBehaviour
     {
         RangedAttackWeapon = rangedAttackWeapon;
         setAttackRangeVisualizer();
+        InitializeWeaponPools();
         if (isMeleeAttack)
         {
             ActivateWeapon(MeleeWeapons, 0);
+            DeactivateWeapon(RangedWeaponsQuivers, 0);
         }
         else if (isRangedAttack)
         {
             if(rangedAttackWeapon == 0)
             {
                 ActivateWeapon(RangedWeaponsStaff, 0);
+                DeactivateWeapon(RangedWeaponsQuivers, 0);
                 projectile = staffProjectile;
             }
             else if(rangedAttackWeapon == 1)
@@ -265,12 +268,23 @@ public class CharacterControlManager : MonoBehaviour
             weaponPool[index].SetActive(true);
         }
     }
+    private void DeactivateWeapon(List<GameObject> weaponPool, int index)
+    {
+        if (weaponPool.Count > index)
+        {
+            weaponPool[index].SetActive(false);
+        }
+    }
     #endregion
     
     #region MenuHandler
     public void OpenIncrementalMenu()
     {
         GameManager.Instance.openIncrementalMenu();
+    }
+    public void OpenWeaponMenu()
+    {
+        GameManager.Instance.openWeaponMenu();
     }
     #endregion
 
