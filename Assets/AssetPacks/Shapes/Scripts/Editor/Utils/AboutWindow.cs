@@ -79,10 +79,6 @@ namespace Shapes {
 					OnReceiveLatestVersion( req.downloadHandler.text );
 					req.Dispose();
 					req = null;
-				} else if( req.isHttpError || req.isNetworkError ) {
-					Debug.Log( req.error );
-					req.Dispose();
-					req = null;
 				}
 			}
 
