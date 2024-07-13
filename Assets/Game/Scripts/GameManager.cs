@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
             Vector3 plyleft = Quaternion.LookRotation(SpawnPoint.transform.forward) * Quaternion.Euler(0, 180 - 20, 0) * new Vector3(0, 0, 1);
             Gizmos.DrawRay(SpawnPoint.transform.position + SpawnPoint.transform.forward, plyright * 0.25f);
             Gizmos.DrawRay(SpawnPoint.transform.position + SpawnPoint.transform.forward, plyleft * 0.25f);
-            Handles.Label(SpawnPoint.transform.position + Vector3.up * .2f, "Player Spawn Position");
+            //Handles.Label(SpawnPoint.transform.position + Vector3.up * .2f, "Player Spawn Position");
         }
     }
 }
