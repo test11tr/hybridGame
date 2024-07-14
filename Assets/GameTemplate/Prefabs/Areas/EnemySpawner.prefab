@@ -445,6 +445,7 @@ MonoBehaviour:
   cooldownText: {fileID: 2326835972616337897}
   bg: {fileID: 814239693648119130}
   outline: {fileID: 5536554994292813677}
-  loading: {fileID: 0}
+  showSpawnArea: 0
+  showText: 0
   currentCooldownTime: 0
   activeEnemies: 0

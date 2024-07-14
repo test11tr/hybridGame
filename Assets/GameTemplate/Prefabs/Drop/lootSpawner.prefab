@@ -625,6 +625,9 @@ MonoBehaviour:
   waitTime: 1
   spawnWaitTime: 0.1
   lootIcon: {fileID: 1041364208769889821}
+  isPlayerInside: 0
+  timer: 0
+  spawnTimer: 0
 --- !u!1 &6765998209224527029
 GameObject:
   m_ObjectHideFlags: 0
